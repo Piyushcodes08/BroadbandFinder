@@ -597,7 +597,7 @@ export default function BookingFlow() {
     <div className="mb-6">
       <div className="h-1 w-full overflow-hidden rounded-full bg-gray-100 ">
         <div
-          className="h-1 rounded-full bg-red-600 transition-all"
+          className="h-1 rounded-full bg-[#E8611A] transition-all"
           style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
         />
       </div>
@@ -710,18 +710,18 @@ export default function BookingFlow() {
   const showAddon = (key) => Boolean(providerCfg.addons?.[key]);
 
   return (
-    <div className="mx-auto max-w-6xl p-4 md:p-8">
+    <div className="mx-auto max-w-6xl p-4 md:p-8" data-aos="fade-up">
       {/* Header */}
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b pb-4">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b pb-4" data-aos="fade-down">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Checkout</h1>
           <p className="text-sm text-gray-500 mt-1">
             Complete your order in a few quick steps.
           </p>
-          <div className="w-36 h-[4px] bg-[#D32F2F] mt-3 rounded-full" />
+          <div className="w-36 h-[4px] bg-[#E8611A] mt-3 rounded-full" />
         </div>
         <div className="flex items-center gap-4">
-          <span className="rounded-full border border-[#D32F2F] bg-white px-4 py-1 text-xs font-semibold text-[#D32F2F]">
+          <span className="rounded-full border border-[#E8611A] bg-white px-4 py-1 text-xs font-semibold text-[#E8611A]">
             {providerCfg.displayName}
           </span>
           <span className="text-sm font-medium text-gray-600">
@@ -740,6 +740,7 @@ export default function BookingFlow() {
           onSubmit={handleSubmit}
           onKeyDown={handleKeyDown}
           className="space-y-6"
+          data-aos="fade-right"
         >
           {/* STEP 1 — Plans & Add-ons (provider aware) */}
           {step === 1 && (
@@ -758,7 +759,7 @@ export default function BookingFlow() {
                     <div className="flex flex-wrap gap-3">
                       <a
                         href={`tel:${SALES_PHONE.replace(/[^+\d]/g, "")}`}
-                        className="rounded-xl bg-red-600 px-4 py-2 text-white font-semibold hover:bg-red-700"
+                        className="rounded-xl bg-[#E8611A] px-4 py-2 text-white font-semibold hover:bg-[#C44E12]"
                       >
                         Call {SALES_PHONE}
                       </a>
@@ -1296,7 +1297,7 @@ export default function BookingFlow() {
                   />
                 )}
 
-                <div className="rounded-lg bg-red-50 p-4 text-sm">
+                <div className="rounded-lg bg-[#FEF3EC] p-4 text-sm">
                   <p className="font-semibold">
                     By submitting, you agree to billing and service policies.
                   </p>
@@ -1323,7 +1324,7 @@ export default function BookingFlow() {
                 onClick={() => canContinueFromStep && goNext()}
                 className={`rounded-xl px-12 py-3 font-semibold text-white transition duration-200 ${
                   canContinueFromStep
-                    ? "bg-[#D32F2F] hover:bg-[#B71C1C]"
+                    ? "bg-[#E8611A] hover:bg-[#C44E12]"
                     : "bg-gray-300 cursor-not-allowed"
                 }`}
               >
@@ -1334,7 +1335,7 @@ export default function BookingFlow() {
         </form>
 
         {/* RIGHT – sticky summary */}
-        <aside className="lg:sticky lg:top-8">
+        <aside className="lg:sticky lg:top-8" data-aos="fade-left">
           <div className="rounded-2xl border bg-white p-6 shadow-sm">
             <h3 className="mb-5 text-xl font-bold text-gray-900 tracking-tight border-b border-gray-100 pb-3">Order Summary</h3>
             <div className="space-y-1 text-sm">
@@ -1371,7 +1372,7 @@ export default function BookingFlow() {
               className={`mt-6 w-full rounded-2xl py-3 text-sm font-semibold text-white transition duration-200 ${
                 step < TOTAL_STEPS
                   ? canContinueFromStep
-                    ? "bg-[#D32F2F] hover:bg-[#B71C1C] cursor-pointer shadow-sm"
+                    ? "bg-[#E8611A] hover:bg-[#C44E12] cursor-pointer shadow-sm"
                     : "bg-gray-200 text-gray-400 cursor-not-allowed"
                   : "bg-green-600 hover:bg-green-700 cursor-pointer shadow-sm"
               }`}
@@ -1468,7 +1469,7 @@ function Field({
     <div className={cn("space-y-1.5", className)}>
       {label && (
         <label htmlFor={id} className="block text-sm font-medium text-gray-800">
-          {label} {required && <span className="text-red-600">*</span>}
+          {label} {required && <span className="text-[#E8611A]">*</span>}
         </label>
       )}
       {children}
@@ -1478,7 +1479,7 @@ function Field({
         </p>
       )}
       {error && (
-        <p id={errorId} className="text-xs text-red-600">
+        <p id={errorId} className="text-xs text-[#E8611A]">
           {error}
         </p>
       )}
@@ -1525,11 +1526,11 @@ function Input({
         className={cn(
           "w-full rounded-lg border px-3 py-2 text-sm",
           "shadow-sm outline-none transition",
-          "focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-0",
+          "focus-visible:ring-2 focus-visible:ring-[#E8611A] focus-visible:ring-offset-0",
           disabled
             ? "bg-gray-100 text-gray-500 cursor-not-allowed"
             : "bg-white",
-          error ? "border-red-500" : "border-gray-300"
+          error ? "border-[#F47630]" : "border-gray-300"
         )}
       />
     </Field>
@@ -1573,11 +1574,11 @@ function Textarea({
         className={cn(
           "w-full rounded-lg border px-3 py-2 text-sm",
           "shadow-sm outline-none transition",
-          "focus-visible:ring-2 focus-visible:ring-red-600",
+          "focus-visible:ring-2 focus-visible:ring-[#E8611A]",
           disabled
             ? "bg-gray-100 text-gray-500 cursor-not-allowed"
             : "bg-white",
-          error ? "border-red-500" : "border-gray-300"
+          error ? "border-[#F47630]" : "border-gray-300"
         )}
       />
     </Field>
@@ -1597,7 +1598,7 @@ function Checkbox({ id, label, checked, onChange, hint, disabled = false }) {
         <input
           id={id}
           type="checkbox"
-          className="mt-1 h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500 accent-red-600 cursor-pointer"
+          className="mt-1 h-4 w-4 rounded border-gray-300 text-[#E8611A] focus:ring-[#F47630] accent-[#E8611A] cursor-pointer"
           checked={!!checked}
           onChange={(e) => onChange?.(e.target.checked)}
           disabled={disabled}
@@ -1647,9 +1648,9 @@ function Select({
         aria-describedby={cn(hintId, errorId)}
         className={cn(
           "w-full rounded-xl border px-3 py-2 text-sm bg-white",
-          "shadow-sm outline-none transition focus:border-red-500 focus:ring-1 focus:ring-red-500",
+          "shadow-sm outline-none transition focus:border-[#F47630] focus:ring-1 focus:ring-[#F47630]",
           disabled ? "bg-gray-100 text-gray-500 cursor-not-allowed" : "bg-white",
-          error ? "border-red-500" : "border-gray-300"
+          error ? "border-[#F47630]" : "border-gray-300"
         )}
       >
         {options?.map((o) => (
@@ -1693,7 +1694,7 @@ function ToggleOption({
       className={cn(
         "flex w-full items-center justify-between rounded-2xl border p-5 md:p-6 text-left transition duration-200",
         checked
-          ? "border-red-500 bg-[#FFF5F5] ring-1 ring-red-500"
+          ? "border-[#F47630] bg-[#FEF3EC] ring-1 ring-[#F47630]"
           : "border-gray-200 hover:border-gray-300 bg-white hover:shadow-sm",
         className
       )}
@@ -1734,7 +1735,7 @@ function RadioRow({ name, checked, onChange, title, price, className = "" }) {
       className={cn(
         "flex cursor-pointer items-center justify-between rounded-xl border p-4 transition",
         checked
-          ? "border-red-500 bg-red-50 shadow-sm"
+          ? "border-[#F47630] bg-[#FEF3EC] shadow-sm"
           : "border-gray-200 hover:bg-gray-50",
         className
       )}
@@ -1743,7 +1744,7 @@ function RadioRow({ name, checked, onChange, title, price, className = "" }) {
         <input
           type="radio"
           name={name}
-          className="accent-red-600"
+          className="accent-[#E8611A]"
           checked={!!checked}
           onChange={onChange}
         />

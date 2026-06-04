@@ -64,22 +64,22 @@ export const bundles = [
 
 const connections = [
   {
-    icon: <MdOutlineSpeed className="text-red-600 text-6xl" />,
+    icon: <MdOutlineSpeed className="text-[#E8611A] text-6xl" />,
     title: "Internet",
     text: "Keep business humming with fast, reliable Internet for your small business.",
   },
   {
-    icon: <FaHeadset className="text-red-600 text-6xl" />,
+    icon: <FaHeadset className="text-[#E8611A] text-6xl" />,
     title: "Phone",
     text: "Keep the same telephone number. Advanced features and unlimited local & long distance.",
   },
   {
-    icon: <FaMobileAlt className="text-red-600 text-6xl" />,
+    icon: <FaMobileAlt className="text-[#E8611A] text-6xl" />,
     title: "Mobile",
     text: "Bring your number. Nationwide 5G on America’s most reliable network.",
   },
   {
-    icon: <FaTv className="text-red-600 text-6xl" />,
+    icon: <FaTv className="text-[#E8611A] text-6xl" />,
     title: "TV",
     text: "Entertain your customers with sports, news and more — at the price you want.",
   },
@@ -154,25 +154,26 @@ function BundleCard({ item }) {
   return (
     <article
       aria-labelledby={id}
-      className="rounded-xl border bg-gradient-to-tr from-white via-red-50/10 to-slate-50 p-4 sm:p-6 md:p-8 md:h-min h-[650px]"
+      className="rounded-xl border bg-gradient-to-tr from-white via-[#FEF3EC]/10 to-slate-50 p-4 sm:p-6 md:p-8 md:h-min h-[650px]"
+      data-aos="fade-up"
     >
       <div className="grid gap-6 md:grid-cols-[1fr_auto] md:gap-10 items-start">
         <div className="flex flex-col gap-2">
-          <div className="mb-4 flex flex-wrap items-center gap-3 sm:gap-6 text-red-600 text-2xl sm:text-3xl">
+          <div className="mb-4 flex flex-wrap items-center gap-3 sm:gap-6 text-[#E8611A] text-2xl sm:text-3xl">
             <FaWifi aria-hidden />
             {(showPhone || showTV || showMobile) && (
-              <span className="text-red-500 text-xl sm:text-2xl">+</span>
+              <span className="text-[#F47630] text-xl sm:text-2xl">+</span>
             )}
             {showPhone && <FaHeadset aria-hidden />}
             {showTV && (
               <>
-                <span className="text-red-500 text-xl sm:text-2xl">+</span>
+                <span className="text-[#F47630] text-xl sm:text-2xl">+</span>
                 <FaTv aria-hidden />
               </>
             )}
             {showMobile && (
               <>
-                <span className="text-red-500 text-xl sm:text-2xl">+</span>
+                <span className="text-[#F47630] text-xl sm:text-2xl">+</span>
                 <FaMobileAlt aria-hidden />
               </>
             )}
@@ -192,7 +193,7 @@ function BundleCard({ item }) {
           <ul className="mt-4 space-y-2">
             {item.bullets.map((b, i) => (
               <li key={i} className="flex items-start gap-2 text-gray-800 text-sm sm:text-base md:text-lg">
-                <span className="mt-[6px] text-red-500">•</span>
+                <span className="mt-[6px] text-[#F47630]">•</span>
                 <span className={isPricey(b) ? "font-semibold" : ""}>{b}</span>
               </li>
             ))}
@@ -203,7 +204,7 @@ function BundleCard({ item }) {
 
         <div className="w-full md:w-auto md:min-w-[200px] lg:min-w-[260px]">
           <div className="flex md:flex-col items-center md:items-start gap-4">
-            <div className="hidden md:block w-[3px] h-full bg-gradient-to-b from-red-600 to-green-500 rounded" aria-hidden />
+            <div className="hidden md:block w-[3px] h-full bg-gradient-to-b from-[#E8611A] to-green-500 rounded" aria-hidden />
             <div className="text-center md:text-left">
               <p className="text-gray-700 text-sm sm:text-base font-medium">{item.priceLeft || "All for only"}</p>
               <div className="flex items-end justify-center md:justify-start gap-1 sm:gap-2">
@@ -214,7 +215,7 @@ function BundleCard({ item }) {
               <div className="py-6 sm:py-8 md:py-10">
                 <Link
                   to="/checkout/spectrum-business"
-                  className="bg-red-600 hover:bg-red-500 text-white px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-md rounded-full w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                  className="bg-[#E8611A] hover:bg-[#F47630] text-white px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-md rounded-full w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8611A]"
                  
                   
                 >
@@ -268,12 +269,12 @@ export default function SpectrumBusinessReplica() {
         aria-label="Spectrum Business promotion"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" aria-hidden />
-        <div className="relative mx-auto max-w-7xl grid lg:grid-cols-12 gap-6 items-center px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+        <div className="relative mx-auto max-w-7xl grid lg:grid-cols-12 gap-6 items-center px-4 sm:px-6 lg:px-8 py-10 lg:py-16" data-aos="fade-right">
           <div className="order-2 lg:order-1 lg:col-span-7">
             <p className="text-sm md:text-base tracking-[0.2em] font-semibold text-gray-600">SPECTRUM BUSINESS®</p>
 
             <h1 className="mt-2 text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] text-gray-900">
-              Get <span className="text-red-700">4 Months FREE</span>
+              Get <span className="text-[#C44E12]">4 Months FREE</span>
               <br className="hidden md:block" /> on Internet, Phone,
               <br className="hidden md:block" /> Mobile and TV
             </h1>
@@ -288,7 +289,7 @@ export default function SpectrumBusinessReplica() {
 
             <div className="mt-6 space-y-5">
               <div className="flex items-start">
-                <span className="hidden sm:block h-12 w-[4px] rounded bg-gradient-to-b from-red-600 via-red-500 to-green-500 mr-3" aria-hidden />
+                <span className="hidden sm:block h-12 w-[4px] rounded bg-gradient-to-b from-[#E8611A] via-[#F47630] to-green-500 mr-3" aria-hidden />
                 <div>
                   <p className="text-base font-semibold text-gray-800">Internet starting at</p>
                   <div className="flex items-end gap-2">
@@ -312,7 +313,7 @@ export default function SpectrumBusinessReplica() {
       </section>
 
       {/* Trust band */}
-      <section className="bg-red-50 py-6 hidden md:block" aria-label="Customer satisfaction">
+      <section className="bg-[#FEF3EC] py-6 hidden md:block" aria-label="Customer satisfaction" data-aos="fade-up">
         <div className="max-w-5xl mx-auto flex items-center justify-center gap-6 px-4 py-4 flex-wrap">
           <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug text-center">
             #1 in Customer Satisfaction for Internet Service
@@ -321,7 +322,7 @@ export default function SpectrumBusinessReplica() {
       </section>
 
       {/* ZIP checker */}
-      <section className="bg-gray-50" aria-labelledby="zip-heading">
+      <section className="bg-gray-50" aria-labelledby="zip-heading" data-aos="fade-up">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col items-center">
             <h2 id="zip-heading" className="text-gray-700 font-medium text-2xl md:text-3xl text-center">
@@ -358,7 +359,7 @@ export default function SpectrumBusinessReplica() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center px-5 bg-slate-600 text-white font-semibold hover:bg-slate-700 disabled:bg-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
+                  className="inline-flex items-center justify-center px-5 bg-[#E8611A] text-white font-semibold hover:bg-[#C44E12] disabled:bg-[#F8975D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8611A]"
                   aria-label="Search by ZIP code"
                 >
                   {loading ? (
@@ -370,7 +371,7 @@ export default function SpectrumBusinessReplica() {
               </div>
 
               {error && (
-                <p id="zipcode-error" className="px-4 pb-3 text-sm text-red-600" role="alert">
+                <p id="zipcode-error" className="px-4 pb-3 text-sm text-[#E8611A]" role="alert">
                   {error}
                 </p>
               )}
@@ -396,7 +397,7 @@ export default function SpectrumBusinessReplica() {
                 <button
                   type="button"
                   onClick={() => navigate("/customerbookingfrom", { state: { name: "Spectrum Business" } })}
-                  className="mt-6 px-6 py-3 border border-slate-600 text-slate-600 hover:text-white font-semibold rounded-full hover:bg-slate-700 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700"
+                  className="mt-6 px-6 py-3 border border-slate-600 text-slate-600 hover:text-white font-semibold rounded-full hover:bg-[#C44E12] transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700"
                 >
                   Book Now
                 </button>
@@ -436,7 +437,7 @@ export default function SpectrumBusinessReplica() {
             <p className="text-2xl md:text-3xl text-gray-700 mb-4">Find the best plan for your business:</p>
             <a
               href={TEL_HREF}
-              className="inline-flex items-center gap-2 text-xl md:text-2xl font-semibold text-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+              className="inline-flex items-center gap-2 text-xl md:text-2xl font-semibold text-[#C44E12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C44E12]"
               aria-label={`Call ${PHONE}`}
             >
               <FaPhoneAlt /> {PHONE}
@@ -453,7 +454,7 @@ export default function SpectrumBusinessReplica() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {connections.map((c, i) => (
-              <div key={i} className="border flex flex-col items-center justify-center bg-white rounded-xl p-6 shadow-sm">
+              <div key={i} className="border flex flex-col items-center justify-center bg-white rounded-xl p-6 shadow-sm" data-aos="fade-up" data-aos-delay={i * 100}>
                 <div aria-hidden="true">{c.icon}</div>
                 <h3 className="mt-4 font-semibold text-xl md:text-2xl">{c.title}</h3>
                 <p className="mt-2 text-gray-600 text-center text-base md:text-lg">{c.text}</p>
@@ -475,7 +476,7 @@ export default function SpectrumBusinessReplica() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {why.map((w, i) => (
-              <article key={i} className="bg-white rounded-xl overflow-hidden shadow-sm border">
+              <article key={i} className="bg-white rounded-xl overflow-hidden shadow-sm border" data-aos="fade-up" data-aos-delay={i * 150}>
                 <img
                   src={w.img}
                   alt={w.title}
@@ -509,8 +510,9 @@ export default function SpectrumBusinessReplica() {
             className="h-64 md:h-96 w-full object-cover rounded-xl"
             loading="lazy"
             decoding="async"
+            data-aos="fade-right"
           />
-          <aside>
+          <aside data-aos="fade-left">
             <h3 id="learn-heading" className="text-3xl md:text-5xl font-semibold">
               Learn More About Launching Your Business
             </h3>
@@ -519,7 +521,7 @@ export default function SpectrumBusinessReplica() {
             </p>
             <button
               type="button"
-              className="mt-5 px-4 py-2 border border-red-700 text-red-700 rounded-full hover:bg-red-700 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+              className="mt-5 px-4 py-2 border border-[#C44E12] text-[#C44E12] rounded-full hover:bg-[#C44E12] hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C44E12]"
               aria-label="Explore resources"
             >
               Explore resources
@@ -539,28 +541,28 @@ export default function SpectrumBusinessReplica() {
           </p>
 
           <div className="grid sm:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-xl border shadow-sm text-center flex flex-col h-full py-10">
-              <FaPhoneAlt className="mx-auto text-red-700 text-5xl" aria-hidden />
+            <div className="bg-white p-6 rounded-xl border shadow-sm text-center flex flex-col h-full py-10" data-aos="fade-right">
+              <FaPhoneAlt className="mx-auto text-[#C44E12] text-5xl" aria-hidden />
               <h3 className="mt-3 font-semibold text-2xl">Call to Order Business Service</h3>
               <p className="text-gray-600 text-lg flex-1">Available Monday – Friday, 8am – 5pm ET.</p>
               <a
                 href={TEL_HREF}
-                className="mt-3 px-4 py-2 border border-red-700 text-red-700 rounded-full hover:bg-red-700 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+                className="mt-3 px-4 py-2 border border-[#C44E12] text-[#C44E12] rounded-full hover:bg-[#C44E12] hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C44E12]"
                 aria-label={`Call ${PHONE}`}
               >
                 {PHONE}
               </a>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border shadow-sm text-center flex flex-col h-full py-10">
-              <FaHeadset className="mx-auto text-red-700 text-5xl" aria-hidden />
+            <div className="bg-white p-6 rounded-xl border shadow-sm text-center flex flex-col h-full py-10" data-aos="fade-left">
+              <FaHeadset className="mx-auto text-[#C44E12] text-5xl" aria-hidden />
               <h3 className="mt-3 font-semibold text-2xl">We’ll Call You</h3>
               <p className="text-gray-600 text-lg flex-1">
                 Have one of our specialists contact you during business hours.
               </p>
               <button
                 type="button"
-                className="mt-3 px-4 py-2 border border-red-700 text-red-700 rounded-full hover:bg-red-700 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+                className="mt-3 px-4 py-2 border border-[#C44E12] text-[#C44E12] rounded-full hover:bg-[#C44E12] hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C44E12]"
                 aria-label="Fill out contact form"
               >
                 Fill out contact form
@@ -578,7 +580,7 @@ export default function SpectrumBusinessReplica() {
           </h2>
           <div className="divide-y border rounded-xl bg-white">
             {faqs.map((f, i) => (
-              <details key={i} className="group p-4">
+              <details key={i} className="group p-4" data-aos="fade-up" data-aos-delay={i * 100}>
                 <summary className="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
                   {f.q}
                   <span className="transition-transform group-open:rotate-180" aria-hidden>

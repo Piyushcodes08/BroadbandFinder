@@ -1,4 +1,4 @@
-import axios from "axios";
+﻿import axios from "axios";
 import { useState } from "react";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
 
@@ -66,7 +66,7 @@ export default function PlanBookingForm({
       <div className="bg-white rounded-xl shadow-lg w-full max-w-lg p-6 relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-red-600"
+          className="absolute top-4 right-4 text-gray-500 hover:text-[#E8611A]"
         >
           <FaTimes size={18} />
         </button>
@@ -151,10 +151,10 @@ export default function PlanBookingForm({
               <button
                 type="submit"
                 disabled={submitting}
-                className={`w-full flex items-center justify-center bg-red-600 text-white py-2 rounded-full transition ${
+                className={`w-full flex items-center justify-center bg-[#E8611A] text-white py-2 rounded-full transition ${
                   submitting
                     ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-red-700"
+                    : "hover:bg-[#C44E12]"
                 }`}
               >
                 {submitting ? (

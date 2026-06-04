@@ -127,15 +127,15 @@ export default function ProvidersResult() {
   console.log(detailsProvider)
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="relative bg-gradient-to-br from-red-700 to-gray-900 py-20 px-4 text-white text-center shadow-xl">
+      <section className="relative bg-gradient-to-br from-[#C44E12] to-gray-900 py-20 px-4 text-white text-center shadow-xl" data-aos="fade-down">
         <div className="max-w-3xl mx-auto pt-16 md:pt-4">
-          <h2 className="text-sm uppercase tracking-wider text-red-200 mb-2 animate-pulse font-semibold">
+          <h2 className="text-sm uppercase tracking-wider text-[#FBBD96] mb-2 animate-pulse font-semibold">
             The Place for Everything Internet
           </h2>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
             Find Every Internet Provider In Your Area
           </h1>
-          <p className="mt-4 sm:mt-6 text-lg sm:text-xl text-red-200 max-w-xl mx-auto">
+          <p className="mt-4 sm:mt-6 text-lg sm:text-xl text-[#FBBD96] max-w-xl mx-auto">
             Check availability by address or ZIP to compare your best internet
             options.
           </p>
@@ -145,11 +145,11 @@ export default function ProvidersResult() {
               placeholder="Enter your ZIP code or address"
               value={zip}
               onChange={(e) => setZip(e.target.value)}
-              className="w-full rounded-lg px-5 py-3 text-gray-900 font-medium shadow-md border-none focus:outline-none focus:ring-4 focus:ring-red-400 transition"
+              className="w-full rounded-lg px-5 py-3 text-gray-900 font-medium shadow-md border-none focus:outline-none focus:ring-4 focus:ring-[#F47630] transition"
             />
             <button
               onClick={() => fetchProviders(zip)}
-              className="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white px-7 py-3 rounded-lg font-semibold shadow-md transition"
+              className="w-full sm:w-auto bg-[#F47630] hover:bg-[#E8611A] text-white px-7 py-3 rounded-lg font-semibold shadow-md transition"
             >
               Search
             </button>
@@ -158,7 +158,7 @@ export default function ProvidersResult() {
       </section>
 
       <div className="max-w-5xl mx-auto my-10 px-4">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2" data-aos="fade-up">
           Internet Providers in {zip || "your area"}{" "}
           <img src={PlaceHolder} alt="Location icon" className="w-6 h-6" />
         </h1>
@@ -170,7 +170,7 @@ export default function ProvidersResult() {
             No providers available in this ZIP code.
           </p>
         ) : (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6" data-aos="fade-up">
             {results.map((p) => {
               const matchedProvider = providers.find(
                 (prov) =>
@@ -182,8 +182,9 @@ export default function ProvidersResult() {
                 <div
                   key={p._id || p.id}
                   className={`bg-white rounded-xl shadow-md p-5 grid grid-cols-1 sm:grid-cols-[auto_1fr_auto] items-center gap-6 transition hover:shadow-lg ${
-                    selectedId === p.id ? "ring-2 ring-red-500" : ""
+                    selectedId === p.id ? "ring-2 ring-[#F47630]" : ""
                   }`}
+                  data-aos="fade-up"
                 >
                   {/* Logo + Name */}
                   <div className="flex flex-col items-center sm:items-start border-b sm:border-b-0 sm:border-r pb-4 sm:pb-0 sm:pr-6">
@@ -204,7 +205,7 @@ export default function ProvidersResult() {
                         <p className="font-semibold text-gray-700 text-sm sm:text-base">
                           Plans Starting At
                         </p>
-                        <p className="text-2xl sm:text-3xl font-bold text-red-600 mt-1">
+                        <p className="text-2xl sm:text-3xl font-bold text-[#E8611A] mt-1">
                           {p.startingPrice ||
                             matchedProvider?.startingPrice ||
                             "$29.99"}
@@ -243,7 +244,7 @@ export default function ProvidersResult() {
                   <div className="flex justify-center sm:justify-end">
                     <button
                       onClick={() => handleBook(p, null, matchedProvider)}
-                      className="bg-red-600 px-6 py-3 rounded-md text-white hover:bg-red-700 transition w-full sm:w-auto"
+                      className="bg-[#E8611A] px-6 py-3 rounded-md text-white hover:bg-[#C44E12] transition w-full sm:w-auto"
                     >
                       Book Appointment
                     </button>
@@ -299,7 +300,7 @@ export default function ProvidersResult() {
                         <h3 className="text-xl font-semibold mb-2 text-gray-800">
                           {plan.title}
                         </h3>
-                        <p className="text-4xl font-bold text-red-600 mb-4">
+                        <p className="text-4xl font-bold text-[#E8611A] mb-4">
                           {plan.price}
                         </p>
 
@@ -322,7 +323,7 @@ export default function ProvidersResult() {
 
                       <a
                         href={`tel:${selectedDetails.phone}`}
-                        className="mt-6 block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg text-center transition-colors"
+                        className="mt-6 block bg-[#E8611A] hover:bg-[#C44E12] text-white font-semibold py-2 px-4 rounded-lg text-center transition-colors"
                       >
                         📞{selectedDetails.phone} Toll Free
                       </a>

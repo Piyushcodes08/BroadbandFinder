@@ -1,4 +1,4 @@
-// src/components/SpecialOffersPopup.jsx
+﻿// src/components/SpecialOffersPopup.jsx
 // React + Tailwind popup/inline offers with provider picker
 // Child-owned navigation using react-router's useNavigate
 
@@ -259,7 +259,7 @@ export default function SpecialOffersPopup({
       {variant === "modal" && reopenPill && !isBookingPage && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed top-60 -right-28 z-50 -rotate-90 origin-left rounded-t-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 px-4 py-2 text-white text-sm font-semibold shadow-lg animate-pulse hover:animate-none"
+          className="fixed top-60 -right-28 z-50 -rotate-90 origin-left rounded-t-lg bg-gradient-to-r from-pink-500 via-[#F47630] to-yellow-500 px-4 py-2 text-white text-sm font-semibold shadow-lg animate-pulse hover:animate-none"
           aria-label="View Special Offers"
         >
           🎁 1View Offers

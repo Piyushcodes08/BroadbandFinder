@@ -1,4 +1,4 @@
-function SpeedTestEmbed({ onClose }) {
+﻿function SpeedTestEmbed({ onClose }) {
   // Use an embeddable speed test (Fast.com disallows iframes)
   return (
     <div
@@ -9,7 +9,7 @@ function SpeedTestEmbed({ onClose }) {
     >
       <div className="bg-white rounded-2xl shadow-xl max-w-5xl w-full relative overflow-hidden">
         <button
-          className="absolute top-4 right-5 text-red-600 text-3xl font-bold hover:text-red-800"
+          className="absolute top-4 right-5 text-[#E8611A] text-3xl font-bold hover:text-[#712C09]"
           onClick={onClose}
           aria-label="Close speed test"
         >

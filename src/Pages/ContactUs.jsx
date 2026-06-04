@@ -37,8 +37,8 @@ export default function ContactUs() {
         />
       </Helmet>
       {/* Banner Section */}
-      <section className="bg-red-600 py-16 px-6 text-center text-white pt-20">
-        <div className="max-w-4xl mx-auto">
+      <section className="bg-[#E8611A] py-16 px-6 text-center text-white pt-20">
+        <div className="max-w-4xl mx-auto" data-aos="fade-down">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             Talk to a Business Sales Expert Today
           </h1>
@@ -47,7 +47,7 @@ export default function ContactUs() {
           </p>
           <a
             href="tel:18557442407"
-            className="inline-block bg-white text-red-600 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full shadow-md hover:bg-gray-100 transition"
+            className="inline-block bg-white text-[#E8611A] font-bold text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full shadow-md hover:bg-gray-100 transition"
           >
             1-855-744-2407
           </a>
@@ -55,8 +55,8 @@ export default function ContactUs() {
       </section>
 
       {/* Intro Section */}
-      <section className="bg-white text-center px-6 sm:px-8 pt-10">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600 mb-4">
+      <section className="bg-white text-center px-6 sm:px-8 pt-10" data-aos="fade-up">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#E8611A] mb-4">
           Contact Us
         </h2>
         <p className="text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto text-base sm:text-lg">
@@ -69,7 +69,7 @@ export default function ContactUs() {
       <section className="flex items-center justify-center bg-gray-50 px-4 py-10">
         <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-xl overflow-hidden max-w-6xl w-full">
           {/* Image */}
-          <div className="w-full md:w-1/2 h-60 md:h-auto">
+          <div className="w-full md:w-1/2 h-60 md:h-auto" data-aos="fade-right">
             <img
               src={ContactUsImage}
               alt="Contact Us"
@@ -78,7 +78,7 @@ export default function ContactUs() {
           </div>
 
           {/* Form */}
-          <div className="w-full md:w-1/2 flex items-center justify-center p-6 sm:p-8 md:p-12">
+          <div className="w-full md:w-1/2 flex items-center justify-center p-6 sm:p-8 md:p-12" data-aos="fade-left">
             <div className="w-full max-w-md">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
@@ -97,7 +97,7 @@ export default function ContactUs() {
                     onChange={handleChange}
                     placeholder="John Doe"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47630] focus:border-[#F47630] transition"
                   />
                 </div>
 
@@ -117,7 +117,7 @@ export default function ContactUs() {
                     onChange={handleChange}
                     placeholder="john@example.com"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47630] focus:border-[#F47630] transition"
                   />
                 </div>
 
@@ -137,14 +137,14 @@ export default function ContactUs() {
                     rows="4"
                     placeholder="Write your message here..."
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47630] focus:border-[#F47630] transition resize-none"
                   ></textarea>
                 </div>
 
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 border border-red-600 text-red-600 hover:text-white font-semibold rounded-full hover:bg-red-700 transition duration-300"
+                  className="w-full px-6 py-3 border border-[#E8611A] text-[#E8611A] hover:text-white font-semibold rounded-full hover:bg-[#C44E12] transition duration-300"
                 >
                   Send Message
                 </button>

@@ -28,7 +28,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import SpectrumVoip from "./Pages/SpectrumVoip.jsx";
 import RingcentralVoip from "./Pages/RingcentralVoip.jsx";
 import AccBusiness from "./Pages/AccBusiness.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Home from "./Pages/HomePage.jsx";
 import SpectrumBusinessCheckout from "./Checkout/SpectrumBusinessCheckout.jsx";
 import AttBusinessCheckout from "./Checkout/AttBusinessCheckout.jsx";
@@ -37,10 +37,28 @@ import ComcastBusinessCheckout from "./Checkout/ComcastBusinessCheckout.jsx";
 import RingCentralCheckout from "./Checkout/RingCentralCheckout.jsx";
 import SpectrumVoipCheckout from "./Checkout/SpectrumVoipCheckout.jsx";
 import SpectrumOrdersAdmin from "../Admin/SpectrumOrdersAdmin.jsx";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const queryClient = new QueryClient();
 
 export default function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
+  useEffect(() => {
+    AOS.refresh();
+  }, [location.pathname]);
+
   return (
     <>
       <ScrollToTop />

@@ -1,19 +1,19 @@
 import React from "react";
-import logo from "../assets/1hbds.svg";
+import logo from "../assets/logo.png";
 
 export default function PrivacyPolicy() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <header className="border-b bg-white  flex  md:flex-row flex-col items-center  justify-between md:px-32">
+      <header className="border-b bg-white  flex  md:flex-row flex-col items-center  justify-between md:px-32" data-aos="fade-down">
         <div className=" py-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Privacy Policy
           </h1>
           <p className="mt-1 text-sm text-gray-500">
-            Privacy Policy of Zenithlink 
+            Privacy Policy of 24x7 NetConnect 
           </p>
           <address className="mt-4 not-italic text-gray-700">
-            <div className="font-semibold">Zenithlink</div>
+            <div className="font-semibold">24x7 NetConnect</div>
             <div>12130 Millennium Drive, Ste 600</div>
             <div>Los Angeles, CA 90094</div>
           </address>
@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 lg:grid-cols-[280px_1fr]">
         {/* TOC */}
-        <nav className="order-last lg:order-first">
+        <nav className="order-last lg:order-first" data-aos="fade-right">
           <div className="sticky top-6 rounded-2xl border bg-white p-5 shadow-sm">
             <h2 className="text-base font-semibold text-gray-900">
               On this page
@@ -69,9 +69,9 @@ export default function PrivacyPolicy() {
         </nav>
 
         {/* Content */}
-        <article className="prose prose-gray max-w-none">
+        <article className="prose prose-gray max-w-none" data-aos="fade-left">
           <p>
-            At Zenithlink we take our ethical responsibilities and your privacy
+            At 24x7 NetConnect we take our ethical responsibilities and your privacy
             seriously by recognizing that your privacy is important. We have a
             strong commitment to providing excellent service to all our
             customers, visitors to this Web Site, and other users of our
@@ -85,7 +85,7 @@ export default function PrivacyPolicy() {
             as the steps that we take to safeguard your information.
           </p>
           <p>
-            If you use this site, you understand and agree to the Zenithlink
+            If you use this site, you understand and agree to the 24x7 NetConnect
             Privacy Policy in effect at the time of your use, and any other
             terms and conditions posted on the site. We hope that this
             disclosure will help increase your confidence in our products and
@@ -105,13 +105,13 @@ export default function PrivacyPolicy() {
             services (“Consumers”), including those who have used our website
             (“Web Site”), which is owned by Centerfield Media Parent, Inc., a
             Delaware corporation (“Owner”). Please note that this policy applies
-            only to this Web Site, and services wherein Zenithlink determines
+            only to this Web Site, and services wherein 24x7 NetConnect determines
             the purposes or means of processing your personal information, and
             not to web sites maintained by other companies or organizations to
             which we link, or business partners to whom we provide your
             information, based on your requests as relating to the product or
             service in which you are interested, and for whom we serve as
-            service providers. Alternatively, the information Zenithlink
+            service providers. Alternatively, the information 24x7 NetConnect
             collects on behalf of a third party, to whom we provide marketing
             services, may be subject to both this Privacy Policy, and the third
             party’s privacy policy.
@@ -376,14 +376,14 @@ export default function PrivacyPolicy() {
 
           <h2 id="sms-communications">SMS Communications</h2>
           <p>
-            By opting in to receive SMS from Zenithlink, you consent to
+            By opting in to receive SMS from 24x7 NetConnect, you consent to
             promotional messages, updates, and offers. Message frequency varies;
             standard message/data rates apply. Text <strong>START</strong> to{" "}
             <strong>844-629-6320</strong> to opt in; reply <strong>STOP</strong>{" "}
             to opt out. Consent for SMS is not provided to any third party.
           </p>
 
-          <h2 id="marketing-opt-out">Zenithlink Marketing Opting-Out</h2>
+          <h2 id="marketing-opt-out">24x7 NetConnect Marketing Opting-Out</h2>
           <p>
             You may opt-out of newsletter and promotional communications by
             following unsubscribe instructions in our emails or by contacting us
@@ -394,7 +394,7 @@ export default function PrivacyPolicy() {
 
           <h2 id="third-party-links">Third Party Links</h2>
           <p>
-            This policy applies to information that Zenithlink collects. When
+            This policy applies to information that 24x7 NetConnect collects. When
             you visit linked third-party websites, their privacy and security
             policies govern. Please review their policies and terms.
           </p>
@@ -410,12 +410,12 @@ export default function PrivacyPolicy() {
           <h2 id="updating-your-information">Updating Your Information</h2>
           <p>
             To access or update personal information you submitted to
-            Zenithlink, email{" "}
-            <a href="mailto:support@zenithlink.com">support@zenithlink.com</a>{" "}
+            24x7 NetConnect, email{" "}
+            <a href="mailto:support@24x7netconnect.us">support@24x7netconnect.us</a>{" "}
             or write to:
           </p>
           <address className="not-italic text-gray-700">
-            <div className="font-semibold">Zenithlink</div>
+            <div className="font-semibold">24x7 NetConnect</div>
             <div>12130 Millennium Drive, Ste 600</div>
             <div>Los Angeles, CA 90094</div>
           </address>
@@ -424,7 +424,7 @@ export default function PrivacyPolicy() {
           <p>
             If you have questions or concerns about this Privacy Policy, please
             contact us at{" "}
-            <a href="mailto:support@zenithlink.com">support@zenithlink.com</a>{" "}
+            <a href="mailto:support@24x7netconnect.us">support@24x7netconnect.us</a>{" "}
             or call <strong>1-855 744 2407</strong>.
           </p>
 

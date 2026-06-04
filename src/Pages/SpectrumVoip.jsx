@@ -123,7 +123,7 @@ export default function SpectrumVoIP() {
       {/* HERO */}
       <section className="relative py-8 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6" data-aos="fade-right">
             <p className="text-xs sm:text-sm tracking-[0.16em] text-slate-600 font-semibold">SPECTRUMVOIP</p>
             <h1 className="mt-3 text-3xl sm:text-5xl font-bold leading-tight">
               Take your business phone system to new heights
@@ -142,7 +142,7 @@ export default function SpectrumVoIP() {
             </div>
           </div>
 
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6" data-aos="fade-left">
             <div className="rounded-2xl overflow-hidden border shadow-sm">
               <img
                 src={Telephone}
@@ -156,7 +156,7 @@ export default function SpectrumVoIP() {
       </section>
 
       {/* ZIP LOOKUP */}
-      <section className="bg-gray-50">
+      <section className="bg-gray-50" data-aos="fade-up">
         <div className="mx-auto max-w-7xl flex flex-col items-center px-4">
           <div className="pt-8 sm:pt-10">
             <p className="mt-1 sm:mt-3 text-gray-700 font-semibold text-2xl sm:text-3xl">
@@ -206,7 +206,7 @@ export default function SpectrumVoIP() {
           </form>
 
           {error && (
-            <p id="zip-error" className="mb-4 text-sm text-red-600">
+            <p id="zip-error" className="mb-4 text-sm text-[#E8611A]">
               {error}
             </p>
           )}
@@ -223,7 +223,7 @@ export default function SpectrumVoIP() {
                 <span className="mt-6">
                   <button
                     onClick={handleBook}
-                    className="px-6 py-3 border border-slate-600 text-slate-600 hover:text-white font-semibold rounded-full hover:bg-slate-700 transition duration-300"
+                    className="px-6 py-3 border border-slate-600 text-slate-600 hover:text-white font-semibold rounded-full hover:bg-[#C44E12] transition duration-300"
                   >
                     Book Now
                   </button>
@@ -235,7 +235,7 @@ export default function SpectrumVoIP() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="py-14 sm:py-16 bg-slate-50">
+      <section id="pricing" className="py-14 sm:py-16 bg-slate-50" data-aos="fade-up">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-center">Simple, transparent pricing</h2>
 
@@ -256,7 +256,7 @@ export default function SpectrumVoIP() {
 
           {/* Cards */}
           <div className="mt-8 grid md:grid-cols-[1.1fr_1fr] gap-8">
-            <article className="rounded-2xl border bg-white shadow-sm p-6">
+            <article className="rounded-2xl border bg-white shadow-sm p-6" data-aos="fade-right">
               <div className="flex items-start gap-4">
                 <div className="hidden sm:block w-24 shrink-0">
                   <img
@@ -323,7 +323,7 @@ export default function SpectrumVoIP() {
               </div>
             </article>
 
-            <article className="rounded-2xl border bg-slate-50 p-6">
+            <article className="rounded-2xl border bg-slate-50 p-6" data-aos="fade-left">
               <h4 className="text-lg font-bold">What’s included</h4>
               <ul className="mt-3 space-y-2 text-sm">
                 {[
@@ -354,12 +354,12 @@ export default function SpectrumVoIP() {
       </section>
 
       {/* EVERYTHING PLAN */}
-      <section className="py-12">
+      <section className="py-12" data-aos="fade-up">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-center">Our Everything Plan</h2>
           <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="rounded-2xl bg-white shadow-sm border p-6 text-center">
+            {features.map((f, i) => (
+              <div key={f.title} className="rounded-2xl bg-white shadow-sm border p-6 text-center" data-aos="fade-up" data-aos-delay={i * 100}>
                 <div className="mx-auto mb-3 inline-flex items-center justify-center h-14 w-14 bg-sky-50 rounded-xl">
                   {f.icon}
                 </div>
@@ -375,8 +375,8 @@ export default function SpectrumVoIP() {
       <section className="py-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {capabilityTiles.map((t) => (
-              <div key={t.title} className="rounded-2xl border p-5 bg-slate-50 hover:bg-slate-100 transition">
+            {capabilityTiles.map((t, i) => (
+              <div key={t.title} className="rounded-2xl border p-5 bg-slate-50 hover:bg-slate-100 transition" data-aos="fade-up" data-aos-delay={i * 100}>
                 <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white border">
                   {t.icon}
                 </div>
@@ -392,8 +392,8 @@ export default function SpectrumVoIP() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-center">Connect from your preferred device</h2>
           <div className="mt-8 sm:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {deviceCards.map((d) => (
-              <article key={d.label} className="rounded-2xl overflow-hidden bg-white border shadow-sm">
+            {deviceCards.map((d, i) => (
+              <article key={d.label} className="rounded-2xl overflow-hidden bg-white border shadow-sm" data-aos="fade-up" data-aos-delay={i * 150}>
                 <div className="aspect-[4/3] w-full overflow-hidden">
                   <img src={d.img} alt={d.label} loading="lazy" className="h-full w-full object-cover" />
                 </div>
@@ -412,8 +412,8 @@ export default function SpectrumVoIP() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center">Frequently asked questions</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {faqs.map((f) => (
-              <div key={f.q} className="rounded-2xl border bg-white p-6">
+            {faqs.map((f, i) => (
+              <div key={f.q} className="rounded-2xl border bg-white p-6" data-aos="fade-up" data-aos-delay={i * 100}>
                 <h3 className="font-semibold">{f.q}</h3>
                 <p className="mt-2 text-sm text-slate-700">{f.a}</p>
               </div>
@@ -423,7 +423,7 @@ export default function SpectrumVoIP() {
       </section>
 
       {/* CTA */}
-      <section className="py-12">
+      <section className="py-12" data-aos="zoom-in">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-2xl font-extrabold">Ready to move?</h3>
           <p className="mt-2 text-slate-700">Get live pricing, an instant quote, or a quick demo with our team.</p>

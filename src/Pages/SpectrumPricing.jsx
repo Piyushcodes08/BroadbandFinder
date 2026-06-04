@@ -39,10 +39,10 @@ export default function SpectrumPricing() {
   return (
     <div>
     <section className="max-w-7xl mx-auto px-6 py-16 pt-32">
-      <h2 className="text-5xl font-bold text-center mb-4">
-        Plans & Pricing
+      <h2 className="text-5xl font-bold text-center mb-4" data-aos="fade-down">
+        Plans &amp; Pricing
       </h2>
-      <p className="text-center text-gray-600 mb-12">
+      <p className="text-center text-gray-600 mb-12" data-aos="fade-up" data-aos-delay="100">
         Choose the internet plan that fits your needs — all with no contracts
         and no hidden fees.
       </p>
@@ -52,13 +52,15 @@ export default function SpectrumPricing() {
           <div
             key={index}
             className={`border rounded-lg shadow-sm overflow-hidden flex flex-col ${
-              plan.popular ? "border-red-600 ring-2 ring-indigo-200" : ""
+              plan.popular ? "border-[#E8611A] ring-2 ring-[#FBBD96]" : ""
             }`}
+            data-aos="fade-up"
+            data-aos-delay={index * 150}
           >
             {/* Header */}
             <div
               className={`p-6 text-center ${
-                plan.popular ? "bg-red-500 text-white" : "bg-gray-100"
+                plan.popular ? "bg-[#F47630] text-white" : "bg-gray-100"
               }`}
             >
               {plan.popular && (
@@ -88,7 +90,7 @@ export default function SpectrumPricing() {
               <button
                 className={`w-full py-2 px-4 rounded font-semibold transition ${
                   plan.popular
-                    ? "bg-red-500 text-white hover:bg-red-600"
+                    ? "bg-[#F47630] text-white hover:bg-[#E8611A]"
                     : "bg-gray-800 text-white hover:bg-gray-900"
                 }`}
               >
@@ -99,7 +101,7 @@ export default function SpectrumPricing() {
         ))}
       </div>
     </section>
-     <section className="max-w-7xl mx-auto px-6 py-10">
+     <section className="max-w-7xl mx-auto px-6 py-10" data-aos="fade-up">
       <h2 className="text-xl font-bold mb-4">Bundled Offer Details</h2>
       <div className="text-sm text-gray-600 leading-relaxed space-y-4">
         <p>

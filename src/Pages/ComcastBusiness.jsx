@@ -160,14 +160,14 @@ function SpeedCard({ plan, active, onClick }) {
       onClick={onClick}
       className={`group text-left bg-white rounded-md shadow-sm border transition h-full w-full ${
         active
-          ? "border-red-600 ring-1 ring-red-600 shadow-md"
+          ? "border-[#E8611A] ring-1 ring-[#E8611A] shadow-md"
           : "border-gray-200 hover:shadow"
       }`}
       aria-pressed={active}
     >
       <div
         className={`h-1 w-full rounded-t-md ${
-          active ? "bg-red-600" : "bg-transparent"
+          active ? "bg-[#E8611A]" : "bg-transparent"
         }`}
       />
       <div className="p-5">
@@ -192,7 +192,7 @@ function SpeedCard({ plan, active, onClick }) {
           </div>
           <div className="mt-2 rounded-md bg-gray-50 border border-gray-200 p-3">
             <div className="flex items-center gap-2 text-[12px] text-gray-700">
-              <FaCheck className="text-red-600" /> {plan.uploadNote}
+              <FaCheck className="text-[#E8611A]" /> {plan.uploadNote}
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ function SpeedCard({ plan, active, onClick }) {
           <ul className="mt-2 space-y-2 h-40 text-[12px] text-gray-700 bg-gray-50 border border-gray-200 p-3 rounded-md">
             {plan.bestFor.map((b, i) => (
               <li key={i} className="flex gap-2">
-                <FaCheck className="text-red-600 mt-[2px]" />
+                <FaCheck className="text-[#E8611A] mt-[2px]" />
                 <span>{b}</span>
               </li>
             ))}
@@ -212,7 +212,7 @@ function SpeedCard({ plan, active, onClick }) {
         </div>
         <div className="flex justify-center items-center mt-4">
           <button
-            className="bg-red-600 hover:bg-red-500 text-white px-6 py-2 text-md rounded-full"
+            className="bg-[#E8611A] hover:bg-[#F47630] text-white px-6 py-2 text-md rounded-full"
             onClick={handleBook}
           >
             Book Now
@@ -227,7 +227,7 @@ function SolutionRow({ s, index }) {
   const imgFirst = index % 2 === 0;
   return (
     <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-      <div className={imgFirst ? "" : "md:order-2"}>
+      <div className={imgFirst ? "" : "md:order-2"} data-aos={imgFirst ? "fade-right" : "fade-left"}>
         <img
           src={s.image}
           alt={s.title}
@@ -238,6 +238,7 @@ function SolutionRow({ s, index }) {
         className={
           imgFirst ? "flex flex-col gap-3" : "md:order-1 flex flex-col gap-3"
         }
+        data-aos={imgFirst ? "fade-left" : "fade-right"}
       >
         <p className="text-sm tracking-widest font-semibold text-gray-500 uppercase">
           {s.eyebrow}
@@ -316,7 +317,7 @@ export default function ComcastBusinessFullPage() {
         }}
       >
         <div className="absolute inset-0 bg-black/50" aria-hidden />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-white">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-white" data-aos="fade-right">
           <h1 className="text-sm font-medium tracking-wide">
             BUSINESS INTERNET
           </h1>
@@ -329,7 +330,7 @@ export default function ComcastBusinessFullPage() {
           </p>
           <a
             href="tel:18557442407"
-            className="mt-6 inline-block px-6 py-3 rounded-full bg-red-700 text-white font-semibold hover:bg-red-800"
+            className="mt-6 inline-block px-6 py-3 rounded-full bg-[#C44E12] text-white font-semibold hover:bg-[#712C09]"
           >
             1-855 744 2407
           </a>
@@ -337,7 +338,7 @@ export default function ComcastBusinessFullPage() {
       </section>
 
       {/* ZIP CHECK */}
-      <section className="bg-gray-50 py-12">
+      <section className="bg-gray-50 py-12" data-aos="fade-up">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h3 className="text-2xl font-semibold text-gray-800">
             Check availability by ZIP code
@@ -366,7 +367,7 @@ export default function ComcastBusinessFullPage() {
             />
             <button
               type="submit"
-              className="px-5 bg-red-700 text-white font-semibold hover:bg-red-800"
+              className="px-5 bg-[#C44E12] text-white font-semibold hover:bg-[#712C09]"
               aria-label="Search by ZIP code"
             >
               <FaSearch className="h-5 w-5" />
@@ -374,7 +375,7 @@ export default function ComcastBusinessFullPage() {
           </form>
 
           {error && (
-            <p className="mt-3 text-sm text-red-700" role="alert">
+            <p className="mt-3 text-sm text-[#C44E12]" role="alert">
               {error}
             </p>
           )}
@@ -389,7 +390,7 @@ export default function ComcastBusinessFullPage() {
               <div className="mt-4">
                 <button
                   onClick={handleBook}
-                  className="px-6 py-2 rounded-full border border-red-700 text-red-700 hover:bg-red-700 hover:text-white transition"
+                  className="px-6 py-2 rounded-full border border-[#C44E12] text-[#C44E12] hover:bg-[#C44E12] hover:text-white transition"
                 >
                   Book Now
                 </button>
@@ -400,7 +401,7 @@ export default function ComcastBusinessFullPage() {
       </section>
 
       {/* SPEED SELECTOR */}
-    <section className="py-12">
+    <section className="py-12" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="The internet speed your business needs"
@@ -408,7 +409,7 @@ export default function ComcastBusinessFullPage() {
         />
 
         {/* Desktop grid */}
-        <div className="hidden xl:grid grid-cols-5 gap-6 mt-8">
+        <div className="hidden xl:grid grid-cols-5 gap-6 mt-8" data-aos="fade-up">
           {SPEED_PLANS.map((p, i) => (
             <SpeedCard
               key={p.title}
@@ -420,7 +421,7 @@ export default function ComcastBusinessFullPage() {
         </div>
 
         {/* Mobile Swiper carousel */}
-        <div className="xl:hidden mt-8">
+        <div className="xl:hidden mt-8" data-aos="fade-up">
           <Swiper
             spaceBetween={16}
             slidesPerView={1.2}
@@ -468,7 +469,7 @@ export default function ComcastBusinessFullPage() {
     </section>
 
       {/* HELP CTA */}
-      <section className="py-6">
+      <section className="py-6" data-aos="zoom-in">
         <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-center">
           <div className="rounded-xl bg-white border border-gray-200 p-10 sm:p-14 text-center">
             <p className="text-xl sm:text-2xl font-semibold">
@@ -477,7 +478,7 @@ export default function ComcastBusinessFullPage() {
             <div className="mt-4">
               <a
                 href="tel:18557442407"
-                className="px-6 py-2 rounded-full border border-red-700 text-red-700 hover:bg-red-50 font-semibold text-md"
+                className="px-6 py-2 rounded-full border border-[#C44E12] text-[#C44E12] hover:bg-[#FEF3EC] font-semibold text-md"
               >
                 ContactUs
               </a>
@@ -514,8 +515,10 @@ export default function ComcastBusinessFullPage() {
             <div
               key={i}
               className="rounded-xl bg-white border border-gray-200 p-10 text-center flex flex-col items-center"
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
             >
-              <div className="text-5xl text-red-700">{t.icon}</div>
+              <div className="text-5xl text-[#C44E12]">{t.icon}</div>
               <h4 className="mt-3 font-semibold text-2xl">{t.title}</h4>
               <p className="text-sm text-gray-600 mt-1">{t.copy}</p>
             </div>
@@ -527,7 +530,7 @@ export default function ComcastBusinessFullPage() {
       <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-[1.05fr_1fr] gap-8 items-center">
-            <div>
+            <div data-aos="fade-right">
               <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-gray-900">
                 All-in-one solution
                 <br className="hidden sm:block" />
@@ -542,19 +545,19 @@ export default function ComcastBusinessFullPage() {
               <div className="mt-6 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-[15px]">
                 <ul className="space-y-4">
                   <li className="flex items-start gap-2">
-                    <FaCheck className="mt-1 text-red-700 shrink-0" />
+                    <FaCheck className="mt-1 text-[#C44E12] shrink-0" />
                     <span>
                       Monitor the status of your connection and services
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <FaCheck className="mt-1 text-red-700 shrink-0" />
+                    <FaCheck className="mt-1 text-[#C44E12] shrink-0" />
                     <span>
                       Manage settings on your public and private WiFi networks
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <FaCheck className="mt-1 text-red-700 shrink-0" />
+                    <FaCheck className="mt-1 text-[#C44E12] shrink-0" />
                     <span>
                       Access and control add-ons like Connection Pro, WiFi Pro,
                       and SecurityEdge™
@@ -564,19 +567,19 @@ export default function ComcastBusinessFullPage() {
 
                 <ul className="space-y-4">
                   <li className="flex items-start gap-2">
-                    <FaCheck className="mt-1 text-red-700 shrink-0" />
+                    <FaCheck className="mt-1 text-[#C44E12] shrink-0" />
                     <span>
                       Compare data usage from the past 7, 30, or 6 months
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <FaCheck className="mt-1 text-red-700 shrink-0" />
+                    <FaCheck className="mt-1 text-[#C44E12] shrink-0" />
                     <span>
                       Troubleshoot, restart, and test the speed of your gateway
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <FaCheck className="mt-1 text-red-700 shrink-0" />
+                    <FaCheck className="mt-1 text-[#C44E12] shrink-0" />
                     <span>
                       View your bill, get recommendations, and chat with a live
                       agent
@@ -586,7 +589,7 @@ export default function ComcastBusinessFullPage() {
               </div>
             </div>
 
-            <div>
+            <div data-aos="fade-left">
               <img
                 src="https://cdn.prod.website-files.com/65b7981897ba2e51087129d0/65ce4486cde877e511559ea6_AdobeStock_419881291.webp"
                 alt="Managing service from a mobile app"
@@ -609,7 +612,7 @@ export default function ComcastBusinessFullPage() {
           </p>
 
           <div className="mt-10 grid md:grid-cols-2 gap-8">
-            <article className="rounded-xl overflow-hidden border border-gray-200 bg-white">
+            <article className="rounded-xl overflow-hidden border border-gray-200 bg-white" data-aos="fade-right">
               <img
                 src="https://images.unsplash.com/photo-1682345262055-8f95f3c513ea?q=80&w=1170&auto=format&fit=crop"
                 alt="Technicians installing service"
@@ -626,7 +629,7 @@ export default function ComcastBusinessFullPage() {
               </div>
             </article>
 
-            <article className="rounded-xl overflow-hidden border border-gray-200 bg-white">
+            <article className="rounded-xl overflow-hidden border border-gray-200 bg-white" data-aos="fade-left">
               <img
                 src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1600&auto=format&fit=crop"
                 alt="Support representative on headset"

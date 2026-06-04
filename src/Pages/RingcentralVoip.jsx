@@ -86,7 +86,7 @@ function PriceToggle({ annual, onChange }) {
         onClick={() => onChange(false)}
         className={`px-3 py-1 rounded-full transition ${
           !annual
-            ? "bg-red-500 text-white shadow"
+            ? "bg-[#F47630] text-white shadow"
             : "text-gray-700 hover:bg-gray-100"
         }`}
         aria-pressed={!annual}
@@ -98,7 +98,7 @@ function PriceToggle({ annual, onChange }) {
         onClick={() => onChange(true)}
         className={`px-3 py-1 rounded-full transition ${
           annual
-            ? "bg-red-500 text-white shadow"
+            ? "bg-[#F47630] text-white shadow"
             : "text-gray-700 hover:bg-gray-100"
         }`}
         aria-pressed={annual}
@@ -118,11 +118,12 @@ function PlanCard({ plan, annual }) {
   return (
     <div
       className={`relative rounded-2xl border p-6 bg-white shadow-sm hover:shadow-md transition ${
-        plan.popular ? "border-red-500" : "border-gray-200"
+        plan.popular ? "border-[#F47630]" : "border-gray-200"
       }`}
+      data-aos="fade-up"
     >
       {plan.popular && (
-        <div className="absolute -top-3 left-6 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+        <div className="absolute -top-3 left-6 bg-[#F47630] text-white text-xs font-semibold px-3 py-1 rounded-full">
           Most popular
         </div>
       )}
@@ -137,14 +138,14 @@ function PlanCard({ plan, annual }) {
       <ul className="mt-5 space-y-2 text-sm text-gray-800 h-32">
         {plan.features.map((f) => (
           <li key={f} className="flex items-start gap-2">
-            <HiOutlineCheckCircle className="mt-0.5 h-5 w-5 text-red-500" />
+            <HiOutlineCheckCircle className="mt-0.5 h-5 w-5 text-[#F47630]" />
             <span>{f}</span>
           </li>
         ))}
       </ul>
       <div className="flex justify-start items-center mt-4">
         <button
-          className="bg-red-600 hover:bg-red-500 text-white px-6 py-2 text-md rounded-full"
+          className="bg-[#E8611A] hover:bg-[#F47630] text-white px-6 py-2 text-md rounded-full"
           onClick={handleBook}
         >
           Book Now
@@ -199,9 +200,9 @@ export default function RingCentralSmallBusinessReplica() {
     });
 
   return (
-    <div className="bg-red-50/30 text-gray-900">
+    <div className="bg-[#FEF3EC]/30 text-gray-900">
       {/* ===== Sticky notice bar ===== */}
-      <div className="w-full bg-gradient-to-r from-red-500 to-amber-500 text-white text-center text-xs py-2">
+      <div className="w-full bg-gradient-to-r from-[#F47630] to-amber-500 text-white text-center text-xs py-2">
         Limited-time: get your first month free on annual plans.{" "}
         <span className="opacity-75">T&Cs apply</span>
       </div>
@@ -209,13 +210,13 @@ export default function RingCentralSmallBusinessReplica() {
       {/* ===== HERO ===== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-14">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase text-red-600">
+          <div className="lg:col-span-6" data-aos="fade-right">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase text-[#E8611A]">
               <HiOutlineShieldCheck /> Trusted by small businesses
             </span>
             <h1 className="mt-2 text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
               The small-business phone system, trusted by over{" "}
-              <span className="text-red-600">500K businesses</span>
+              <span className="text-[#E8611A]">500K businesses</span>
             </h1>
             <p className="mt-4 text-gray-700 max-w-xl">
               Run calls, texts, and video in one reliable app. Stay professional
@@ -224,7 +225,7 @@ export default function RingCentralSmallBusinessReplica() {
           </div>
 
           {/* Phone card image */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6" data-aos="fade-left">
             <div className="relative mx-auto max-w-[420px]">
               <img
                 alt="Dialer app mock"
@@ -234,7 +235,7 @@ export default function RingCentralSmallBusinessReplica() {
               />
               <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl border p-4 shadow-sm">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-red-100 text-red-600">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#FDE3CF] text-[#E8611A]">
                     <HiOutlinePhone />
                   </span>
                   <div className="text-sm">
@@ -263,7 +264,7 @@ export default function RingCentralSmallBusinessReplica() {
       </section>
 
       {/* ===== ZIP LOOKUP ===== */}
-      <section className="bg-gray-50">
+      <section className="bg-gray-50" data-aos="fade-up">
         <div className="mx-auto max-w-7xl flex flex-col items-center px-4">
           <div className="pt-10">
             <p className="mt-3 text-gray-700 font-semibold text-2xl sm:text-3xl">
@@ -306,7 +307,7 @@ export default function RingCentralSmallBusinessReplica() {
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center justify-center px-5 bg-red-600 text-white font-semibold hover:bg-red-700 disabled:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                className="inline-flex items-center justify-center px-5 bg-[#E8611A] text-white font-semibold hover:bg-[#C44E12] disabled:bg-[#F47630] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8611A]"
                 aria-label="Search by ZIP code"
               >
                 {loading ? (
@@ -319,7 +320,7 @@ export default function RingCentralSmallBusinessReplica() {
           </form>
 
           {error && (
-            <p id="zip-error" className="mb-4 text-sm text-red-600">
+            <p id="zip-error" className="mb-4 text-sm text-[#E8611A]">
               {error}
             </p>
           )}
@@ -350,7 +351,7 @@ export default function RingCentralSmallBusinessReplica() {
                 <span className="mt-6">
                   <button
                     onClick={handleBook}
-                    className="px-6 py-3 border border-red-600 text-red-600 hover:text-white font-semibold rounded-full hover:bg-red-600 transition duration-300"
+                    className="px-6 py-3 border border-[#E8611A] text-[#E8611A] hover:text-white font-semibold rounded-full hover:bg-[#E8611A] transition duration-300"
                   >
                     Book Now
                   </button>
@@ -365,7 +366,7 @@ export default function RingCentralSmallBusinessReplica() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-2 gap-10 items-start">
           {/* Left: Collage */}
-          <div className="grid grid-cols-2 gap-6 auto-rows-[160px] sm:auto-rows-[200px] md:auto-rows-[220px]">
+          <div className="grid grid-cols-2 gap-6 auto-rows-[160px] sm:auto-rows-[200px] md:auto-rows-[220px]" data-aos="fade-right">
             <div className="relative col-span-1 row-span-1 overflow-hidden rounded-2xl bg-gray-100">
               <img
                 loading="lazy"
@@ -415,7 +416,7 @@ export default function RingCentralSmallBusinessReplica() {
           </div>
 
           {/* Right: Copy / bullets */}
-          <div>
+          <div data-aos="fade-left">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
               The small business phone
               <br /> system with big benefits
@@ -509,9 +510,9 @@ export default function RingCentralSmallBusinessReplica() {
           Features small businesses love
         </h3>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-2xl border bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border bg-white p-6 shadow-sm" data-aos="fade-right">
             <div className="flex items-center gap-3">
-              <span className="h-10 w-10 rounded-xl bg-red-100 text-red-600 grid place-items-center">
+              <span className="h-10 w-10 rounded-xl bg-[#FDE3CF] text-[#E8611A] grid place-items-center">
                 <HiOutlineSparkles className="h-5 w-5" />
               </span>
               <h4 className="font-bold text-2xl">Noise removal & AI notes</h4>
@@ -528,9 +529,9 @@ export default function RingCentralSmallBusinessReplica() {
             />
           </div>
 
-          <div className="rounded-2xl border bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border bg-white p-6 shadow-sm" data-aos="fade-left">
             <div className="flex items-center gap-3">
-              <span className="h-10 w-10 rounded-xl bg-red-100 text-red-600 grid place-items-center">
+              <span className="h-10 w-10 rounded-xl bg-[#FDE3CF] text-[#E8611A] grid place-items-center">
                 <HiOutlineCog6Tooth className="h-5 w-5" />
               </span>
               <h4 className="font-bold text-2xl">Auto-receptionist</h4>
@@ -551,8 +552,8 @@ export default function RingCentralSmallBusinessReplica() {
 
       {/* ===== AI Receptionist single ===== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid md:grid-cols-2 gap-16 items-center">
-        <div className="flex flex-col gap-4">
-          <span className="text-xl font-semibold text-red-600">
+        <div className="flex flex-col gap-4" data-aos="fade-right">
+          <span className="text-xl font-semibold text-[#E8611A]">
             Hello, AI Receptionist.
           </span>
           <h3 className="mt-1 text-4xl sm:text-5xl font-extrabold">
@@ -569,7 +570,7 @@ export default function RingCentralSmallBusinessReplica() {
               "Dial-by-name directory",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2">
-                <HiOutlineCheckCircle className="mt-0.5 text-red-500" />
+                <HiOutlineCheckCircle className="mt-0.5 text-[#F47630]" />
                 {item}
               </li>
             ))}
@@ -580,6 +581,7 @@ export default function RingCentralSmallBusinessReplica() {
           className="rounded-2xl border shadow-sm"
           alt="AI Receptionist"
           src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1400&auto=format&fit=crop"
+          data-aos="fade-left"
         />
       </section>
 
@@ -654,7 +656,7 @@ export default function RingCentralSmallBusinessReplica() {
               ),
             },
           ].map((it) => (
-            <div key={it.value}>
+            <div key={it.value} data-aos="fade-up">
               <div className="text-5xl sm:text-6xl md:text-7xl font-bold leading-none">
                 {it.value}
               </div>
@@ -667,7 +669,7 @@ export default function RingCentralSmallBusinessReplica() {
       </section>
 
       {/* ===== FAQ ===== */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10" data-aos="fade-up">
         <h3 className="text-3xl font-extrabold text-center">
           Questions? We’ve got you covered.
         </h3>
@@ -696,12 +698,12 @@ export default function RingCentralSmallBusinessReplica() {
       </section>
 
       {/* ===== Final CTA ===== */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="rounded-3xl bg-gradient-to-r from-red-500 to-amber-500 p-8 text-white text-center shadow">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14" data-aos="zoom-in">
+        <div className="rounded-3xl bg-gradient-to-r from-[#F47630] to-amber-500 p-8 text-white text-center shadow">
           <h3 className="text-2xl font-extrabold">
             Switch to the most reliable business phone system
           </h3>
-          <p className="mt-2 text-red-100">
+          <p className="mt-2 text-[#FDE3CF]">
             Start free — no credit card required.
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">

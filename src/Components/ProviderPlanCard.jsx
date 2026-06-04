@@ -3,7 +3,7 @@ import React from "react";
 export default function ProviderPlanCard({ plan, onBook }) {
   
   return (
-    <div className="p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between h-full">
+    <div className="p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between h-full" data-aos="fade-up">
       <div>
         <h4 className="text-lg font-bold text-gray-800">{plan.name}</h4>
         <p className="text-sm text-gray-600 mt-2">
@@ -22,7 +22,7 @@ export default function ProviderPlanCard({ plan, onBook }) {
       </div>
       <button
         onClick={onBook}
-        className="mt-4 w-full bg-red-600 text-white py-2 rounded-full text-sm font-medium hover:bg-red-700 transition"
+        className="mt-4 w-full bg-[#E8611A] text-white py-2 rounded-full text-sm font-medium hover:bg-[#C44E12] transition"
       >
         Book Now
       </button>

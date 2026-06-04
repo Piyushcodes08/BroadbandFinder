@@ -32,9 +32,9 @@ function BandwidthCalculatorModal({ onClose }) {
       role="dialog"
       aria-modal="true"
     >
-      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full p-8 sm:p-10">
+      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full p-8 sm:p-10" data-aos="zoom-in">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-extrabold text-red-600">
+          <h1 className="text-3xl font-extrabold text-[#E8611A]">
             Bandwidth Calculator
           </h1>
           <button
@@ -53,7 +53,7 @@ function BandwidthCalculatorModal({ onClose }) {
           </span>
           <div className="w-48 bg-gray-200 rounded-full h-2 overflow-hidden">
             <div
-              className="bg-red-600 h-2 rounded-full transition-all"
+              className="bg-[#E8611A] h-2 rounded-full transition-all"
               style={{ width: `${(step / 5) * 100}%` }}
             />
           </div>
@@ -79,7 +79,7 @@ function BandwidthCalculatorModal({ onClose }) {
                 onChange={(e) =>
                   setDevices(Math.max(1, parseInt(e.target.value || "1", 10)))
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F47630]"
               />
             </>
           )}
@@ -94,7 +94,7 @@ function BandwidthCalculatorModal({ onClose }) {
               </label>
               <select
                 id="video-calls-select"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F47630]"
                 value={videoCalls}
                 onChange={(e) => setVideoCalls(e.target.value)}
               >
@@ -112,7 +112,7 @@ function BandwidthCalculatorModal({ onClose }) {
               </label>
               <select
                 id="gaming-select"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F47630]"
                 value={gaming}
                 onChange={(e) => setGaming(e.target.value)}
               >
@@ -129,7 +129,7 @@ function BandwidthCalculatorModal({ onClose }) {
               </label>
               <select
                 id="priority-select"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F47630]"
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
               >
@@ -141,7 +141,7 @@ function BandwidthCalculatorModal({ onClose }) {
 
           {step === 5 && (
             <div className="text-center">
-              <h2 className="text-3xl font-extrabold text-red-600 mb-2">
+              <h2 className="text-3xl font-extrabold text-[#E8611A] mb-2">
                 Recommended Speed
               </h2>
               <p className="text-5xl font-bold text-gray-900 mb-3">
@@ -163,7 +163,7 @@ function BandwidthCalculatorModal({ onClose }) {
             {step < 5 ? (
               <button
                 type="submit"
-                className="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700"
+                className="px-6 py-3 bg-[#E8611A] text-white rounded-md hover:bg-[#C44E12]"
               >
                 Next
               </button>

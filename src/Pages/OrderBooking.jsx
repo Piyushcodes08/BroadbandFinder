@@ -32,9 +32,9 @@ export default function OrderBooking({ bundles }) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-10 px-6">
+    <div className="max-w-3xl mx-auto py-10 px-6" data-aos="fade-up">
       {/* Progress */}
-      <div className="flex items-center mb-10">
+      <div className="flex items-center mb-10" data-aos="fade-down">
         {steps.map((label, index) => (
           <div key={label} className="flex-1 flex items-center">
             <div
@@ -42,7 +42,7 @@ export default function OrderBooking({ bundles }) {
                 step > index + 1
                   ? "bg-green-500 text-white"
                   : step === index + 1
-                  ? "bg-red-500 text-white"
+                  ? "bg-[#F47630] text-white"
                   : "bg-gray-200 text-gray-600"
               }`}
             >
@@ -62,7 +62,7 @@ export default function OrderBooking({ bundles }) {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="bg-white p-8 shadow-lg rounded-lg space-y-8">
+      <form onSubmit={handleSubmit} className="bg-white p-8 shadow-lg rounded-lg space-y-8" data-aos="fade-up" data-aos-delay="100">
         {step === 1 && (
           <>
             <h2 className="text-2xl font-bold mb-4">Personal Information</h2>
@@ -141,13 +141,13 @@ export default function OrderBooking({ bundles }) {
         {step === 3 && (
           <>
             <h2 className="text-2xl font-bold mb-4">Select Your Plan</h2>
-            <div className="space-y-4">
+            <div className="space-y-4" data-aos="fade-up">
               {bundles.map((bundle, idx) => (
                 <label
                   key={idx}
                   className={`block border p-4 rounded-lg cursor-pointer transition ${
                     formData.plan === bundle.title
-                      ? "border-red-500 bg-red-50"
+                      ? "border-[#F47630] bg-[#FEF3EC]"
                       : "border-gray-200 hover:border-gray-400"
                   }`}
                 >
@@ -209,7 +209,7 @@ export default function OrderBooking({ bundles }) {
 
         {step === 5 && (
           <>
-            <h2 className="text-2xl font-bold mb-4">Review & Submit</h2>
+            <h2 className="text-2xl font-bold mb-4">Review &amp; Submit</h2>
             <div className="bg-gray-50 p-4 rounded">
               <p><strong>Name:</strong> {formData.name}</p>
               <p><strong>Email:</strong> {formData.email}</p>
@@ -236,7 +236,7 @@ export default function OrderBooking({ bundles }) {
             <button
               type="button"
               onClick={nextStep}
-              className="ml-auto py-2 px-5 rounded-lg bg-red-500 text-white hover:bg-red-600"
+              className="ml-auto py-2 px-5 rounded-lg bg-[#F47630] text-white hover:bg-[#E8611A]"
             >
               Next
             </button>

@@ -108,7 +108,7 @@ export default function ComcastBusinessCheckout() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto p-6" data-aos="fade-up">
       <Header title="Comcast Business Checkout" step={step} total={4} />
       {step === 1 && (
         <section className="grid gap-6 lg:grid-cols-[1fr_320px]">

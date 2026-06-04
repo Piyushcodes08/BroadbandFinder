@@ -308,7 +308,7 @@ export default function BusinessInternetPage() {
       >
         <a
           href={`tel:${PHONE.replaceAll?.("-", "")}`}
-          className="flex items-center gap-3 px-5 py-3 bg-red-700 text-white font-semibold rounded-full shadow-xl hover:bg-red-800 transition-all duration-300 hover:shadow-2xl animate-pulse"
+          className="flex items-center gap-3 px-5 py-3 bg-[#C44E12] text-white font-semibold rounded-full shadow-xl hover:bg-[#712C09] transition-all duration-300 hover:shadow-2xl animate-pulse"
         >
           <FaPhoneAlt className="w-5 h-5" />
           <span className="hidden sm:inline">Call {PHONE}</span>
@@ -331,7 +331,7 @@ export default function BusinessInternetPage() {
             className="object-cover h-[260px] sm:h-[660px] w-full"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white/100  z-10"></div>
-          <div className="absolute inset-0 z-20 px-4 sm:px-10 lg:px-20 flex flex-col justify-center items-start">
+          <div className="absolute inset-0 z-20 px-4 sm:px-10 lg:px-20 flex flex-col justify-center items-start" data-aos="fade-right">
             <h2 className="font-semibold text-gray-850">SPECTRUM BUSINESS®</h2>
             <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight max-w-2xl">
               Free forever. <br />
@@ -363,9 +363,9 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* Trust Banner */}
-      <section className="bg-gray-50 py-6 md:py-8 animate-slideUp">
+      <section className="bg-gray-50 py-6 md:py-8" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <div className="bg-red-50 border-l-4 border-red-600 p-4 sm:p-6 rounded-r-lg transition-all duration-300 hover:shadow-md">
+          <div className="bg-[#FEF3EC] border-l-4 border-[#E8611A] p-4 sm:p-6 rounded-r-lg transition-all duration-300 hover:shadow-md">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 text-center transition-colors duration-300">
               #1 in Customer Satisfaction for Internet Service
             </h2>
@@ -374,9 +374,9 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* Search Section */}
-      <section className="py-8 sm:py-1 md:pt-7 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-8 sm:py-1 md:pt-7 bg-gradient-to-b from-white to-gray-50" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto animate-slideUp">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 transition-colors duration-300">
                 Find Internet Provider in Your Area
@@ -404,7 +404,7 @@ export default function BusinessInternetPage() {
                         aria-autocomplete="list"
                         aria-expanded={suggestions.length > 0}
                         aria-controls="zip-suggest"
-                        className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 outline-none transition-all duration-300 text-sm sm:text-base hover:border-gray-400"
+                        className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 rounded-lg border border-gray-300 focus:border-[#F47630] focus:ring-2 focus:ring-[#F47630] focus:ring-opacity-50 outline-none transition-all duration-300 text-sm sm:text-base hover:border-gray-400"
                       />
                     </div>
 
@@ -425,7 +425,7 @@ export default function BusinessInternetPage() {
                             }}
                             className={`px-3 sm:px-4 py-2 sm:py-3 cursor-pointer border-b border-gray-100 last:border-b-0 transition-all duration-200 ${
                               activeSugIdx === i
-                                ? "bg-red-50 text-red-700 scale-[1.02]"
+                                ? "bg-[#FEF3EC] text-[#C44E12] scale-[1.02]"
                                 : "hover:bg-gray-50 hover:translate-x-1"
                             }`}
                           >
@@ -444,7 +444,7 @@ export default function BusinessInternetPage() {
                   <button
                     onClick={handleSearch}
                     disabled={loading}
-                    className="px-6 sm:px-8 py-3 sm:py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base whitespace-nowrap shadow-sm hover:shadow-md active:scale-95"
+                    className="px-6 sm:px-8 py-3 sm:py-4 bg-[#E8611A] hover:bg-[#C44E12] text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base whitespace-nowrap shadow-sm hover:shadow-md active:scale-95"
                   >
                     {loading ? (
                       <>
@@ -493,7 +493,7 @@ export default function BusinessInternetPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="text-center py-8 sm:py-12 animate-fadeIn">
-              <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-t-2 border-b-2 border-red-600 mb-4"></div>
+              <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-t-2 border-b-2 border-[#E8611A] mb-4"></div>
               <p className="text-base sm:text-lg text-gray-600 transition-colors duration-300">
                 Finding providers in your area...
               </p>
@@ -514,13 +514,13 @@ export default function BusinessInternetPage() {
                   setResults([]);
                   setHasSearched(false);
                 }}
-                className="px-4 sm:px-6 py-2 border border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-medium rounded-lg transition-all duration-300 text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
+                className="px-4 sm:px-6 py-2 border border-[#E8611A] text-[#E8611A] hover:bg-[#E8611A] hover:text-white font-medium rounded-lg transition-all duration-300 text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
               >
                 Try Another ZIP Code
               </button>
             </div>
           ) : (
-            <div className="space-y-4 sm:space-y-6">
+            <div className="space-y-4 sm:space-y-6" data-aos="fade-up">
               {results.map((p, index) => {
                 const rawName = p?.typeName || p?.name || "";
                 const name =
@@ -563,7 +563,7 @@ export default function BusinessInternetPage() {
                         <div className="flex-1 w-full">
                           <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 sm:mb-3">
                             <div className="mb-1 md:mb-0">
-                              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-0.5 transition-colors duration-300 group-hover:text-red-700">
+                              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-0.5 transition-colors duration-300 group-hover:text-[#C44E12]">
                                 {name}
                               </h3>
                               <p className="text-gray-600 text-xs sm:text-sm transition-colors duration-300">
@@ -572,7 +572,7 @@ export default function BusinessInternetPage() {
                             </div>
                             <button
                               onClick={() => openDetails(name)}
-                              className="text-blue-600 hover:text-red-800 font-medium text-xs sm:text-sm flex items-center gap-1 transition-all duration-300 group"
+                              className="text-blue-600 hover:text-[#712C09] font-medium text-xs sm:text-sm flex items-center gap-1 transition-all duration-300 group"
                             >
                               <span className="group-hover:translate-x-1 transition-transform duration-300">
                                 View Details →
@@ -585,7 +585,7 @@ export default function BusinessInternetPage() {
                               <p className="text-xs font-medium text-gray-700 mb-0.5 transition-colors duration-300">
                                 Plans Starting At
                               </p>
-                              <p className="text-xl sm:text-2xl font-bold text-red-600 transition-all duration-300">
+                              <p className="text-xl sm:text-2xl font-bold text-[#E8611A] transition-all duration-300">
                                 {startingPrice}
                               </p>
                               <p className="text-xs text-gray-500 mt-0.5 transition-colors duration-300">
@@ -611,13 +611,13 @@ export default function BusinessInternetPage() {
                           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                             <button
                               onClick={() => handleBook(p)}
-                              className="px-3 sm:px-4 py-1.5 sm:py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-300 flex-1 text-center text-xs sm:text-sm shadow-sm hover:shadow-md active:scale-95"
+                              className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#E8611A] hover:bg-[#C44E12] text-white font-semibold rounded-lg transition-all duration-300 flex-1 text-center text-xs sm:text-sm shadow-sm hover:shadow-md active:scale-95"
                             >
                               Book Appointment
                             </button>
                             <button
                               onClick={() => openDetails(name)}
-                              className="px-3 sm:px-4 py-1.5 sm:py-2 border border-red-600 text-red-600 hover:bg-red-50 font-medium rounded-lg transition-all duration-300 flex-1 text-center text-xs sm:text-sm shadow-sm hover:shadow-md active:scale-95"
+                              className="px-3 sm:px-4 py-1.5 sm:py-2 border border-[#E8611A] text-[#E8611A] hover:bg-[#FEF3EC] font-medium rounded-lg transition-all duration-300 flex-1 text-center text-xs sm:text-sm shadow-sm hover:shadow-md active:scale-95"
                             >
                               View Plans
                             </button>
@@ -742,10 +742,10 @@ export default function BusinessInternetPage() {
                             style={{ animationDelay: `${idx * 0.1}s` }}
                           >
                             <div className="mb-2 sm:mb-3">
-                              <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-1 transition-colors duration-300 group-hover:text-red-700">
+                              <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-1 transition-colors duration-300 group-hover:text-[#C44E12]">
                                 {plan?.title}
                               </h3>
-                              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-red-600 transition-all duration-300">
+                              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#E8611A] transition-all duration-300">
                                 {plan?.price}
                                 <span className="text-sm font-normal text-gray-500 transition-colors duration-300">
                                   /mo
@@ -793,7 +793,7 @@ export default function BusinessInternetPage() {
                                 });
                                 setIsDetailsOpen(false);
                               }}
-                              className="mt-auto w-full py-1.5 sm:py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-300 text-xs sm:text-sm shadow-sm hover:shadow-md active:scale-95"
+                              className="mt-auto w-full py-1.5 sm:py-2 bg-[#E8611A] hover:bg-[#C44E12] text-white font-semibold rounded-lg transition-all duration-300 text-xs sm:text-sm shadow-sm hover:shadow-md active:scale-95"
                             >
                               Book This Plan
                             </button>
@@ -810,7 +810,7 @@ export default function BusinessInternetPage() {
                               onClick={() => setCurrentSlide(idx)}
                               className={`w-4 sm:w-6 h-1 sm:h-1.5 rounded-full transition-all duration-300 hover:scale-110 ${
                                 idx === safeIndex
-                                  ? "bg-red-600"
+                                  ? "bg-[#E8611A]"
                                   : "bg-gray-300 hover:bg-gray-400"
                               }`}
                               aria-label={`Go to slide ${idx + 1}`}
@@ -831,7 +831,7 @@ export default function BusinessInternetPage() {
                       </p>
                       <a
                         href={`tel:${phoneDisplay?.replaceAll?.("-", "")}`}
-                        className="text-sm sm:text-base font-semibold text-gray-900 hover:text-red-600 transition-all duration-300 flex items-center gap-1.5 group"
+                        className="text-sm sm:text-base font-semibold text-gray-900 hover:text-[#E8611A] transition-all duration-300 flex items-center gap-1.5 group"
                       >
                         <FaPhoneAlt className="transition-transform duration-300 group-hover:scale-110" />
                         {phoneDisplay}
@@ -851,9 +851,9 @@ export default function BusinessInternetPage() {
         })()}
 
       {/* Providers Section - ORIGINAL SIZE CARDS (NOT SMALL) */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-white" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 animate-slideUp">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
               Our Internet Service Providers
             </h2>
@@ -865,7 +865,7 @@ export default function BusinessInternetPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Spectrum */}
-            <div className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp">
+            <div className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
               <div className="flex flex-col items-center text-center h-full">
                 <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-gray-100 group-hover:scale-105">
                   <img
@@ -874,7 +874,7 @@ export default function BusinessInternetPage() {
                     className="h-16 sm:h-20 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-[#C44E12]">
                   Spectrum Business
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 flex-grow text-sm sm:text-base transition-colors duration-300">
@@ -883,7 +883,7 @@ export default function BusinessInternetPage() {
                 </p>
                 <Link
                   to="/internet/SpectrumBusiness"
-                  className="px-4 sm:px-6 py-2  hover:bg-red-700 border border-red-700 text-red-600 font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
+                  className="px-4 sm:px-6 py-2 bg-white hover:bg-[#E8611A] border border-[#E8611A] text-[#E8611A] hover:text-white font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
                 >
                   Explore 
                 </Link>
@@ -892,8 +892,9 @@ export default function BusinessInternetPage() {
 
             {/* AT&T */}
             <div
-              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-              style={{ animationDelay: "0.1s" }}
+              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               <div className="flex flex-col items-center text-center h-full">
                 <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-gray-100 group-hover:scale-105">
@@ -903,7 +904,7 @@ export default function BusinessInternetPage() {
                     className="h-16 sm:h-20 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-[#C44E12]">
                   AT&T Business
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 flex-grow text-sm sm:text-base transition-colors duration-300">
@@ -912,7 +913,7 @@ export default function BusinessInternetPage() {
                 </p>
                 <Link
                   to="/internet/AttBusiness"
-                  className="px-4 sm:px-6 py-2  hover:bg-red-700 border border-red-700 text-red-600 font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
+                  className="px-4 sm:px-6 py-2 bg-white hover:bg-[#E8611A] border border-[#E8611A] text-[#E8611A] hover:text-white font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
                 >
                   Explore
                 </Link>
@@ -921,8 +922,9 @@ export default function BusinessInternetPage() {
 
             {/* Comcast */}
             <div
-              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-              style={{ animationDelay: "0.2s" }}
+              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <div className="flex flex-col items-center text-center h-full">
                 <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-gray-100 group-hover:scale-105">
@@ -932,7 +934,7 @@ export default function BusinessInternetPage() {
                     className="h-16 sm:h-20 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-[#C44E12]">
                   Comcast Business
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 flex-grow text-sm sm:text-base transition-colors duration-300">
@@ -940,7 +942,7 @@ export default function BusinessInternetPage() {
                 </p>
                 <Link
                   to="/internet/ComcastBusiness"
-                  className="px-4 sm:px-6 py-2  hover:bg-red-700 border border-red-700 text-red-600 font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
+                  className="px-4 sm:px-6 py-2 bg-white hover:bg-[#E8611A] border border-[#E8611A] text-[#E8611A] hover:text-white font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
                 >
                   Explore
                 </Link>
@@ -949,8 +951,9 @@ export default function BusinessInternetPage() {
 
             {/* ACC Business */}
             <div
-              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-              style={{ animationDelay: "0.3s" }}
+              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay="400"
             >
               <div className="flex flex-col items-center text-center h-full">
                 <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-gray-100 group-hover:scale-105">
@@ -960,7 +963,7 @@ export default function BusinessInternetPage() {
                     className="h-16 sm:h-20 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-[#C44E12]">
                   ACC Business
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 flex-grow text-sm sm:text-base transition-colors duration-300">
@@ -969,7 +972,7 @@ export default function BusinessInternetPage() {
                 </p>
                 <Link
                   to="/internet/AccBusiness"
-                  className="px-4 sm:px-6 py-2  hover:bg-red-700 border border-red-700 text-red-600 font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
+                  className="px-4 sm:px-6 py-2 bg-white hover:bg-[#E8611A] border border-[#E8611A] text-[#E8611A] hover:text-white font-medium rounded-lg transition-all duration-300 w-full text-center text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95"
                 >
                   Explore 
                 </Link>
@@ -983,7 +986,7 @@ export default function BusinessInternetPage() {
       <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <div className="order-2 lg:order-1 animate-slideUp">
+            <div className="order-2 lg:order-1" data-aos="fade-right">
               <div className="overflow-hidden rounded-lg sm:rounded-xl shadow-lg transition-all duration-500 hover:shadow-xl">
                 <img
                   src={Home5}
@@ -994,8 +997,8 @@ export default function BusinessInternetPage() {
             </div>
 
             <div
-              className="order-1 lg:order-2 animate-slideUp"
-              style={{ animationDelay: "0.1s" }}
+              className="order-1 lg:order-2"
+              data-aos="fade-left"
             >
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 transition-colors duration-300">
                 Find Internet Providers in Your Area
@@ -1043,15 +1046,15 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* CTA Band */}
-      <section className="py-6 sm:py-8 bg-red-50">
-        <div className="container mx-auto px-4">
-          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 text-center shadow-sm transition-all duration-300 hover:shadow-md animate-slideUp">
+      <section className="py-6 sm:py-8 bg-[#FEF3EC]">
+        <div className="container mx-auto px-4" data-aos="zoom-in">
+          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 text-center shadow-sm transition-all duration-300 hover:shadow-md">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
               Find the best plan for your business
             </h2>
             <a
               href={`tel:${PHONE.replaceAll?.("-", "")}`}
-              className="inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-red-600 hover:text-red-700 transition-all duration-300 group"
+              className="inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-[#E8611A] hover:text-[#C44E12] transition-all duration-300 group"
             >
               <FaPhoneAlt className="text-sm sm:text-base transition-transform duration-300 group-hover:scale-110" />
               {PHONE}
@@ -1064,9 +1067,9 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-white" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 animate-slideUp">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
               Why Choose Our Services?
             </h2>
@@ -1076,7 +1079,7 @@ export default function BusinessInternetPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp">
+            <div className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
               <div className="mb-4 sm:mb-6 overflow-hidden rounded-lg transition-all duration-500 hover:shadow-md">
                 <img
                   src={Home2}
@@ -1084,7 +1087,7 @@ export default function BusinessInternetPage() {
                   className="w-full h-40 sm:h-48 object-cover rounded-lg transition-transform duration-700 hover:scale-105"
                 />
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-red-700">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-[#C44E12]">
                 Superior Experience
               </h3>
               <ul className="space-y-2 sm:space-y-3">
@@ -1108,8 +1111,9 @@ export default function BusinessInternetPage() {
             </div>
 
             <div
-              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-              style={{ animationDelay: "0.1s" }}
+              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               <div className="mb-4 sm:mb-6 overflow-hidden rounded-lg transition-all duration-500 hover:shadow-md">
                 <img
@@ -1118,7 +1122,7 @@ export default function BusinessInternetPage() {
                   className="w-full h-40 sm:h-48 object-cover rounded-lg transition-transform duration-700 hover:scale-105"
                 />
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-red-700">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-[#C44E12]">
                 Exceptional Service
               </h3>
               <ul className="space-y-2 sm:space-y-3">
@@ -1142,8 +1146,9 @@ export default function BusinessInternetPage() {
             </div>
 
             <div
-              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-              style={{ animationDelay: "0.2s" }}
+              className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <div className="mb-4 sm:mb-6 overflow-hidden rounded-lg transition-all duration-500 hover:shadow-md">
                 <img
@@ -1152,7 +1157,7 @@ export default function BusinessInternetPage() {
                   className="w-full h-40 sm:h-48 object-cover rounded-lg transition-transform duration-700 hover:scale-105"
                 />
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-red-700">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-[#C44E12]">
                 Leading Technology
               </h3>
               <ul className="space-y-2 sm:space-y-3">
@@ -1179,9 +1184,9 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* Contact Options */}
-      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 md:py-16 bg-gray-50" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 animate-slideUp">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
               Speak with a Specialist
             </h2>
@@ -1192,12 +1197,12 @@ export default function BusinessInternetPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp">
+            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-right">
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:bg-red-200 group-hover:scale-110">
-                  <FaPhoneAlt className="text-lg sm:text-xl md:text-2xl text-red-600 transition-transform duration-300 group-hover:scale-110" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#FDE3CF] rounded-full flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:bg-[#FBBD96] group-hover:scale-110">
+                  <FaPhoneAlt className="text-lg sm:text-xl md:text-2xl text-[#E8611A] transition-transform duration-300 group-hover:scale-110" />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-[#C44E12]">
                   Call to Order Business Service
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base transition-colors duration-300">
@@ -1207,7 +1212,7 @@ export default function BusinessInternetPage() {
                   href={`tel:${PHONE.replaceAll?.("-", "")}`}
                   className="w-full"
                 >
-                  <button className="w-full py-2 sm:py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95">
+                  <button className="w-full py-2 sm:py-3 bg-[#E8611A] hover:bg-[#C44E12] text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95">
                     <FaPhoneAlt className="transition-transform duration-300 group-hover:scale-110" />
                     {PHONE}
                   </button>
@@ -1216,21 +1221,21 @@ export default function BusinessInternetPage() {
             </div>
 
             <div
-              className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-              style={{ animationDelay: "0.1s" }}
+              className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-left"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:bg-red-200 group-hover:scale-110">
-                  <FaRegUserCircle className="text-lg sm:text-xl md:text-2xl text-red-600 transition-transform duration-300 group-hover:scale-110" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#FDE3CF] rounded-full flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:bg-[#FBBD96] group-hover:scale-110">
+                  <FaRegUserCircle className="text-lg sm:text-xl md:text-2xl text-[#E8611A] transition-transform duration-300 group-hover:scale-110" />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-[#C44E12]">
                   We'll Call You
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base transition-colors duration-300">
                   Request a call during business hours.
                 </p>
                 <Link to="/contact-us" className="w-full">
-                  <button className="w-full py-2 sm:py-3 border border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95">
+                  <button className="w-full py-2 sm:py-3 border border-[#E8611A] text-[#E8611A] hover:bg-[#E8611A] hover:text-white font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base shadow-sm hover:shadow-md active:scale-95">
                     Fill Out Contact Form
                   </button>
                 </Link>
@@ -1241,9 +1246,9 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* Speed Guidance */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-white" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 animate-slideUp">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
               How much speed do you need?
             </h2>
@@ -1253,7 +1258,7 @@ export default function BusinessInternetPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            <div className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md animate-slideUp">
+            <div className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md" data-aos="fade-up" data-aos-delay="100">
               <div className="mb-4 sm:mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 transition-colors duration-300">
@@ -1292,8 +1297,9 @@ export default function BusinessInternetPage() {
             </div>
 
             <div
-              className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md animate-slideUp"
-              style={{ animationDelay: "0.1s" }}
+              className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               <div className="mb-4 sm:mb-6">
                 <div className="flex items-center justify-between mb-2">
@@ -1333,8 +1339,9 @@ export default function BusinessInternetPage() {
             </div>
 
             <div
-              className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md animate-slideUp"
-              style={{ animationDelay: "0.2s" }}
+              className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <div className="mb-4 sm:mb-6">
                 <div className="flex items-center justify-between mb-2">
@@ -1377,9 +1384,9 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* Tools Section */}
-      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 md:py-16 bg-gray-50" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 animate-slideUp">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
               Smart Tools to Choose the Right Plan
             </h2>
@@ -1389,7 +1396,7 @@ export default function BusinessInternetPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp">
+            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-right">
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:bg-gray-200 group-hover:scale-110">
                   <img
@@ -1398,7 +1405,7 @@ export default function BusinessInternetPage() {
                     className="w-8 h-8 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-[#C44E12]">
                   Bandwidth Calculator
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base transition-colors duration-300">
@@ -1415,8 +1422,8 @@ export default function BusinessInternetPage() {
             </div>
 
             <div
-              className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-              style={{ animationDelay: "0.1s" }}
+              className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-left"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:bg-gray-200 group-hover:scale-110">
@@ -1426,7 +1433,7 @@ export default function BusinessInternetPage() {
                     className="w-8 h-8 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-red-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-[#C44E12]">
                   Speed Test
                 </h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base transition-colors duration-300">
@@ -1445,9 +1452,9 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-white" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 animate-slideUp">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
               What Our Customers Say
             </h2>
@@ -1460,8 +1467,9 @@ export default function BusinessInternetPage() {
             {testimonials.map((t, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slideUp"
-                style={{ animationDelay: `${idx * 0.05}s` }}
+                className="bg-white border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                data-aos="fade-up"
+                data-aos-delay={(idx % 3) * 150}
               >
                 <div className="flex items-center mb-3 sm:mb-4">
                   <img
@@ -1470,7 +1478,7 @@ export default function BusinessInternetPage() {
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover mr-3 sm:mr-4 transition-all duration-300 group-hover:scale-110"
                   />
                   <div>
-                    <h4 className="font-bold text-gray-900 text-sm sm:text-base transition-colors duration-300 group-hover:text-red-700">
+                    <h4 className="font-bold text-gray-900 text-sm sm:text-base transition-colors duration-300 group-hover:text-[#C44E12]">
                       {t?.name}
                     </h4>
                     <p className="text-xs sm:text-sm text-gray-500 transition-colors duration-300">
@@ -1499,10 +1507,10 @@ export default function BusinessInternetPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 md:py-16 bg-gray-50" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-8 sm:mb-12 animate-slideUp">
+            <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 transition-colors duration-300">
                 Frequently Asked Questions
               </h2>
@@ -1515,16 +1523,17 @@ export default function BusinessInternetPage() {
               {faqs.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-gray-200 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md animate-slideUp"
-                  style={{ animationDelay: `${idx * 0.1}s` }}
+                  className="bg-white border border-gray-200 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md"
+                  data-aos="fade-up"
+                  data-aos-delay={(idx % 4) * 100}
                 >
                   <details className="group">
                     <summary className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between cursor-pointer list-none hover:bg-gray-50 transition-all duration-300">
-                      <span className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 pr-4 transition-colors duration-300 group-hover:text-red-700">
+                      <span className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 pr-4 transition-colors duration-300 group-hover:text-[#C44E12]">
                         {faq?.question}
                       </span>
                       <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 group-open:rotate-180 transition-all duration-300 group-hover:text-red-600"
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 group-open:rotate-180 transition-all duration-300 group-hover:text-[#E8611A]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

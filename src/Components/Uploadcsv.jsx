@@ -1,4 +1,4 @@
-import axios from "axios";
+﻿import axios from "axios";
 import { useState } from "react";
 import Sidebar from "../../Admin/Sidebar";
 
@@ -75,7 +75,7 @@ const CsvUploader = () => {
             accept=".csv"
             multiple
             onChange={handleFileChange}
-            className="block w-full text-gray-700 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 p-2 transition"
+            className="block w-full text-gray-700 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F47630] focus:border-[#F47630] p-2 transition"
           />
 
           {/* Selected Files List with Progress */}
@@ -96,7 +96,7 @@ const CsvUploader = () => {
                       <div
                         className={`h-3 rounded-full transition-all duration-300 ${
                           uploadProgress[file.name] === "error"
-                            ? "bg-red-600"
+                            ? "bg-[#E8611A]"
                             : "bg-green-600"
                         }`}
                         style={{
@@ -133,7 +133,7 @@ const CsvUploader = () => {
             className={`mt-6 w-full px-5 py-3 rounded-lg text-white font-semibold transition ${
               isUploading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-700"
+                : "bg-[#E8611A] hover:bg-[#C44E12]"
             }`}
             aria-busy={isUploading}
           >
@@ -146,7 +146,7 @@ const CsvUploader = () => {
               className={`mt-4 text-center text-sm font-medium ${
                 status.toLowerCase().includes("finished")
                   ? "text-green-600"
-                  : "text-red-600"
+                  : "text-[#E8611A]"
               }`}
               role="alert"
             >

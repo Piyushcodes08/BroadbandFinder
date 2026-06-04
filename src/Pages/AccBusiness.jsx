@@ -173,6 +173,7 @@ function PlanCard({ plan, currentPrice, open, onToggle, priceNote }) {
       tabIndex={0}
       onClick={onToggle}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onToggle()}
+      data-aos="fade-up"
     >
       {/* badge / spacer to keep heights even */}
       <div className="h-6">
@@ -197,7 +198,7 @@ function PlanCard({ plan, currentPrice, open, onToggle, priceNote }) {
       </div>
       <div className="flex justify-center items-center mt-4">
         <button
-          className="bg-red-600 hover:bg-red-500 text-white px-6 py-2 text-md rounded-full"
+          className="bg-[#E8611A] hover:bg-[#F47630] text-white px-6 py-2 text-md rounded-full"
           onClick={handleBook}
         >
           Book Now
@@ -306,7 +307,7 @@ export default function AccBusiness() {
           src="https://www.shutterstock.com/image-photo/business-financing-accounting-banking-concept-600nw-2441922909.jpg"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/30" />
-        <div className="relative max-w-7xl mx-auto gap-6 px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="relative max-w-7xl mx-auto gap-6 px-4 sm:px-6 lg:px-8 py-16 sm:py-24" data-aos="fade-right">
           <div className="w-full md:w-[700px] flex flex-col gap-4">
             <p className="text-xs tracking-widest font-semibold text-gray-600">
               ACC BUSINESS®
@@ -331,7 +332,7 @@ export default function AccBusiness() {
       </section>
 
       {/* ZIP LOOKUP */}
-      <section className="bg-gray-50">
+      <section className="bg-gray-50" data-aos="fade-up">
         <div className="mx-auto max-w-7xl flex flex-col items-center px-4">
           <div className="pt-10">
             <p className="mt-3 text-gray-700 font-semibold text-2xl sm:text-3xl">
@@ -387,7 +388,7 @@ export default function AccBusiness() {
           </form>
 
           {error && (
-            <p id="zip-error" className="mb-4 text-sm text-red-600">
+            <p id="zip-error" className="mb-4 text-sm text-[#E8611A]">
               {error}
             </p>
           )}
@@ -430,7 +431,7 @@ export default function AccBusiness() {
       </section>
 
       {/* PLANS */}
-     <section className="pt-20 sm:pt-24">
+     <section className="pt-20 sm:pt-24" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-center">
           Get fast speeds and low pricing
@@ -536,10 +537,12 @@ export default function AccBusiness() {
           </h2>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {WHY.map((w) => (
+          {WHY.map((w, i) => (
             <div
               key={w.title}
               className="rounded-2xl bg-white border p-6 text-center"
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
             >
               <div className="grid place-items-center">{w.icon}</div>
               <h3 className="mt-3 font-bold text-lg">{w.title}</h3>
@@ -550,7 +553,7 @@ export default function AccBusiness() {
       </section>
 
       {/* COMPARISON */}
-      <section className="py-12">
+      <section className="py-12" data-aos="zoom-in">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-extrabold text-center">
             The choice is simple
@@ -599,14 +602,14 @@ export default function AccBusiness() {
       </section>
 
       {/* ADD-ONS */}
-      <section className="py-12">
+      <section className="py-12" data-aos="fade-up">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-extrabold text-center">
             Add-ons that grow with you
           </h2>
 
           <div className="mt-8 grid md:grid-cols-2 gap-6">
-            <article className="rounded-2xl overflow-hidden bg-white border shadow-sm">
+            <article className="rounded-2xl overflow-hidden bg-white border shadow-sm" data-aos="fade-right">
               <img
                 alt="Voice services"
                 className="h-56 w-full object-cover"
@@ -621,7 +624,7 @@ export default function AccBusiness() {
               </div>
             </article>
 
-            <article className="rounded-2xl overflow-hidden bg-white border shadow-sm">
+            <article className="rounded-2xl overflow-hidden bg-white border shadow-sm" data-aos="fade-left">
               <img
                 alt="Security services"
                 className="h-56 w-full object-cover"
@@ -642,14 +645,14 @@ export default function AccBusiness() {
       {/* COVERAGE */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-[1.3fr_1fr] gap-8 items-center">
-          <div className="rounded-2xl border bg-white overflow-hidden">
+          <div className="rounded-2xl border bg-white overflow-hidden" data-aos="fade-right">
             <img
               alt="Coverage map"
               className="w-full h-72 object-cover"
               src="https://images.unsplash.com/photo-1552083375-1447ce886485?q=80&w=1600&auto=format&fit=crop"
             />
           </div>
-          <div>
+          <div data-aos="fade-left">
             <h3 className="text-2xl font-extrabold">
               Our fiber coverage is expanding
             </h3>
@@ -670,7 +673,7 @@ export default function AccBusiness() {
       </section>
 
       {/* FAQ */}
-      <section className="py-12">
+      <section className="py-12" data-aos="fade-up">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-4">
             Frequently asked questions

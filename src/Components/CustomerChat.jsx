@@ -45,8 +45,8 @@ export default function CustomerChat() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 w-80 bg-white border shadow-lg rounded-lg flex flex-col">
-      <div className="bg-red-600 text-white p-2 font-bold rounded-t-lg">
+    <div className="fixed bottom-5 right-5 w-80 bg-white border shadow-lg rounded-lg flex flex-col" data-aos="fade-up">
+      <div className="bg-[#E8611A] text-white p-2 font-bold rounded-t-lg">
         Live Chat
       </div>
 
@@ -58,7 +58,7 @@ export default function CustomerChat() {
           >
             <p
               className={`inline-block px-3 py-1 rounded-lg ${
-                m.sender === "customer" ? "bg-red-500 text-white" : "bg-gray-200"
+                m.sender === "customer" ? "bg-[#F47630] text-white" : "bg-gray-200"
               }`}
             >
               {m.text}
@@ -76,7 +76,7 @@ export default function CustomerChat() {
           className="flex-1 px-2 py-1 outline-none"
           placeholder="Type a message..."
         />
-        <button onClick={sendMessage} className="bg-red-600 text-white px-3">
+        <button onClick={sendMessage} className="bg-[#E8611A] text-white px-3">
           Send
         </button>
       </div>

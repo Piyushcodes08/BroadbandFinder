@@ -220,7 +220,7 @@ export default function SpectrumBusinessCheckout() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6" data-aos="fade-up">
       <Header title="Spectrum Business Checkout" step={step} total={4} />
 
       {/* STEP 1 – EXACT UI */}

@@ -167,7 +167,7 @@ function WirelessToggle({ value, onChange }) {
       <button
         onClick={() => onChange(true)}
         className={`px-4 py-1.5 text-sm rounded-full transition ${
-          value ? "bg-red-700 text-white" : "text-gray-700 hover:bg-gray-100"
+          value ? "bg-[#C44E12] text-white" : "text-gray-700 hover:bg-gray-100"
         }`}
       >
         With wireless plan
@@ -175,7 +175,7 @@ function WirelessToggle({ value, onChange }) {
       <button
         onClick={() => onChange(false)}
         className={`px-4 py-1.5 text-sm rounded-full transition ${
-          !value ? "bg-red-700 text-white" : "text-gray-700 hover:bg-gray-100"
+          !value ? "bg-[#C44E12] text-white" : "text-gray-700 hover:bg-gray-100"
         }`}
       >
         Without wireless plan
@@ -194,7 +194,7 @@ function PlanCard({ plan, withWireless, open, onToggle }) {
   return (
     <div className="flex flex-col  rounded-2xl bg-[#f6f8fb] p-5 shadow-sm hover:shadow-md transition border border-gray-200 h-full">
       {plan.promoBadge ? (
-        <span className="self-start mb-2 text-xs font-semibold text-white bg-red-600 px-2.5 py-1 rounded-full">
+        <span className="self-start mb-2 text-xs font-semibold text-white bg-[#E8611A] px-2.5 py-1 rounded-full">
           {plan.promoBadge}
         </span>
       ) : (
@@ -217,7 +217,7 @@ function PlanCard({ plan, withWireless, open, onToggle }) {
       </div>
 
       <button
-        className="mt-4 w-full px-4 py-3 rounded-full bg-red-700 text-white font-semibold hover:bg-red-800"
+        className="mt-4 w-full px-4 py-3 rounded-full bg-[#C44E12] text-white font-semibold hover:bg-[#712C09]"
         onClick={handleBook}
       >
         Book Plan
@@ -255,7 +255,7 @@ function PlanCard({ plan, withWireless, open, onToggle }) {
 
 function DealCard({ d }) {
   return (
-    <article className="rounded-2xl overflow-hidden bg-[#F5FAFF] border border-gray-200 shadow-sm">
+    <article className="rounded-2xl overflow-hidden bg-[#F5FAFF] border border-gray-200 shadow-sm" data-aos="fade-up">
       <img
         src={d.img}
         alt={d.title}
@@ -289,7 +289,7 @@ function DealCard({ d }) {
 
 function WhyCard({ w }) {
   return (
-    <div className="rounded-xl flex flex-col items-center p-6 text-center bg-white border">
+    <div className="rounded-xl flex flex-col items-center p-6 text-center bg-white border" data-aos="fade-up">
       {w.icon}
       <h3 className="mt-3 font-semibold text-2xl">{w.title}</h3>
       <p className="text-gray-600 text-md mt-2">{w.copy}</p>
@@ -309,29 +309,29 @@ function ComparisonTable() {
     },
     {
       label: "100% symmetrical fiber network",
-      value: <FaCheck className="text-[#8C1D1D] text-base md:text-lg mx-auto" />,
+      value: <FaCheck className="text-[#E8611A] text-base md:text-lg mx-auto" />,
     },
     {
       label: "Upload as fast as downloads",
-      value: <FaCheck className="text-[#8C1D1D] text-base md:text-lg mx-auto" />,
+      value: <FaCheck className="text-[#E8611A] text-base md:text-lg mx-auto" />,
     },
     {
       label: "No annual contract",
-      value: <FaCheck className="text-[#8C1D1D] text-base md:text-lg mx-auto" />,
+      value: <FaCheck className="text-[#E8611A] text-base md:text-lg mx-auto" />,
     },
     {
       label: "No additional equipment fees for Wi-Fi service",
-      value: <FaCheck className="text-[#8C1D1D] text-base md:text-lg mx-auto" />,
+      value: <FaCheck className="text-[#E8611A] text-base md:text-lg mx-auto" />,
     },
     {
       label: "No data caps",
-      value: <FaCheck className="text-[#8C1D1D] text-base md:text-lg mx-auto" />,
+      value: <FaCheck className="text-[#E8611A] text-base md:text-lg mx-auto" />,
     },
     {
       label: "Free installation",
       value: (
         <div className="flex flex-col items-center justify-center text-center">
-          <FaCheck className="text-[#8C1D1D] text-base md:text-lg mx-auto" />
+          <FaCheck className="text-[#E8611A] text-base md:text-lg mx-auto" />
           <span className="text-[10px] md:text-xs text-gray-500 font-normal leading-tight mt-0.5">With online orders only</span>
         </div>
       ),
@@ -346,8 +346,8 @@ function ComparisonTable() {
             {/* Left header cell is empty */}
             <th className="w-[60%] md:w-[70%] px-4 md:px-6 py-4 bg-white"></th>
             {/* AT&T Column Header with dark red background */}
-            <th className="w-[40%] md:w-[30%] p-0 bg-[#FCF8F8] align-bottom">
-              <div className="bg-[#8C1D1D] text-white text-center py-4 font-bold text-xs md:text-sm lg:text-base rounded-t-xl shadow-sm tracking-wide">
+            <th className="w-[40%] md:w-[30%] p-0 bg-[#FEF3EC] align-bottom">
+              <div className="bg-[#E8611A] text-white text-center py-4 font-bold text-xs md:text-sm lg:text-base rounded-t-xl shadow-sm tracking-wide">
                 AT&amp;T Business Fiber®
               </div>
             </th>
@@ -359,7 +359,7 @@ function ComparisonTable() {
               <td className="px-4 md:px-6 py-4 text-xs md:text-sm lg:text-base text-gray-800 font-medium align-middle">
                 {s.label}
               </td>
-              <td className="px-4 md:px-6 py-4 text-center align-middle bg-[#FCF8F8]">
+              <td className="px-4 md:px-6 py-4 text-center align-middle bg-[#FEF3EC]">
                 {s.value}
               </td>
             </tr>
@@ -440,7 +440,7 @@ export default function ATTBusinessReplica() {
       <section className="bg-gray-50 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-[2fr_1fr] gap-6">
           {/* LEFT CARD */}
-          <article className="relative rounded-3xl overflow-hidden shadow-sm bg-white min-h-[460px] md:min-h-[550px]">
+          <article className="relative rounded-3xl overflow-hidden shadow-sm bg-white min-h-[460px] md:min-h-[550px]" data-aos="fade-right">
             <img
               src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=2000&auto=format&fit=crop"
               alt="Team collaborating"
@@ -473,7 +473,7 @@ export default function ATTBusinessReplica() {
 
                   <a
                     href={telHref}
-                    className="mt-4 inline-flex items-center gap-2 text-red-700 font-semibold"
+                    className="mt-4 inline-flex items-center gap-2 text-[#C44E12] font-semibold"
                   >
                     Call {PHONE} <FaChevronRight className="opacity-90" />
                   </a>
@@ -483,7 +483,7 @@ export default function ATTBusinessReplica() {
           </article>
 
           {/* RIGHT CARD */}
-          <article className="relative rounded-3xl overflow-hidden shadow-sm bg-white p-6 md:p-8 min-h-[460px] md:min-h-[550px]">
+          <article className="relative rounded-3xl overflow-hidden shadow-sm bg-white p-6 md:p-8 min-h-[460px] md:min-h-[550px]" data-aos="fade-left">
             <div
               className="absolute inset-0"
               aria-hidden
@@ -523,7 +523,7 @@ export default function ATTBusinessReplica() {
       </section>
 
       {/* ZIP checker */}
-      <section className="bg-gray-50">
+      <section className="bg-gray-50" data-aos="fade-up">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col items-center">
             <p className="text-gray-700 font-medium text-2xl md:text-3xl text-center">
@@ -563,7 +563,7 @@ export default function ATTBusinessReplica() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center px-5 bg-slate-600 text-white font-semibold hover:bg-slate-700 disabled:bg-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
+                  className="inline-flex items-center justify-center px-5 bg-[#E8611A] text-white font-semibold hover:bg-[#C44E12] disabled:bg-[#F8975D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8611A]"
                   aria-label="Search by ZIP code"
                 >
                   {loading ? (
@@ -576,7 +576,7 @@ export default function ATTBusinessReplica() {
               {error && (
                 <p
                   id="zipcode-error"
-                  className="px-4 pb-3 text-sm text-red-600"
+                  className="px-4 pb-3 text-sm text-[#E8611A]"
                   role="alert"
                 >
                   {error}
@@ -608,7 +608,7 @@ export default function ATTBusinessReplica() {
                 </span>
                 <button
                   onClick={handleBook}
-                  className="mt-6 px-6 py-3 border border-slate-600 text-slate-600 hover:text-white font-semibold rounded-full hover:bg-slate-700 transition duration-300"
+                  className="mt-6 px-6 py-3 border border-slate-600 text-slate-600 hover:text-white font-semibold rounded-full hover:bg-[#C44E12] transition duration-300"
                 >
                   Book Now
                 </button>
@@ -634,7 +634,7 @@ export default function ATTBusinessReplica() {
           </div>
 
           {/* Desktop grid */}
-          <div className="hidden sm:grid mt-6 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="hidden sm:grid mt-6 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5" data-aos="fade-up">
             {PLANS.map((p, i) => (
               <PlanCard
                 key={i}
@@ -647,7 +647,7 @@ export default function ATTBusinessReplica() {
           </div>
 
           {/* Mobile carousel */}
-          <div className="sm:hidden mt-6">
+          <div className="sm:hidden mt-6" data-aos="fade-up">
             <Swiper spaceBetween={16} slidesPerView={1.1} loop>
               {PLANS.map((p, i) => (
                 <SwiperSlide key={i}>
@@ -685,7 +685,7 @@ export default function ATTBusinessReplica() {
       </section>
 
       {/* Deals */}
-      <section className="py-12 bg-red-50">
+      <section className="py-12 bg-[#FEF3EC]" data-aos="fade-up">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-5xl font-bold text-center">
             Great deals to help grow your business
@@ -699,7 +699,7 @@ export default function ATTBusinessReplica() {
       </section>
 
       {/* Comparison */}
-      <section className="bg-gray-50 py-12">
+      <section className="bg-gray-50 py-12" data-aos="zoom-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-extrabold text-center">
             The choice is simple
@@ -714,7 +714,7 @@ export default function ATTBusinessReplica() {
       </section>
 
       {/* Add-ons */}
-      <section className="py-12">
+      <section className="py-12" data-aos="fade-up">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center">
             AT&amp;T Business Fiber add-ons
@@ -736,7 +736,7 @@ export default function ATTBusinessReplica() {
                   productivity by combining voice, video, and conferencing with
                   easy-to-use tools.
                 </p>
-                <ul className="mt-3 space-y-1 text-sm font-semibold text-red-700">
+                <ul className="mt-3 space-y-1 text-sm font-semibold text-[#C44E12]">
                   <li>
                     <span className="hover:underline cursor-default">
                       AT&amp;T Phone for Business
@@ -765,7 +765,7 @@ export default function ATTBusinessReplica() {
                   Confidently connect. Intelligently protect. AT&amp;T
                   Cybersecurity helps make your network more resilient.
                 </p>
-                <ul className="mt-3 space-y-1 text-sm font-semibold text-red-700">
+                <ul className="mt-3 space-y-1 text-sm font-semibold text-[#C44E12]">
                   <li>
                     <span className="hover:underline cursor-default">
                       Secure Workforce
@@ -792,8 +792,9 @@ export default function ATTBusinessReplica() {
             className="w-full h-[320px] md:h-[450px] object-contain"
             loading="lazy"
             decoding="async"
+            data-aos="fade-right"
           />
-          <div>
+          <div data-aos="fade-left">
             <h3 className="text-3xl md:text-5xl font-extrabold leading-tight text-gray-900">
               Our fiber coverage is
               <br className="hidden sm:block" />
@@ -812,7 +813,7 @@ export default function ATTBusinessReplica() {
       </section>
 
       {/* FAQs */}
-      <section className="py-12">
+      <section className="py-12" data-aos="fade-up">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-extrabold">
             Frequently asked questions
