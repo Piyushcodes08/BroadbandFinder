@@ -58,7 +58,7 @@ export default function CustomerChat() {
           >
             <p
               className={`inline-block px-3 py-1 rounded-lg ${
-                m.sender === "customer" ? "bg-[#F47630] text-white" : "bg-gray-200"
+                m.sender === "customer" ? "bg-[#E8611A] text-white" : "bg-gray-200"
               }`}
             >
               {m.text}

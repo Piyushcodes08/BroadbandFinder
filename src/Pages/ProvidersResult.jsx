@@ -170,7 +170,7 @@ export default function ProvidersResult() {
             No providers available in this ZIP code.
           </p>
         ) : (
-          <div className="flex flex-col gap-6" data-aos="fade-up">
+          <div className="flex flex-col gap-6" data-aos="fade-up" data-aos-offset="0">
             {results.map((p) => {
               const matchedProvider = providers.find(
                 (prov) =>
@@ -185,6 +185,7 @@ export default function ProvidersResult() {
                     selectedId === p.id ? "ring-2 ring-[#F47630]" : ""
                   }`}
                   data-aos="fade-up"
+                  data-aos-offset="0"
                 >
                   {/* Logo + Name */}
                   <div className="flex flex-col items-center sm:items-start border-b sm:border-b-0 sm:border-r pb-4 sm:pb-0 sm:pr-6">

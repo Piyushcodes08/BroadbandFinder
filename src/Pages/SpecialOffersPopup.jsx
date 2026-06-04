@@ -1,4 +1,4 @@
-﻿// src/components/SpecialOffersPopup.jsx
+// src/components/SpecialOffersPopup.jsx
 // React + Tailwind popup/inline offers with provider picker
 // Child-owned navigation using react-router's useNavigate
 
@@ -259,10 +259,11 @@ export default function SpecialOffersPopup({
       {variant === "modal" && reopenPill && !isBookingPage && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed top-60 -right-28 z-50 -rotate-90 origin-left rounded-t-lg bg-gradient-to-r from-pink-500 via-[#F47630] to-yellow-500 px-4 py-2 text-white text-sm font-semibold shadow-lg animate-pulse hover:animate-none"
+          className="fixed top-60 right-0 z-50 origin-bottom-right -rotate-90 rounded-t-xl bg-gradient-to-r from-pink-600 via-[#E8611A] to-yellow-500 px-5 py-2.5 text-white text-sm font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer"
           aria-label="View Special Offers"
         >
-          🎁 1View Offers
+          <span>🎁</span>
+          <span>View Offers</span>
         </button>
       )}{" "}
       {variant === "inline" && (
@@ -339,7 +340,7 @@ export default function SpecialOffersPopup({
       {/* Modal variant */}
       {variant === "modal" && open && !isBookingPage && (
         <div
-          className="fixed inset-0 z-50 flex items-center sm:items-center justify-center overflow-y-auto "
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-labelledby="offers-title"

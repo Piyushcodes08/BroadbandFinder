@@ -51,12 +51,15 @@ export default function App() {
       duration: 800,
       easing: "ease-in-out",
       once: true,
-      offset: 100,
+      offset: 80,
+      disableMutationObserver: false,
     });
   }, []);
 
   useEffect(() => {
-    AOS.refresh();
+    // Small delay allows new page content to mount before AOS scans
+    const timer = setTimeout(() => AOS.refresh(), 150);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (

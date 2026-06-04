@@ -281,7 +281,7 @@ export default function BusinessInternetPage() {
   ];
 
   return (
-    <div className="font-sans text-gray-900 bg-white min-h-screen overflow-x-hidden">
+    <div className="font-sans text-gray-900 bg-white min-h-screen">
       <Helmet>
         <title>
           Business Internet Near You | Spectrum, AT&T & Comcast Plans
@@ -1559,83 +1559,6 @@ export default function BusinessInternetPage() {
         </div>
       </section>
 
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateX(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes shake {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(-5px);
-          }
-          75% {
-            transform: translateX(5px);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.6s ease-out;
-        }
-
-        .animate-slideUp {
-          animation: slideUp 0.6s ease-out;
-        }
-
-        .animate-slideDown {
-          animation: slideDown 0.6s ease-out;
-        }
-
-        .animate-slideIn {
-          animation: slideIn 0.3s ease-out;
-        }
-
-        .animate-shake {
-          animation: shake 0.3s ease-in-out;
-        }
-      `}</style>
     </div>
   );
 }

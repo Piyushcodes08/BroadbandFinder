@@ -3,7 +3,7 @@ import React from "react";
 export default function ProviderPlanCard({ plan, onBook }) {
   
   return (
-    <div className="p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between h-full" data-aos="fade-up">
+    <div className="p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between h-full" data-aos="fade-up" data-aos-offset="0">
       <div>
         <h4 className="text-lg font-bold text-gray-800">{plan.name}</h4>
         <p className="text-sm text-gray-600 mt-2">

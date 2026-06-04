@@ -1,41 +1,39 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="./src/assets/icon.png"
-      crossorigin="anonymous"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>24x7 NetConnect</title>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/src/assets/title-logo.png" crossorigin="anonymous" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Basic SEO -->
-    <meta
-      name="description"
-      content="24x7 NetConnect - Reliable and fast internet service provider in your area. Affordable plans, excellent customer support, and high-speed connectivity for homes and businesses."
-    />
-    <meta
-      name="keywords"
-      content="Internet service provider, local ISP, high-speed internet, affordable internet plans, broadband provider, 24x7 NetConnect network, reliable internet, fiber optic internet, wireless internet"
-    />
-    <meta name="author" content="24x7 NetConnect Network Services" />
-    <meta name="robots" content="index, follow" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <title>24x7 NetConnect</title>
 
-    <script
-      src="//code.tidio.co/olbhzanswytoyyoh8unwekairkfndyso.js"
-      async
-    ></script>
-    <script>
-      document.addEventListener("tidioChat-ready", function() {
+  <!-- Basic SEO -->
+  <meta name="description"
+    content="24x7 NetConnect - Reliable and fast internet service provider in your area. Affordable plans, excellent customer support, and high-speed connectivity for homes and businesses." />
+  <meta name="keywords"
+    content="Internet service provider, local ISP, high-speed internet, affordable internet plans, broadband provider, 24x7 NetConnect network, reliable internet, fiber optic internet, wireless internet" />
+  <meta name="author" content="24x7 NetConnect Network Services" />
+  <meta name="robots" content="index, follow" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <script>
+    (function () {
+      function onTidioChatApiReady() {
         window.tidioChatApi.setColor('#E8611A');
-      });
-    </script>
-  </body>
+      }
+      if (window.tidioChatApi) {
+        onTidioChatApiReady();
+      } else {
+        document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+      }
+    })();
+  </script>
+  <script src="//code.tidio.co/olbhzanswytoyyoh8unwekairkfndyso.js" async></script>
+</body>
+
 </html>
