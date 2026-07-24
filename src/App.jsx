@@ -91,10 +91,6 @@ export default function App() {
           element={<SpectrumPricing />}
         />
         <Route
-          path="/internet/SpectrumBusiness/SpectrumPricing"
-          element={<RingcentralVoip />}
-        />
-        <Route
           path="/internet/SpectrumBusiness/OrderBooking"
           element={<OrderBooking />}
         />
@@ -179,11 +175,22 @@ export default function App() {
         />
         <Route
           path="/admin/spectrum-orders"
-          element={<SpectrumOrdersAdmin />}
+          element={
+            <ProtectedRoute>
+              <SpectrumOrdersAdmin />
+            </ProtectedRoute>
+          }
         />
 
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/create" element={<CreateAdminForm />} />
+        <Route
+          path="/admin/create"
+          element={
+            <ProtectedRoute>
+              <CreateAdminForm />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       <Footer />

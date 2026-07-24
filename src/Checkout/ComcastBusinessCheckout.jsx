@@ -90,7 +90,7 @@ export default function ComcastBusinessCheckout() {
     if (step !== 4) return;
     setPlacing(true);
     try {
-      await axios.post("https://zenith.cloudastro.space/api/orders", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/orders`, {
         provider: "Comcast Business",
         plan,
         options: opt,

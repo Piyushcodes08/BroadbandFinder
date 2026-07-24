@@ -20,7 +20,7 @@ const CreateAdminForm = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('https://zenith.cloudastro.space/api/admin/register', formData); // Change URL if needed
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/create`, formData);
       setMessage(response.data.message);
       setFormData({ email: '', password: '' });
     } catch (error) {

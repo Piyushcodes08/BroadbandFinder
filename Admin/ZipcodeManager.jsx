@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
 import Sidebar from "./Sidebar";
 
-const API_BASE = "https://zenith.cloudastro.space/api/zipcodes";
+const API_BASE = `${import.meta.env.VITE_API_URL}/api/zipcodes`;
 
 const ZipcodeManager = () => {
   const [zipcodes, setZipcodes] = useState([]);

@@ -30,7 +30,7 @@ const CsvUploader = () => {
       formData.append("files", file);
 
       try {
-        await axios.post("http://localhost:3000/api/upload/csv", formData, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/upload/csv`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
           onUploadProgress: (progressEvent) => {
             const percentCompleted = Math.round(

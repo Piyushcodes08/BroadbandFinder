@@ -1,182 +1,234 @@
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import logo from "../assets/logo.png";
+
 import {
   FaFacebookF,
-  FaXTwitter,
   FaInstagram,
-  FaYoutube,
   FaLinkedinIn,
+  FaXTwitter,
+  FaYoutube,
 } from "react-icons/fa6";
-import { ChevronDown, ChevronUp } from "lucide-react";
 
 const Footer = () => {
-  const [open, setOpen] = useState(false);
   const year = new Date().getFullYear();
 
+  const deals = [
+    {
+      label: "AT&T Internet Deals",
+      href: "https://www.att.com/internet/internet-service-plans/",
+    },
+    {
+      label: "Spectrum Internet Deals",
+      href: "https://www.spectrum.com/internet/plans",
+    },
+    {
+      label: "Comcast Business Deals",
+      href: "https://www.xfinity.com/learn/deals/internet",
+    },
+  ];
+
+  const socialLinks = [
+    {
+      label: "Facebook",
+      href: "https://facebook.com",
+      icon: <FaFacebookF />,
+    },
+    {
+      label: "X",
+      href: "https://twitter.com",
+      icon: <FaXTwitter />,
+    },
+    {
+      label: "Instagram",
+      href: "https://instagram.com",
+      icon: <FaInstagram />,
+    },
+    {
+      label: "YouTube",
+      href: "https://youtube.com",
+      icon: <FaYoutube />,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com",
+      icon: <FaLinkedinIn />,
+    },
+  ];
+
   return (
-    <footer className="bg-[#E8611A] text-white">
-      <div className="max-w-7xl mx-auto px-6 py-14 md:block hidden">
-        {/* Wrapper with two white sections */}
-        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] bg-white rounded-lg overflow-hidden">
-          {/* Left - Logo */}
-          <div className="flex flex-col items-center sm:items-start p-6 bg-white" data-aos="fade-right">
-            <Link to="/" className="inline-flex items-center">
+    <footer className="relative overflow-hidden bg-[#171513] text-white">
+      {/* Orange accent */}
+      <div className="h-1.5 w-full bg-gradient-to-r from-[#B8440D] via-[#E8611A] to-[#FF9A4A]" />
+
+      {/* Background decoration */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-40 -top-32 h-96 w-96 rounded-full bg-[#E8611A]/10 blur-[120px]" />
+        <div className="absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-orange-800/10 blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto max-w-[1320px] px-5 pb-7 pt-12 sm:px-8 sm:pt-16 lg:px-12 lg:pt-20">
+        {/* Main footer */}
+        <div className="grid gap-10 border-b border-white/10 pb-12 sm:pb-14 lg:grid-cols-[1.3fr_0.85fr_1fr_1fr] lg:gap-12">
+          {/* Brand */}
+          <div>
+            <Link
+              to="/"
+              aria-label="24x7 NetConnect home"
+              className="inline-flex rounded-2xl bg-white px-5 py-3"
+            >
               <img
                 src={logo}
                 alt="24x7 NetConnect"
-                className="h-32 sm:h-40 w-auto object-contain"
+                className="h-16 w-auto object-contain sm:h-[72px]"
               />
             </Link>
+
+            <p className="mt-6 max-w-sm text-sm leading-7 text-neutral-400">
+              Helping businesses compare internet services and discover reliable
+              connectivity solutions designed around their requirements.
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-2.5">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.05] text-sm text-neutral-300 hover:border-[#E8611A] hover:bg-[#E8611A] hover:text-white"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Right - Links & Info */}
-          <div className="bg-white text-gray-800 p-6" data-aos="fade-left">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12">
-              {/* Deals */}
-              <div data-aos="fade-up" data-aos-delay="100">
-                <h4 className="text-[#E8611A] font-semibold tracking-wide mb-4 text-lg sm:text-xl">
-                  Deals
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    {
-                      label: "AT&T Internet Deals",
-                      href: "https://www.att.com/internet/internet-service-plans/",
-                    },
-                    {
-                      label: "Spectrum Internet Deals",
-                      href: "https://www.spectrum.com/internet/plans",
-                    },
-                    {
-                      label: "Comcast Business Deals",
-                      href: "https://www.xfinity.com/learn/deals/internet",
-                    },
-                  ].map((d) => (
-                    <li key={d.href}>
-                      <a
-                        href={d.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-1 text-gray-700 hover:text-[#E8611A] transition"
-                      >
-                        {d.label}
-                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Deals */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF985E]">
+              Popular Deals
+            </h3>
 
-              {/* Contact */}
-              <div data-aos="fade-up" data-aos-delay="200">
-                <h4 className="text-[#E8611A] font-semibold tracking-wide mb-4 text-lg sm:text-xl">
-                  Contact
-                </h4>
-                <ul className="space-y-3">
-                  {["support@24x7netconnect.us", "sales@24x7netconnect.us"].map(
-                    (email) => (
-                      <li key={email}>
-                        <a
-                          href={`mailto:${email}`}
-                          className="inline-flex items-center gap-2 text-gray-700 hover:text-[#E8611A] transition"
-                        >
-                          <Mail className="h-4 w-4" />
-                          {email}
-                        </a>
-                      </li>
-                    )
-                  )}
-                </ul>
+            <ul className="mt-6 space-y-4">
+              {deals.map((deal) => (
+                <li key={deal.href}>
+                  <a
+                    href={deal.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-start gap-2 text-sm leading-6 text-neutral-300 hover:text-white"
+                  >
+                    <span>{deal.label}</span>
+                    <ArrowUpRight className="mt-1 h-3.5 w-3.5 shrink-0 text-[#E8611A]" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF985E]">
+              Contact
+            </h3>
+
+            <ul className="mt-6 space-y-4">
+              <li>
                 <a
-                  href="tel:1-855 744 2407"
-                  className="mt-3 inline-flex items-center gap-2 text-gray-700 hover:text-[#E8611A] transition"
+                  href="mailto:support@24x7netconnect.us"
+                  className="flex items-start gap-3 text-sm leading-6 text-neutral-300 hover:text-white"
                 >
-                  <Phone className="h-4 w-4" />
-                  1-855 744 2407
-                </a>
-              </div>
+                  <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/[0.06] text-[#FF985E]">
+                    <Mail className="h-4 w-4" />
+                  </span>
 
-              {/* Legal & Branding */}
-              <div data-aos="fade-up" data-aos-delay="300">
-                <h4 className="text-[#E8611A] font-semibold tracking-wide mb-4 text-lg sm:text-xl">
-                  Legal &amp; Branding
-                </h4>
-              
-                <p className="text-sm text-gray-500 leading-relaxed mt-3">
-                  Trademarks, logos, and brand names are the property of their
-                  respective owners. Used for descriptive purposes only.
-                </p>
-                <Link to="/privacypolicy">Privacy Policy</Link>
-              </div>
+                  <span className="break-all">
+                    support@24x7netconnect.us
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="mailto:sales@24x7netconnect.us"
+                  className="flex items-start gap-3 text-sm leading-6 text-neutral-300 hover:text-white"
+                >
+                  <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/[0.06] text-[#FF985E]">
+                    <Mail className="h-4 w-4" />
+                  </span>
+
+                  <span className="break-all">sales@24x7netconnect.us</span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="tel:+18557442407"
+                  className="flex items-center gap-3 text-sm text-neutral-300 hover:text-white"
+                >
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/[0.06] text-[#FF985E]">
+                    <Phone className="h-4 w-4" />
+                  </span>
+
+                  <span>1-855-744-2407</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF985E]">
+              Legal & Information
+            </h3>
+
+            <p className="mt-6 text-sm leading-7 text-neutral-400">
+              Trademarks, logos and brand names belong to their respective
+              owners and are used for descriptive purposes only.
+            </p>
+
+            <div className="mt-5 flex flex-col items-start gap-3">
+              <Link
+                to="/privacypolicy"
+                className="text-sm font-medium text-neutral-300 hover:text-white"
+              >
+                Privacy Policy
+              </Link>
+
+              <Link
+                to="/contact-us"
+                className="text-sm font-medium text-neutral-300 hover:text-white"
+              >
+                Contact Us
+              </Link>
             </div>
 
-            {/* Divider & Bottom line */}
-            <div className="border-t border-gray-200 mt-8 pt-6 text-sm text-gray-600 flex items-center justify-center" data-aos="fade-up" data-aos-delay="400">
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  © {year} <strong className="text-gray-800">24x7 NetConnect</strong>
-                  . All rights reserved.
-                </p>
+            <div className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5">
+              <MapPin className="h-4 w-4 text-[#FF985E]" />
+
+              <span className="text-xs font-medium text-neutral-300">
+                Serving businesses across the USA
+              </span>
             </div>
           </div>
         </div>
-      </div>
-      {/* ✅ Mobile View */}
-      <div className="max-w-7xl mx-auto px-6 py-14 md:hidden">
-        <div className=" flex flex-col items-center text-center px-6 py-10 space-y-6 bg-white rounded-lg text-black" data-aos="fade-up">
-          {/* Logo */}
-          <img
-            src={logo}
-            alt="24x7 NetConnect"
-            className="h-20 w-auto object-contain"
-          />
 
-          {/* Quick Links */}
-          <div className="w-full flex items-center justify-center">
-            <div className="mt-4 flex flex-col gap-3 px-4">
-              <a
-                href="mailto:support@24x7netconnect.us"
-                className="inline-flex items-center gap-2 text-gray-700 hover:text-[#E8611A] transition"
-              >
-                <Mail className="h-4 w-4" /> support@24x7netconnect.us
-              </a>
-
-              <a
-                href="mailto:sales@24x7netconnect.us"
-                className="inline-flex items-center gap-2 text-gray-700 hover:text-[#E8611A] transition"
-              >
-                <Mail className="h-4 w-4" /> sales@24x7netconnect.us
-              </a>
-
-              <a
-                href="tel:18557442407"
-                className="inline-flex items-center gap-2 text-gray-700 hover:text-[#E8611A] transition"
-              >
-                <Phone className="h-4 w-4" /> 1-855 744 2407
-              </a>
-            </div>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex gap-4">
-            <Link
-              to="/contact-us"
-              className="bg-white text-[#E8611A] px-5 py-2 rounded-full border border-[#E8611A] font-semibold"
-            >
-              Get in Touch
-            </Link>
-          </div>
-
-          {/* Privacy Policy */}
-          <Link to="/privacypolicy" className="text-sm underline">
-            Our Privacy Policy
-          </Link>
-
-          {/* Copyright */}
-          <p className="text-xs text-gray-300">
-            © {year} 24x7 NetConnect. All rights reserved.
+        {/* Bottom bar */}
+        <div className="flex flex-col gap-4 pt-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+          <p className="text-xs leading-6 text-neutral-500 sm:text-sm">
+            © {year}{" "}
+            <strong className="font-semibold text-neutral-300">
+              24x7 NetConnect
+            </strong>
+            . All rights reserved.
           </p>
+
+          <div className="flex items-center justify-center gap-2 text-xs text-neutral-500">
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+            Secure and independent comparison service
+          </div>
         </div>
       </div>
     </footer>

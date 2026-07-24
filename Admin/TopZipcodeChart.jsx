@@ -16,7 +16,7 @@ const TopZipcodeChart = () => {
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
 
   useEffect(() => {
-  fetch("https://zenith.cloudastro.space/api/zip-search")
+  fetch(`${import.meta.env.VITE_API_URL}/api/zip-search`)
     .then(res => res.json())
     .then(data => {
       const top10 = data.slice(0, 10); // ensures max 10 items

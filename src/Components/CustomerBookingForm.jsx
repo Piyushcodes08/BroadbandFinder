@@ -686,7 +686,7 @@ export default function BookingFlow() {
     };
 
     try {
-      await axios.post("https://zenith.cloudastro.space/api/orders", payload);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/orders`, payload);
       // clear draft on success
       localStorage.removeItem(DRAFT_KEY);
       setSubmitted(true);

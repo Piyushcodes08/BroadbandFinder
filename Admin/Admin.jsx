@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import TopZipcodeChart from "./TopZipcodeChart";
 
-const API_BASE = "https://zenith.cloudastro.space/api";
+const API_BASE = `${import.meta.env.VITE_API_URL}/api`;
 
 const AdminDashboard = () => {
   const [loading, setLoading] = useState(false);

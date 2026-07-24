@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-export default function OrderBooking({ bundles }) {
+const DEFAULT_BUNDLES = [
+  { title: "Starter 300 Mbps", description: "Great for small teams", price: 49.99 },
+  { title: "Business 500 Mbps", description: "Fast and reliable for growing businesses", price: 69.99 },
+  { title: "Pro 1 Gbps", description: "Maximum speed for high-demand offices", price: 99.99 },
+];
+
+export default function OrderBooking({ bundles = DEFAULT_BUNDLES }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",

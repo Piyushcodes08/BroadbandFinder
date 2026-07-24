@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 
-const API = "http://localhost:3000/api/spectrum-orders";
+const API = `${import.meta.env.VITE_API_URL}/api/spectrum-orders`;
 
 const PAGE_SIZES = [10, 20, 50, 100];
 const STATUSES = ["New", "Processing", "Scheduled", "Completed", "Canceled"];

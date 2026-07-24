@@ -14,7 +14,7 @@ import {
 
 /* ========= API ========= */
 const api = axios.create({
-  baseURL: import.meta?.env?.VITE_API_BASE_URL || "https://zenith.cloudastro.space",
+  baseURL: import.meta.env.VITE_API_URL || "https://zenith.cloudastro.space",
   headers: { "Content-Type": "application/json" },
   timeout: 15000,
 });

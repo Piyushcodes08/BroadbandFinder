@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { TiTick } from "react-icons/ti";
 import { useLocation } from "react-router-dom";
 import PlanBookingForm from "../Components/PlanBookingForm";
+import { PROVIDER_DETAILS } from "../data/PROVIDER_DETAILS";
 import spectrumLogo from "../assets/spectrum.png";
 import attLogo from "../assets/att.png";
 import comcastLogo from "../assets/comcast.png";
@@ -101,7 +102,7 @@ export default function ProvidersResult() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://zenith.cloudastro.space/api/search/providers?zipcode=${zipcode}`
+        `${import.meta.env.VITE_API_URL}/api/search/providers?zipcode=${zipcode}`
       );
       const apiProviders = res.data.providers || [];
 
@@ -262,7 +263,7 @@ export default function ProvidersResult() {
       {isDetailsOpen &&
         detailsProvider &&
         (() => {
-          const selectedDetails = providerDetailsData.find(
+          const selectedDetails = PROVIDER_DETAILS.find(
             (pd) => pd.name === detailsProvider
           );
           if (!selectedDetails) return null;

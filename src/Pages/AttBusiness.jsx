@@ -11,6 +11,7 @@ import { MdSpeed } from "react-icons/md";
 import { HiOutlineLightningBolt } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import attcovergae from "../assets/attcovergae.png";
+import heroBg from "../assets/24x7 bg.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 

@@ -1,34 +1,49 @@
 import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
-import { v4 as uuidv4 } from "uuid";
 
-const socket = io("http://localhost:3000"); // your backend URL
+// Create socket lazily so VITE_API_URL is resolved at runtime
+let socket;
+function getSocket() {
+  if (!socket) {
+    socket = io(import.meta.env.VITE_API_URL);
+  }
+  return socket;
+}
 
 export default function CustomerChat() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
-  const [customerId, setCustomerId] = useState(null);
+  const [conversationId, setConversationId] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Generate a unique ID for guest customer
+  // Start conversation when chat is opened
   useEffect(() => {
-    const id = uuidv4();
-    setCustomerId(id);
-  }, []);
+    if (!isOpen) return;
 
-  // Join room and listen to messages
-  useEffect(() => {
-    if (!customerId) return;
+    const sock = getSocket();
 
-    socket.emit("joinRoom", customerId);
+    // Restore existing conversation from sessionStorage
+    const savedId = sessionStorage.getItem("conversationId");
+    sock.emit("start_conversation", {
+      role: "customer",
+      name: "Guest",
+      conversationId: savedId || undefined,
+    });
+
+    sock.on("conversation_ready", ({ conversationId: id }) => {
+      setConversationId(id);
+      sessionStorage.setItem("conversationId", id);
+    });
 
     const handleMessage = (msg) => setMessages((prev) => [...prev, msg]);
-    socket.on("receiveMessage", handleMessage);
+    sock.on("new_message", handleMessage);
 
     return () => {
-      socket.off("receiveMessage", handleMessage);
+      sock.off("conversation_ready");
+      sock.off("new_message", handleMessage);
     };
-  }, [customerId]);
+  }, [isOpen]);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -36,29 +51,62 @@ export default function CustomerChat() {
   }, [messages]);
 
   const sendMessage = () => {
-    if (!text.trim()) return;
+    if (!text.trim() || !conversationId) return;
 
-    const msg = { roomId: customerId, sender: "customer", text };
-    socket.emit("sendMessage", msg);
-    setMessages((prev) => [...prev, msg]);
+    getSocket().emit("send_message", {
+      conversationId,
+      text: text.trim(),
+      senderRole: "customer",
+    });
     setText("");
   };
 
+  if (!isOpen) {
+    return (
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-5 right-5 bg-[#E8611A] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[#C44E12] transition z-50"
+        aria-label="Open live chat"
+      >
+        💬 Live Chat
+      </button>
+    );
+  }
+
   return (
-    <div className="fixed bottom-5 right-5 w-80 bg-white border shadow-lg rounded-lg flex flex-col" data-aos="fade-up">
-      <div className="bg-[#E8611A] text-white p-2 font-bold rounded-t-lg">
-        Live Chat
+    <div
+      className="fixed bottom-5 right-5 w-80 bg-white border shadow-lg rounded-lg flex flex-col z-50"
+      data-aos="fade-up"
+    >
+      <div className="bg-[#E8611A] text-white p-2 font-bold rounded-t-lg flex justify-between items-center">
+        <span>Live Chat</span>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="text-white text-lg leading-none"
+          aria-label="Close chat"
+        >
+          ×
+        </button>
       </div>
 
       <div className="p-2 h-60 overflow-y-auto flex-1">
+        {messages.length === 0 && (
+          <p className="text-gray-400 text-sm text-center mt-4">
+            Send a message to start chatting.
+          </p>
+        )}
         {messages.map((m, i) => (
           <div
-            key={i}
-            className={m.sender === "customer" ? "text-right mb-1" : "text-left mb-1"}
+            key={m._id || i}
+            className={
+              m.senderRole === "customer" ? "text-right mb-1" : "text-left mb-1"
+            }
           >
             <p
-              className={`inline-block px-3 py-1 rounded-lg ${
-                m.sender === "customer" ? "bg-[#E8611A] text-white" : "bg-gray-200"
+              className={`inline-block px-3 py-1 rounded-lg text-sm ${
+                m.senderRole === "customer"
+                  ? "bg-[#E8611A] text-white"
+                  : "bg-gray-200 text-gray-800"
               }`}
             >
               {m.text}
@@ -73,10 +121,13 @@ export default function CustomerChat() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          className="flex-1 px-2 py-1 outline-none"
+          className="flex-1 px-2 py-1 outline-none text-sm"
           placeholder="Type a message..."
         />
-        <button onClick={sendMessage} className="bg-[#E8611A] text-white px-3">
+        <button
+          onClick={sendMessage}
+          className="bg-[#E8611A] text-white px-3 text-sm"
+        >
           Send
         </button>
       </div>

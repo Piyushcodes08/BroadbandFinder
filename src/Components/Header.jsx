@@ -1,23 +1,76 @@
-﻿import { useEffect, useState, useRef } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6"
+import { ArrowUpRight, ChevronDown, Mail, Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
+
+const businessLinks = [
+  { label: "Spectrum", to: "/internet/SpectrumBusiness" },
+  { label: "AT&T", to: "/internet/AttBusiness" },
+  { label: "Comcast", to: "/internet/ComcastBusiness" },
+  { label: "ACC", to: "/internet/AccBusiness" },
+];
+
+const cloudLinks = [
+  {
+    label: "RingCentral",
+    description: "Unified business communications",
+    to: "/internet/cloudsevices/ringcentralvoip",
+  },
+  {
+    label: "SpectrumVoIP",
+    description: "Reliable cloud-powered calling",
+    to: "/internet/cloudsevices/spectrumvoip",
+  },
+];
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);          // mobile drawer
-  const [cloudOpen, setCloudOpen] = useState(false);        // dropdown (mobile + desktop hover)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [cloudOpen, setCloudOpen] = useState(false);
   const location = useLocation();
-  const dropdownRef = useRef(null);
-  const drawerRef = useRef(null);
+  const desktopDropdownRef = useRef(null);
 
-  // Auth check (client only)
   useEffect(() => {
-    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-    setIsLoggedIn(!!token);
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    setIsLoggedIn(Boolean(token));
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setCloudOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        desktopDropdownRef.current &&
+        !desktopDropdownRef.current.contains(event.target)
+      ) {
+        setCloudOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setCloudOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.classList.toggle("overflow-hidden", menuOpen);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [menuOpen]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -25,335 +78,308 @@ const Header = () => {
     window.location.href = "/";
   };
 
-  // Close menu/dropdown on route change
-  useEffect(() => {
-    setMenuOpen(false);
-    setCloudOpen(false);
-  }, [location.pathname]);
-
-  // Close dropdown on outside click
-
-  const onClick = (e) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-      setCloudOpen(false);
-    }
-  };
-
-
-  // Close on Esc; lock scroll when drawer open
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-        setCloudOpen(false);
-      }
-    };
-    document.addEventListener("keydown", onKey);
-
-    if (menuOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [menuOpen]);
-
-  // Admin route check
   const isAdminRoute = location.pathname.startsWith("/admin");
   const isActive = (path) => location.pathname.startsWith(path);
+  const isCloudActive = location.pathname.startsWith("/internet/cloudsevices");
 
-  const linkBase =
-    "text-gray-900 text-base lg:text-lg font-medium transition-colors hover:text-[#E8611A]";
-  const linkActive = "text-[#E8611A]";
+  const desktopLinkClass = (active = false) =>
+    `relative flex h-10 items-center rounded-full px-3 text-[13px] font-semibold tracking-[-0.01em] transition-all duration-300 xl:px-3.5 xl:text-sm ${
+      active
+        ? "bg-[#fff1e8] text-[#d95717] shadow-[inset_0_0_0_1px_rgba(217,87,23,0.08)]"
+        : "text-[#344054] hover:bg-[#f8f5f1] hover:text-[#d95717]"
+    }`;
+
+  const mobileLinkClass = (active = false) =>
+    `group flex min-h-12 items-center justify-between rounded-2xl px-4 text-[15px] font-semibold transition-colors ${
+      active
+        ? "bg-[#fff2e8] text-[#d95717]"
+        : "text-slate-800 hover:bg-slate-50 hover:text-[#d95717]"
+    }`;
 
   return (
-    <div className="relative">
-      {/* Topbar */}
-      <div className="h-8 bg-[#E8611A] flex items-center justify-between md:justify-end px-4 md:px-16">
-        <a
-          href="mailto:sales@24x7netconnect.us"
-          className="hidden sm:flex items-center gap-2 text-white hover:text-gray-200 transition"
-        >
-          <span className="text-sm font-bold">sales@24x7netconnect.us</span>
-        </a>
-
-        <div className="flex items-center gap-3 ml-auto">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <FaFacebookF className="text-white hover:text-gray-200 transition" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
-            <FaXTwitter className="text-white hover:text-gray-200 transition" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <FaInstagram className="text-white hover:text-gray-200 transition" />
-          </a>
-        </div>
-      </div>
-
-      {/* Header */}
+    <div className="absolute w-full z-50 font-sans">
       <header
-        className={`w-full z-50 border-b border-gray-200 bg-white ${isAdminRoute ? "relative" : "sticky top-0"
-          }`}
+        className={`w-full border-b border-[#e8e3dc] bg-white/95 shadow-[0_12px_32px_rgba(15,23,42,0.055)] backdrop-blur-xl ${
+          isAdminRoute ? "relative" : "sticky top-0"
+        }`}
       >
-        <div className="flex items-center justify-between py-2 md:px-16 px-4">
-          {/* Logo */}
-          <Link to="/" className="flex items-center h-14 sm:h-16 shrink-0" aria-label="24x7 NetConnect Home">
+        <div className="mx-auto flex h-[82px] max-w-[1360px] items-center justify-between gap-5 px-5 py-0 sm:px-7 lg:h-[88px] lg:px-10">
+          <Link
+            to="/"
+            className="flex h-full shrink-0 items-center rounded-lg outline-none ring-[#e8611a]/25 focus-visible:ring-4"
+            aria-label="24x7 NetConnect Home"
+          >
             <img
               src={logo}
-              alt="24x7 NetConnect Logo"
-              className="w-36 sm:w-48 md:w-56 object-contain"
+              alt="24x7 NetConnect"
+              className="block h-auto w-[172px] max-h-[88px] object-contain sm:w-[190px] lg:w-[196px]"
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <Link
-              to="/internet/SpectrumBusiness"
-              className={`${linkBase} ${isActive("/internet/SpectrumBusiness") ? linkActive : ""} border-r pr-4`}
-            >
-              Spectrum Business
-            </Link>
-            <Link
-              to="/internet/AttBusiness"
-              className={`${linkBase} ${isActive("/internet/AttBusiness") ? linkActive : ""} border-r pr-4`}
-            >
-              AT&T Business
-            </Link>
-            <Link
-              to="/internet/ComcastBusiness"
-              className={`${linkBase} ${isActive("/internet/ComcastBusiness") ? linkActive : ""} border-r pr-4`}
-            >
-              Comcast Business
-            </Link>
-            <Link
-              to="/internet/AccBusiness"
-              className={`${linkBase} ${isActive("/internet/AccBusiness") ? linkActive : ""} border-r pr-4`}
-            >
-              Acc Business
-            </Link>
+          {/* Desktop navigation */}
+          <nav
+            className="hidden items-center gap-0.5 lg:flex xl:gap-1"
+            aria-label="Primary navigation"
+          >
+            {businessLinks.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={desktopLinkClass(isActive(item.to))}
+              >
+                {item.label}
+              </Link>
+            ))}
 
-            {/* Cloud Services (hover on desktop) */}
-            <div
-              className="relative"
-              onClick={() => setCloudOpen(!cloudOpen)}
-              ref={dropdownRef}
-            >
+            <div className="relative" ref={desktopDropdownRef}>
               <button
                 type="button"
-                className={`${linkBase} ${cloudOpen ? "text-[#E8611A]" : ""} border-r pr-4 flex items-center gap-1`}
+                onClick={() => setCloudOpen((open) => !open)}
+                className={desktopLinkClass(cloudOpen || isCloudActive)}
                 aria-haspopup="menu"
                 aria-expanded={cloudOpen}
-                aria-controls="cloud-menu"
+                aria-controls="cloud-services-menu"
               >
                 Cloud Services
                 <ChevronDown
-                  size={18}
-                  className={`transition-transform ${cloudOpen ? "rotate-180" : ""}`}
+                  size={15}
+                  className={`ml-1.5 transition-transform duration-300 ${
+                    cloudOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
-              {cloudOpen && (
-                <div
-                  id="cloud-menu"
-                  role="menu"
-                  className="absolute top-full left-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50"
-                >
-                  <ul className="py-2">
-                    <li>
-                      <Link
-                        to="/internet/cloudsevices/ringcentralvoip"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                        role="menuitem"
-                      >
-                        RingCentral
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/internet/cloudsevices/spectrumvoip"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                        role="menuitem"
-                      >
-                        SpectrumVoIP
-                      </Link>
-                    </li>
-                  </ul>
+
+              <div
+                id="cloud-services-menu"
+                role="menu"
+                className={`absolute right-0 top-[calc(100%+14px)] w-[330px] origin-top-right rounded-3xl border border-slate-200/80 bg-white p-2.5 shadow-[0_24px_70px_rgba(15,23,42,0.16)] transition-all duration-200 ${
+                  cloudOpen
+                    ? "visible translate-y-0 scale-100 opacity-100"
+                    : "invisible -translate-y-2 scale-95 opacity-0"
+                }`}
+              >
+                <div className="px-3 pb-2 pt-1">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#d95717]">
+                    Cloud communications
+                  </p>
                 </div>
-              )}
+
+                {cloudLinks.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    role="menuitem"
+                    className="group flex items-center justify-between rounded-2xl px-3 py-3 transition-colors hover:bg-[#fff5ee]"
+                  >
+                    <span>
+                      <span className="block text-sm font-bold text-slate-900 group-hover:text-[#d95717]">
+                        {item.label}
+                      </span>
+                      <span className="mt-0.5 block text-xs text-slate-500">
+                        {item.description}
+                      </span>
+                    </span>
+                    <ArrowUpRight
+                      size={16}
+                      className="text-slate-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#d95717]"
+                    />
+                  </Link>
+                ))}
+              </div>
             </div>
+
+            {isLoggedIn && (
+              <Link
+                to="/admin"
+                className={desktopLinkClass(isActive("/admin"))}
+              >
+                Admin
+              </Link>
+            )}
 
             <Link
               to="/contact-us"
-              className={`${linkBase} ${isActive("/contact-us") ? linkActive : ""}`}
+              className="ml-3 inline-flex h-11 items-center justify-center rounded-full bg-gradient-to-r from-[#ee681d] to-[#dc4d0b] px-5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(220,77,11,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_30px_rgba(220,77,11,0.3)]"
             >
-              Contact Us
+              Let&apos;s Talk
+              <ArrowUpRight size={16} className="ml-2" />
             </Link>
 
             {isLoggedIn && (
-              <>
-                <Link
-                  to="/admin"
-                  className={`${linkBase} ${isActive("/admin") ? linkActive : ""} border-l pl-4`}
-                >
-                  Admin
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="ml-2 px-3 py-1 rounded bg-[#E8611A] text-white shadow hover:bg-[#C44E12] transition"
-                >
-                  Logout
-                </button>
-              </>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="ml-1 h-11 rounded-full border border-[#ddd7cf] bg-white px-4 text-sm font-semibold text-[#344054] transition hover:border-[#cfc6bb] hover:bg-[#faf8f5]"
+              >
+                Logout
+              </button>
             )}
           </nav>
 
-          {/* Hamburger (Mobile/Tablet) */}
+          {/* Mobile menu trigger */}
           <button
-            className="lg:hidden text-gray-900 text-3xl p-2 -mr-2"
-            onClick={() => setMenuOpen((s) => !s)}
-            aria-label="Toggle menu"
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-sm transition hover:border-[#e8611a]/30 hover:bg-[#fff5ee] hover:text-[#d95717] lg:hidden"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={
+              menuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             aria-expanded={menuOpen}
-            aria-controls="mobile-drawer"
+            aria-controls="mobile-navigation"
           >
-            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
-        {/* Mobile Drawer + Backdrop */}
-        {/* Backdrop */}
+        {/* Mobile backdrop */}
         <div
-          className={`lg:hidden fixed inset-0 bg-black/40 transition-opacity duration-300 ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-            }`}
+          className={`fixed inset-0 top-0 bg-[#101828]/60 backdrop-blur-[3px] transition-opacity duration-300 lg:hidden ${
+            menuOpen
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
+          }`}
           onClick={() => setMenuOpen(false)}
-          aria-hidden={!menuOpen}
+          aria-hidden="true"
         />
-        {/* Drawer */}
+
+        {/* Mobile drawer */}
         <aside
-          id="mobile-drawer"
-          ref={drawerRef}
-          className={`lg:hidden fixed top-0 right-0 h-full w-[86%] max-w-sm bg-white shadow-xl z-50 transition-transform duration-300
-            ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
+          id="mobile-navigation"
+          className={`fixed right-0 top-0 flex h-[100dvh] w-[90%] max-w-[410px] flex-col bg-[#fcfcfb] shadow-[-24px_0_70px_rgba(15,23,42,0.22)] transition-transform duration-500 ease-out lg:hidden ${
+            menuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
           role="dialog"
           aria-modal="true"
+          aria-label="Mobile navigation"
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b">
-            <Link to="/" onClick={() => setMenuOpen(false)} aria-label="24x7 NetConnect Home">
-              <img src={logo} alt="24x7 NetConnect Logo" className="h-10 object-contain" />
+          <div className="flex h-[78px] shrink-0 items-center justify-between border-b border-slate-200/80 px-5 py-0">
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              aria-label="24x7 NetConnect Home"
+            >
+              <img
+                src={logo}
+                alt="24x7 NetConnect"
+                className="block max-h-[50px] w-44 object-contain"
+              />
             </Link>
             <button
+              type="button"
               onClick={() => setMenuOpen(false)}
-              className="p-2 rounded hover:bg-gray-100"
-              aria-label="Close menu"
+              className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700"
+              aria-label="Close navigation menu"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
           </div>
 
-          <nav className="px-6 py-4 flex flex-col gap-2 overflow-y-auto">
-            <Link
-              to="/internet/SpectrumBusiness"
-              className={`${linkBase} ${isActive("/internet/SpectrumBusiness") ? linkActive : ""} py-2 border-b`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Spectrum Business
-            </Link>
-            <Link
-              to="/internet/AttBusiness"
-              className={`${linkBase} ${isActive("/internet/AttBusiness") ? linkActive : ""} py-2 border-b`}
-              onClick={() => setMenuOpen(false)}
-            >
-              AT&T Business
-            </Link>
-            <Link
-              to="/internet/ComcastBusiness"
-              className={`${linkBase} ${isActive("/internet/ComcastBusiness") ? linkActive : ""} py-2 border-b`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Comcast Business
-            </Link>
-            <Link
-              to="/internet/AccBusiness"
-              className={`${linkBase} ${isActive("/internet/AccBusiness") ? linkActive : ""} py-2 border-b`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Acc Business
-            </Link>
+          <div className="flex-1 overflow-y-auto px-4 py-6">
+            <p className="mb-3 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+              Business internet
+            </p>
 
-            {/* Cloud Services (tap to open on mobile) */}
-            <div className="pt-2" ref={dropdownRef}>
-              <button
-                type="button"
-                onClick={() => setCloudOpen((s) => !s)}
-                className={`${linkBase} w-full flex items-center justify-between py-2`}
-                aria-haspopup="menu"
-                aria-expanded={cloudOpen}
-                aria-controls="cloud-menu-mobile"
-              >
-                <span>Cloud Services</span>
-                <ChevronDown
-                  size={18}
-                  className={`transition-transform ${cloudOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              {cloudOpen && (
-                <div id="cloud-menu-mobile" role="menu" className="ml-3 mt-1 border-l pl-3">
-                  <ul className="space-y-1">
-                    <li>
-                      <Link
-                        to="/internet/cloudsevices/ringcentralvoip"
-                        className="block py-2 hover:text-[#E8611A]"
-                        role="menuitem"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        RingCentral
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/internet/cloudsevices/spectrumvoip"
-                        className="block py-2 hover:text-[#E8611A]"
-                        role="menuitem"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        SpectrumVoIP
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            <Link
-              to="/contact-us"
-              className={`${linkBase} ${isActive("/contact-us") ? linkActive : ""} py-2`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact Us
-            </Link>
-
-            {isLoggedIn && (
-              <>
+            <nav className="space-y-1" aria-label="Mobile navigation">
+              {businessLinks.map((item) => (
                 <Link
-                  to="/admin"
-                  className={`${linkBase} ${isActive("/admin") ? linkActive : ""} py-2 border-t mt-2`}
+                  key={item.to}
+                  to={item.to}
+                  className={mobileLinkClass(isActive(item.to))}
                   onClick={() => setMenuOpen(false)}
                 >
-                  Admin
+                  <span>{item.label} Business</span>
+                  <ArrowUpRight
+                    size={16}
+                    className="text-slate-300 transition group-hover:text-[#d95717]"
+                  />
                 </Link>
+              ))}
+
+              <div className="py-1">
                 <button
-                  onClick={() => {
-                    handleLogout();
-                    setMenuOpen(false);
-                  }}
-                  className="mt-3 w-full px-3 py-2 rounded bg-[#E8611A] text-white shadow hover:bg-[#C44E12] transition"
+                  type="button"
+                  onClick={() => setCloudOpen((open) => !open)}
+                  className={`${mobileLinkClass(
+                    cloudOpen || isCloudActive,
+                  )} w-full`}
+                  aria-expanded={cloudOpen}
+                  aria-controls="mobile-cloud-services"
                 >
-                  Logout
+                  <span>Cloud Services</span>
+                  <ChevronDown
+                    size={17}
+                    className={`transition-transform duration-300 ${
+                      cloudOpen ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-              </>
+
+                <div
+                  id="mobile-cloud-services"
+                  className={`grid transition-all duration-300 ${
+                    cloudOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="ml-4 mt-2 space-y-1 border-l border-[#e8611a]/25 pl-3">
+                      {cloudLinks.map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          onClick={() => setMenuOpen(false)}
+                          className="block rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#fff2e8] hover:text-[#d95717]"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {isLoggedIn && (
+                <Link
+                  to="/admin"
+                  className={mobileLinkClass(isActive("/admin"))}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span>Admin Dashboard</span>
+                  <ArrowUpRight size={16} />
+                </Link>
+              )}
+            </nav>
+          </div>
+
+          <div className="border-t border-slate-200 bg-white p-5">
+            <Link
+              to="/contact-us"
+              onClick={() => setMenuOpen(false)}
+              className="flex h-[52px] items-center justify-center rounded-2xl bg-[#e8611a] px-5 py-3.5 text-sm font-bold text-white shadow-[0_12px_28px_rgba(232,97,26,0.25)]"
+            >
+              Talk to an Expert
+              <ArrowUpRight size={17} className="ml-2" />
+            </Link>
+
+            <a
+              href="mailto:sales@24x7netconnect.us"
+              className="mt-3 flex items-center justify-center gap-2 py-2 text-xs font-medium text-slate-500"
+            >
+              <Mail size={14} />
+              sales@24x7netconnect.us
+            </a>
+
+            {isLoggedIn && (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700"
+              >
+                Logout
+              </button>
             )}
-          </nav>
+          </div>
         </aside>
       </header>
     </div>

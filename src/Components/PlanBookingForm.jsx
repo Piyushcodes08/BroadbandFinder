@@ -40,7 +40,7 @@ export default function PlanBookingForm({
       zip,
     };
 
-    await axios.post("https://zenith.cloudastro.space/api/book/bookings", payload);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/book/bookings`, payload);
 
     setShowSuccess(true);
     setFormData({ name: "", phone: "", address: "", date: "", notes: "" });

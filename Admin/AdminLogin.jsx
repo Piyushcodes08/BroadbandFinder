@@ -10,7 +10,7 @@ const saveAuth = (token, isAdmin) => {
 
 // ====== Axios Instance ======
 const api = axios.create({
-  baseURL: "https://zenith.cloudastro.space/api",
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
 });
 
 api.interceptors.request.use((config) => {
