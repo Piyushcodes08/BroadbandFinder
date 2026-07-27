@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { TiTick } from "react-icons/ti";
 import { useLocation } from "react-router-dom";
 import PlanBookingForm from "../Components/PlanBookingForm";
 import { PROVIDER_DETAILS } from "../data/PROVIDER_DETAILS";
@@ -10,12 +9,22 @@ import comcastLogo from "../assets/comcast.png";
 import PlaceHolder from "../assets/placeholder.png";
 import RingCentralLogo from "../assets/RingCentral.png";
 import SpectrumVoipLogo from "../assets/spectrum.png";
+import Home1 from "../assets/24x7 bg.png";
+import {
+  FaArrowRight,
+  FaCheck,
+  FaChevronRight,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaSearch,
+  FaShieldAlt,
+  FaTimes,
+  FaWifi,
+} from "react-icons/fa";
 
 export default function ProvidersResult() {
   const [results, setResults] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
   const [zip, setZip] = useState("");
-  const [viewingPlansId, setViewingPlansId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [selectedProvider, setSelectedProvider] = useState(null);
@@ -68,21 +77,12 @@ export default function ProvidersResult() {
     },
   ];
 
-
-  const typeNameToKey = {
-    "Spectrum Business": "SpectrumBusiness",
-    "AT&T Business": "AT&TBusiness",
-    "Comcast Business": "ComcastBusiness",
-    RingCentral: "RingCentral",
-    "Spectrum VoIP": "SpectrumVoIP",
-  };
-
   const location = useLocation();
 
   const handleBook = (provider, plan, matchedProvider) => {
     setSelectedProvider(provider);
     setSelectedPlan(plan);
-    setSelectedMatchedProvider(matchedProvider); 
+    setSelectedMatchedProvider(matchedProvider);
     setIsModalOpen(true);
   };
 
@@ -102,7 +102,7 @@ export default function ProvidersResult() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/search/providers?zipcode=${zipcode}`
+        `${import.meta.env.VITE_API_URL}/api/search/providers?zipcode=${zipcode}`,
       );
       const apiProviders = res.data.providers || [];
 
@@ -111,7 +111,7 @@ export default function ProvidersResult() {
       const combinedProviders = [
         ...apiProviders,
         ...voipProviders.filter(
-          (vp) => !apiProviders.some((ap) => ap.name === vp.name)
+          (vp) => !apiProviders.some((ap) => ap.name === vp.name),
         ),
       ];
 
@@ -123,140 +123,284 @@ export default function ProvidersResult() {
       setLoading(false);
     }
   };
-  console.log("Results:", results);
-  console.log("Providers:", providers);
-  console.log(detailsProvider)
   return (
-    <div className="min-h-screen bg-gray-50">
-      <section className="relative bg-gradient-to-br from-[#C44E12] to-gray-900 py-20 px-4 text-white text-center shadow-xl" data-aos="fade-down">
-        <div className="max-w-3xl mx-auto pt-16 md:pt-4">
-          <h2 className="text-sm uppercase tracking-wider text-[#FBBD96] mb-2 animate-pulse font-semibold">
-            The Place for Everything Internet
-          </h2>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
-            Find Every Internet Provider In Your Area
-          </h1>
-          <p className="mt-4 sm:mt-6 text-lg sm:text-xl text-[#FBBD96] max-w-xl mx-auto">
-            Check availability by address or ZIP to compare your best internet
-            options.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-3 max-w-xl mx-auto">
-            <input
-              type="text"
-              placeholder="Enter your ZIP code or address"
-              value={zip}
-              onChange={(e) => setZip(e.target.value)}
-              className="w-full rounded-lg px-5 py-3 text-gray-900 font-medium shadow-md border-none focus:outline-none focus:ring-4 focus:ring-[#F47630] transition"
-            />
-            <button
-              onClick={() => fetchProviders(zip)}
-              className="w-full sm:w-auto bg-[#F47630] hover:bg-[#E8611A] text-white px-7 py-3 rounded-lg font-semibold shadow-md transition"
+    <main className="min-h-screen overflow-hidden bg-[#faf8f5] text-neutral-900">
+      <section className="relative isolate min-h-[92svh] overflow-hidden bg-[#f5f2eb]">
+        {/* Background image */}
+        <img
+          src={Home1}
+          alt="Business internet search solutions"
+          className="absolute inset-0 h-full w-full object-cover object-[70%_center] sm:object-center"
+        />
+
+        {/* Responsive image overlays */}
+        <div
+          className="
+            absolute inset-0
+            bg-gradient-to-r
+            from-[#F8F6F1] via-[#F8F6F1]/95 to-[#F8F6F1]/55
+            sm:via-[#F8F6F1]/90 sm:to-transparent
+            lg:from-[#F8F6F1] lg:via-[#F8F6F1]/85 lg:to-transparent
+          "
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#faf8f5] to-transparent"
+        />
+
+        {/* Hero content */}
+        <div className="relative z-10 mx-auto flex min-h-[92svh] w-full max-w-[1440px] items-center px-5 sm:px-10 lg:px-16 xl:px-20">
+          <div
+            className="w-full max-w-[720px] py-28"
+            data-aos="fade-right"
+            data-aos-duration="900"
+          >
+            {/* Eyebrow */}
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-[#E8611A]" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#A83E0C] sm:text-xs">
+                Broadband Finder®
+              </p>
+            </div>
+
+            {/* Main heading */}
+            <h1 className="max-w-[680px] text-[clamp(2.8rem,6vw,5.25rem)] font-bold leading-[0.95] tracking-[-0.055em] text-[#171717]">
+              Find the right provider
+              <span className="mt-2 block tracking-[-0.04em] text-[#C44E12]">
+                for your business.
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="mt-7 max-w-[620px] text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8 lg:text-xl">
+              Compare business internet and voice options available at your
+              location—all in one simple search.
+            </p>
+
+            {/* Search Input & CTA */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                fetchProviders(zip);
+              }}
+              className="mt-9 max-w-2xl rounded-[1.5rem] border border-white/80 bg-white/85 p-2.5 shadow-[0_24px_70px_rgba(45,32,24,0.14)] backdrop-blur-xl sm:flex"
             >
-              Search
-            </button>
+              <label className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-4 py-2">
+                <FaMapMarkerAlt
+                  className="shrink-0 text-[#C44E12]"
+                  aria-hidden="true"
+                />
+                <span className="sr-only">ZIP code</span>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={5}
+                  autoComplete="postal-code"
+                  placeholder="Enter 5-digit ZIP code"
+                  value={zip}
+                  onChange={(e) =>
+                    setZip(e.target.value.replace(/\D/g, "").slice(0, 5))
+                  }
+                  className="min-h-12 w-full bg-transparent text-base font-medium text-neutral-900 outline-none placeholder:text-neutral-400"
+                />
+              </label>
+              <button
+                type="submit"
+                disabled={loading}
+                className="group inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl bg-[#C44E12] px-7 text-sm font-bold text-white shadow-[0_12px_28px_rgba(196,78,18,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A83E0C] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              >
+                <FaSearch className="h-3.5 w-3.5" aria-hidden="true" />
+                {loading ? "Searching..." : "Check Availability"}
+              </button>
+            </form>
+            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-neutral-600">
+              {["Free search", "Business-focused plans", "No obligation"].map(
+                (item) => (
+                  <span key={item} className="flex items-center gap-2">
+                    <FaCheck className="text-emerald-600" aria-hidden="true" />
+                    {item}
+                  </span>
+                ),
+              )}
+            </div>
           </div>
+        </div>
+
+        {/* Bottom indicator */}
+        <div className="absolute bottom-6 right-6 z-20 hidden items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-600 lg:flex">
+          <span>Explore</span>
+          <span className="h-px w-12 bg-neutral-500" />
         </div>
       </section>
 
-      <div className="max-w-5xl mx-auto my-10 px-4">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2" data-aos="fade-up">
-          Internet Providers in {zip || "your area"}{" "}
-          <img src={PlaceHolder} alt="Location icon" className="w-6 h-6" />
-        </h1>
-
-        {loading ? (
-          <p className="text-center text-gray-600">Loading providers...</p>
-        ) : results.length === 0 ? (
-          <p className="text-center text-gray-600">
-            No providers available in this ZIP code.
-          </p>
-        ) : (
-          <div className="flex flex-col gap-6" data-aos="fade-up" data-aos-offset="0">
-            {results.map((p) => {
-              const matchedProvider = providers.find(
-                (prov) =>
-                  prov.name.toLowerCase() ===
-                  (p.typeName || p.name || "").toLowerCase()
-              );
-
-              return (
-                <div
-                  key={p._id || p.id}
-                  className={`bg-white rounded-xl shadow-md p-5 grid grid-cols-1 sm:grid-cols-[auto_1fr_auto] items-center gap-6 transition hover:shadow-lg ${
-                    selectedId === p.id ? "ring-2 ring-[#F47630]" : ""
-                  }`}
-                  data-aos="fade-up"
-                  data-aos-offset="0"
-                >
-                  {/* Logo + Name */}
-                  <div className="flex flex-col items-center sm:items-start border-b sm:border-b-0 sm:border-r pb-4 sm:pb-0 sm:pr-6">
-                    <img
-                      src={providerImages[p.typeName] || p.img || PlaceHolder}
-                      alt={p.typeName || p.name}
-                      className="w-32 h-32 sm:w-40 sm:h-40 object-contain mb-3"
-                    />
-                    <h2 className="text-lg sm:text-xl font-semibold text-gray-800 text-center sm:text-left">
-                      {p.name || p.typeName}
-                    </h2>
-                  </div>
-
-                  {/* Pricing + Speed */}
-                  <div className="flex flex-col sm:flex-col justify-between items-center sm:items-start gap-6 sm:gap-10 border-b sm:border-b-0 sm:border-r pb-4 sm:pb-0 sm:pr-6 text-center sm:text-left">
-                    <div className="grid grid-cols-2 w-full items-center  sm:items-start">
-                      <div>
-                        <p className="font-semibold text-gray-700 text-sm sm:text-base">
-                          Plans Starting At
-                        </p>
-                        <p className="text-2xl sm:text-3xl font-bold text-[#E8611A] mt-1">
-                          {p.startingPrice ||
-                            matchedProvider?.startingPrice ||
-                            "$29.99"}
-                        </p>
-                        <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-                          {p.conditions ||
-                            matchedProvider?.conditions ||
-                            "Conditions apply"}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="font-semibold text-gray-700 text-sm sm:text-base">
-                          Speeds Up To
-                        </p>
-                        <p className="text-xl sm:text-2xl font-bold text-gray-800 mt-1">
-                          {p.speed || matchedProvider?.speed || "100 Mbps"}
-                        </p>
-                        <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-                          *May vary
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="text-blue-600 cursor-pointer hover:underline hover:text-blue-800 text-sm sm:text-base mt-3 sm:mt-0"
-                      onClick={() => {
-                        setDetailsProvider(p.name || p.typeName);
-                        setIsDetailsOpen(true);
-                      }}
-                    >
-                      See more details...
-                    </div>
-                  </div>
-
-                  {/* Book Appointment button */}
-                  <div className="flex justify-center sm:justify-end">
-                    <button
-                      onClick={() => handleBook(p, null, matchedProvider)}
-                      className="bg-[#E8611A] px-6 py-3 rounded-md text-white hover:bg-[#C44E12] transition w-full sm:w-auto"
-                    >
-                      Book Appointment
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+      <section
+        className="relative py-16 sm:py-20 lg:py-24"
+        aria-labelledby="results-heading"
+      >
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(232,97,26,0.08),transparent_32%)]"
+        />
+        <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
+          <div
+            className="flex flex-col gap-5 border-b border-neutral-200 pb-8 sm:flex-row sm:items-end sm:justify-between"
+            data-aos="fade-up"
+          >
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-[#E8611A]" aria-hidden="true" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A83E0C]">
+                  Available services
+                </span>
+              </div>
+              <h2
+                id="results-heading"
+                className="mt-4 text-3xl font-bold tracking-[-0.04em] text-neutral-900 sm:text-4xl"
+              >
+                Providers near{" "}
+                <span className="text-[#C44E12]">{zip || "your business"}</span>
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-neutral-600 sm:text-base">
+                Review available providers, starting prices and maximum
+                advertised speeds.
+              </p>
+            </div>
+            {results.length > 0 && !loading && (
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-orange-100 bg-white px-4 py-2 text-xs font-bold text-neutral-700 shadow-sm">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                {results.length}{" "}
+                {results.length === 1 ? "provider" : "providers"} found
+              </span>
+            )}
           </div>
-        )}
-      </div>
+
+          {loading ? (
+            <div
+              className="grid gap-5 pt-9"
+              aria-live="polite"
+              aria-busy="true"
+            >
+              {[1, 2, 3].map((item) => (
+                <div
+                  key={item}
+                  className="h-64 animate-pulse rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm"
+                >
+                  <div className="h-full bg-gradient-to-r from-transparent via-neutral-100/80 to-transparent" />
+                </div>
+              ))}
+              <p className="sr-only">Finding providers in your area...</p>
+            </div>
+          ) : results.length === 0 ? (
+            <div className="mt-9 rounded-[1.75rem] border border-dashed border-orange-200 bg-white px-6 py-14 text-center shadow-[0_16px_45px_rgba(45,32,24,0.05)]">
+              <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FFF0E6] text-[#C44E12]">
+                <FaWifi className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 text-xl font-bold text-neutral-900">
+                Start your provider search
+              </h3>
+              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-neutral-600">
+                Enter a valid 5-digit ZIP code above to explore business
+                internet and voice options.
+              </p>
+            </div>
+          ) : (
+            <div className="grid gap-6 pt-9">
+              {results.map((p, index) => {
+                const matchedProvider = providers.find(
+                  (prov) =>
+                    prov.name.toLowerCase() ===
+                    (p.typeName || p.name || "").toLowerCase(),
+                );
+
+                return (
+                  <div
+                    key={p._id || p.id || `${p.typeName || p.name}-${index}`}
+                    className="group relative overflow-hidden rounded-[1.75rem] border border-neutral-200/80 bg-white shadow-[0_18px_55px_rgba(45,32,24,0.07)] transition-all duration-500 hover:-translate-y-1 hover:border-orange-200 hover:shadow-[0_26px_70px_rgba(196,78,18,0.12)]"
+                    data-aos="fade-up"
+                    data-aos-delay={Math.min(index * 80, 240)}
+                    data-aos-once="true"
+                  >
+                    <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-[#E8611A] to-[#A83E0C]" />
+                    <div className="grid items-stretch lg:grid-cols-[260px_1fr_220px]">
+                      <div className="flex flex-col items-center justify-center border-b border-neutral-100 bg-[#FCFBF9] p-7 text-center lg:border-b-0 lg:border-r">
+                        <img
+                          src={
+                            providerImages[p.typeName] || p.img || PlaceHolder
+                          }
+                          alt={p.typeName || p.name}
+                          className="h-24 w-40 object-contain transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <h3 className="mt-5 text-lg font-bold text-neutral-900">
+                          {p.name || p.typeName}
+                        </h3>
+                        <span className="mt-2 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-700">
+                          <FaShieldAlt /> Business solution
+                        </span>
+                      </div>
+
+                      <div className="p-6 sm:p-8">
+                        <div className="grid gap-6 sm:grid-cols-2">
+                          <div>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-500">
+                              Plans Starting At
+                            </p>
+                            <p className="mt-2 text-3xl font-bold tracking-[-0.04em] text-[#C44E12]">
+                              {p.startingPrice ||
+                                matchedProvider?.startingPrice ||
+                                "$29.99"}
+                            </p>
+                            <p className="mt-1 text-xs leading-5 text-neutral-500">
+                              {p.conditions ||
+                                matchedProvider?.conditions ||
+                                "Conditions apply"}
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-500">
+                              Speeds Up To
+                            </p>
+                            <p className="mt-2 text-2xl font-bold tracking-[-0.03em] text-neutral-900">
+                              {p.speed || matchedProvider?.speed || "100 Mbps"}
+                            </p>
+                            <p className="mt-1 text-xs text-neutral-500">
+                              Availability and speeds may vary
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#A83E0C] transition hover:text-[#E8611A]"
+                          onClick={() => {
+                            setDetailsProvider(p.name || p.typeName);
+                            setIsDetailsOpen(true);
+                          }}
+                        >
+                          View plans and details
+                          <FaChevronRight className="h-3 w-3" />
+                        </button>
+                      </div>
+
+                      <div className="flex flex-col justify-center border-t border-neutral-100 bg-[#FCFBF9] p-6 lg:border-l lg:border-t-0">
+                        <button
+                          onClick={() => handleBook(p, null, matchedProvider)}
+                          className="group/button inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-[#C44E12] px-5 text-sm font-bold text-white shadow-[0_12px_28px_rgba(196,78,18,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A83E0C]"
+                        >
+                          Book Appointment
+                          <FaArrowRight className="transition-transform group-hover/button:translate-x-1" />
+                        </button>
+                        <p className="mt-3 text-center text-[11px] leading-5 text-neutral-500">
+                          Free consultation. No obligation.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Modal for Provider Details */}
 
@@ -264,60 +408,84 @@ export default function ProvidersResult() {
         detailsProvider &&
         (() => {
           const selectedDetails = PROVIDER_DETAILS.find(
-            (pd) => pd.name === detailsProvider
+            (pd) => pd.name === detailsProvider,
           );
           if (!selectedDetails) return null;
 
           return (
             <div
-              className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/70 p-4 backdrop-blur-sm"
               role="dialog"
               aria-modal="true"
+              aria-labelledby="provider-details-title"
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget)
+                  setIsDetailsOpen(false);
+              }}
             >
-              <div className="bg-white rounded-xl p-6 max-w-6xl w-full shadow-2xl overflow-y-auto max-h-[90vh] animate-fadeIn">
-                {/* Close button */}
-                <div className="flex justify-end">
+              <div className="relative max-h-[92vh] w-full max-w-6xl overflow-y-auto rounded-[2rem] border border-white/20 bg-[#FAF8F5] shadow-[0_35px_100px_rgba(0,0,0,0.35)]">
+                <div className="sticky top-0 z-10 flex items-center justify-between border-b border-neutral-200 bg-white/90 px-5 py-4 backdrop-blur-xl sm:px-8">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#A83E0C]">
+                      Plans & pricing
+                    </p>
+                    <h2
+                      id="provider-details-title"
+                      className="mt-1 text-xl font-bold text-neutral-900 sm:text-2xl"
+                    >
+                      {selectedDetails.name}
+                    </h2>
+                  </div>
+                  {/* Close button */}
                   <button
                     onClick={() => setIsDetailsOpen(false)}
-                    className="text-gray-500 hover:text-gray-700 text-2xl font-bold transition-colors"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 transition hover:border-orange-200 hover:bg-[#FFF0E6] hover:text-[#C44E12]"
                     aria-label="Close details popup"
                   >
-                    ×
+                    <FaTimes />
                   </button>
                 </div>
 
-                {/* Title */}
-                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-                  {selectedDetails.name}
-                </h2>
-
                 {/* Plans Grid */}
-                <div className="grid gap-6 md:grid-cols-3">
+                <div className="grid gap-5 p-5 sm:p-8 md:grid-cols-2 lg:grid-cols-3">
                   {selectedDetails.plans.map((plan, index) => (
                     <div
-                      key={index}
-                      className="border border-gray-200 rounded-lg shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+                      key={plan.title || index}
+                      className="group/plan flex flex-col justify-between rounded-[1.5rem] border border-neutral-200 bg-white p-6 shadow-[0_14px_38px_rgba(45,32,24,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-[0_20px_50px_rgba(196,78,18,0.10)]"
                     >
                       <div>
-                        <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
+                          Business plan
+                        </span>
+                        <h3 className="mt-2 text-xl font-bold text-neutral-900">
                           {plan.title}
                         </h3>
-                        <p className="text-4xl font-bold text-[#E8611A] mb-4">
+                        <p className="mt-4 text-4xl font-bold tracking-[-0.05em] text-[#C44E12]">
                           {plan.price}
                         </p>
 
                         {plan.details && (
-                          <ul className="mb-4 list-disc list-inside text-gray-700 text-sm space-y-1">
+                          <ul className="mt-5 space-y-2 border-t border-neutral-100 pt-5">
                             {plan.details.map((detail, i) => (
-                              <li key={i}>{detail}</li>
+                              <li
+                                key={`${detail}-${i}`}
+                                className="flex gap-2.5 text-sm leading-6 text-neutral-600"
+                              >
+                                <FaCheck className="mt-1 shrink-0 text-emerald-600" />
+                                {detail}
+                              </li>
                             ))}
                           </ul>
                         )}
 
-                        <ul className="space-y-1 text-gray-700 text-sm mt-3">
+                        <ul className="mt-4 space-y-2">
                           {selectedDetails.features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-2">
-                              <TiTick /> {feature}
+                            <li
+                              key={`${feature}-${i}`}
+                              className="flex gap-2.5 text-sm leading-6 text-neutral-600"
+                            >
+                              <FaCheck className="mt-1 shrink-0 text-emerald-600" />
+                              {feature}
                             </li>
                           ))}
                         </ul>
@@ -325,9 +493,10 @@ export default function ProvidersResult() {
 
                       <a
                         href={`tel:${selectedDetails.phone}`}
-                        className="mt-6 block bg-[#E8611A] hover:bg-[#C44E12] text-white font-semibold py-2 px-4 rounded-lg text-center transition-colors"
+                        className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#C44E12] px-4 text-center text-sm font-bold text-white transition hover:bg-[#A83E0C]"
                       >
-                        📞{selectedDetails.phone} Toll Free
+                        <FaPhoneAlt className="h-3.5 w-3.5" />
+                        {selectedDetails.phone} Toll Free
                       </a>
                     </div>
                   ))}
@@ -345,6 +514,6 @@ export default function ProvidersResult() {
         plan={selectedPlan}
         matchedProvider={selectedMatchedProvider}
       />
-    </div>
+    </main>
   );
 }

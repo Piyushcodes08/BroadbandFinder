@@ -8,7 +8,7 @@ import {
   HiOutlineGlobeAlt,
   HiOutlineCheckCircle,
 } from "react-icons/hi2";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaPhoneAlt } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,6 +24,7 @@ import {
 import { MdGroups } from "react-icons/md";
 import { HiCheck } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
+import RingCentralVoipHeroBg from "../assets/ringcentralvoip-herobg.png";
 
 /** —————————————————————————————————————————————————————————————
  * Small Business Phone – RingCentral-style replica (responsive)
@@ -208,60 +209,108 @@ export default function RingCentralSmallBusinessReplica() {
       </div>
 
       {/* ===== HERO ===== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-14">
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6" data-aos="fade-right">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase text-[#E8611A]">
-              <HiOutlineShieldCheck /> Trusted by small businesses
-            </span>
-            <h1 className="mt-2 text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              The small-business phone system, trusted by over{" "}
-              <span className="text-[#E8611A]">500K businesses</span>
-            </h1>
-            <p className="mt-4 text-gray-700 max-w-xl">
-              Run calls, texts, and video in one reliable app. Stay professional
-              anywhere with AI-powered tools and analytics that help you grow.
-            </p>
-          </div>
+      <section className="relative isolate min-h-[100svh] overflow-hidden bg-[#f5f2eb]">
+        {/* Background image */}
+        <img
+          src={RingCentralVoipHeroBg}
+          alt="RingCentral business phone solutions"
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center] sm:object-center"
+        />
 
-          {/* Phone card image */}
-          <div className="lg:col-span-6" data-aos="fade-left">
-            <div className="relative mx-auto max-w-[420px]">
-              <img
-                alt="Dialer app mock"
-                loading="lazy"
-                className="w-full h-auto rounded-3xl ring-1 ring-black/5"
-                src="https://thumbs.dreamstime.com/b/phone-dial-screen-display-keypad-numberst-mobile-vector-stock-204294865.jpg"
-              />
-              <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl border p-4 shadow-sm">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#FDE3CF] text-[#E8611A]">
-                    <HiOutlinePhone />
-                  </span>
-                  <div className="text-sm">
-                    <div className="font-semibold">Business number</div>
-                    <div className="text-gray-500">1-855 744 2407</div>
-                  </div>
-                </div>
+        {/* Responsive image overlays */}
+        <div
+          className="
+            absolute inset-0
+            bg-gradient-to-r
+            from-[#F8F6F1] via-[#F8F6F1]/95 to-[#F8F6F1]/45
+            sm:via-[#F8F6F1]/90 sm:to-transparent
+            lg:from-[#F8F6F1] lg:via-[#F8F6F1]/85 lg:to-transparent
+          "
+        />
+
+        {/* Hero content */}
+        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] items-center px-5 sm:px-10 lg:px-16 xl:px-20">
+          <div
+            className="w-full max-w-[720px] pt-10"
+            data-aos="fade-right"
+            data-aos-duration="900"
+          >
+            {/* Eyebrow */}
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-orange-600" />
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-orange-700 sm:text-sm">
+                RingCentral®
+              </p>
+            </div>
+
+            {/* Main heading */}
+            <h1 className="max-w-[680px] text-[clamp(2.8rem,6vw,3.7rem)] font-semibold leading-[0.96] tracking-[-0.055em] text-[#171717]">
+              Phone System
+              <span className="mt-2 block tracking-[-0.04em] text-orange-700">
+                Trusted by 500K+ Teams.
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="mt-7 max-w-[620px] text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8 lg:text-xl">
+              Run calls, texts, and video in one reliable app. Stay professional anywhere with AI-powered tools and analytics that help you grow.
+            </p>
+
+            {/* Feature */}
+            <div className="mt-7 flex max-w-[590px] items-start gap-4 border-l-2 border-orange-600 pl-5">
+              <div>
+                <p className="font-semibold text-neutral-900">
+                  AI-Powered Voice & Video
+                </p>
+                <p className="mt-1 text-sm leading-6 text-neutral-600 sm:text-base">
+                  Stay professional anywhere with smart call routing, analytics, and custom integrations.
+                </p>
               </div>
             </div>
+
+            {/* Actions */}
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <a
+                href="tel:18557442407"
+                aria-label="Call RingCentral at 1-855-744-2407"
+                className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full hover:bg-white px-7 text-base font-semibold hover:text-black text-white shadow-[0_16px_40px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 bg-orange-700 hover:shadow-[0_20px_45px_rgba(194,65,12,0.25)]"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-white/20">
+                  <FaPhoneAlt className="text-sm" />
+                </span>
+                <span>Call 1-855-744-2407</span>
+              </a>
+              <div className="flex items-center gap-3 px-1">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.12)]" />
+                <span className="text-sm font-medium leading-6 text-neutral-600">
+                  Business specialists available
+                </span>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* Trusted logos row */}
-        <div className="mt-10 border-y py-6">
-          <p className="text-center text-xs text-gray-500 mb-3">
-            Trusted by teams at
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-70">
-            {LOGOS.map((l) => (
-              <span key={l} className="text-sm font-semibold tracking-wide">
-                {l}
-              </span>
-            ))}
-          </div>
+        {/* Bottom indicator */}
+        <div className="absolute bottom-6 right-6 z-20 hidden items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-600 lg:flex">
+          <span>Explore</span>
+          <span className="h-px w-12 bg-neutral-500" />
         </div>
       </section>
+
+      {/* Trusted logos row */}
+      <div className="border-y bg-white py-6">
+        <p className="text-center text-xs text-gray-500 mb-3">
+          Trusted by teams at
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-70">
+          {LOGOS.map((l) => (
+            <span key={l} className="text-sm font-semibold tracking-wide">
+              {l}
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* ===== ZIP LOOKUP ===== */}
       <section className="bg-gray-50" data-aos="fade-up">

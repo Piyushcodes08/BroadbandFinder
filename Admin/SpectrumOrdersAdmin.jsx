@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+import { useTheme } from "./ThemeContext";
 
 const API = `${import.meta.env.VITE_API_URL}/api/spectrum-orders`;
 
@@ -97,10 +98,11 @@ export default function SpectrumOrdersAdmin() {
   const [err, setErr] = useState("");
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("All");
-  const [range, setRange] = useState("all"); // today, 7d, 30d, all
+  const [range, setRange] = useState("all");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
-  const [selected, setSelected] = useState(null); // for details drawer
+  const [selected, setSelected] = useState(null);
+  const { theme } = useTheme();
 
   // Fetch
   useEffect(() => {
@@ -134,10 +136,10 @@ export default function SpectrumOrdersAdmin() {
       range === "today"
         ? new Date(now.getFullYear(), now.getMonth(), now.getDate())
         : range === "7d"
-        ? new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
-        : range === "30d"
-        ? new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)
-        : null;
+          ? new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
+          : range === "30d"
+            ? new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)
+            : null;
 
     const qq = q.trim().toLowerCase();
     return rows.filter((o) => {
@@ -204,10 +206,10 @@ export default function SpectrumOrdersAdmin() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex" style={{ backgroundColor: "var(--admin-page-bg)", minHeight: "100vh" }}>
       <Sidebar />
 
-      <div className="flex min-h-screen bg-gray-50 md:flex-col flex-col p-5">
+      <div className="flex-1 min-w-0 p-5 pt-16 md:pt-5" style={{ backgroundColor: "var(--admin-page-bg)" }}>
         {/* Header */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -502,9 +504,8 @@ function DetailsDrawer({ order, onClose }) {
               label="Service Address"
               value={
                 contact.svc
-                  ? `${contact.svc.street || ""}, ${contact.svc.city || ""}, ${
-                      contact.svc.state || ""
-                    } ${contact.svc.zip || ""}`
+                  ? `${contact.svc.street || ""}, ${contact.svc.city || ""}, ${contact.svc.state || ""
+                  } ${contact.svc.zip || ""}`
                   : "—"
               }
             />
@@ -513,9 +514,8 @@ function DetailsDrawer({ order, onClose }) {
                 label="Billing Address"
                 value={
                   contact.bill
-                    ? `${contact.bill.street || ""}, ${
-                        contact.bill.city || ""
-                      }, ${contact.bill.state || ""} ${contact.bill.zip || ""}`
+                    ? `${contact.bill.street || ""}, ${contact.bill.city || ""
+                    }, ${contact.bill.state || ""} ${contact.bill.zip || ""}`
                     : "—"
                 }
               />
@@ -542,9 +542,8 @@ function DetailsDrawer({ order, onClose }) {
               label="Mobile"
               value={
                 addons.mobileLines > 0
-                  ? `${addons.mobilePlan} (${addons.mobileLines} paid line${
-                      addons.mobileLines > 1 ? "s" : ""
-                    })`
+                  ? `${addons.mobilePlan} (${addons.mobileLines} paid line${addons.mobileLines > 1 ? "s" : ""
+                  })`
                   : "None"
               }
             />
@@ -563,7 +562,7 @@ function DetailsDrawer({ order, onClose }) {
               label="$10 off added (TV or Mobile)"
               value={
                 order.addons?.tvPackage !== "none" ||
-                (order.addons?.mobileLines || 0) > 0
+                  (order.addons?.mobileLines || 0) > 0
                   ? "Yes"
                   : "No"
               }

@@ -95,7 +95,7 @@ export default function RingCentralCheckout() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6" data-aos="fade-up">
+    <div className="max-w-5xl mx-auto p-6 pt-28 md:pt-32" data-aos="fade-up">
       <Header title="RingCentral Checkout" step={step} total={4} />
       {step === 1 && (
         <section className="grid gap-6 lg:grid-cols-[1fr_320px]">
@@ -255,22 +255,36 @@ export default function RingCentralCheckout() {
 
 /* local UI helpers like others */
 function Header({ title, step, total }) {
-  const pct = Math.round((step / total) * 100);
+  const providerName = title.replace(" Checkout", "");
   return (
-    <div className="mb-4">
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <span className="text-sm text-gray-600">
-          Step {step} of {total}
-        </span>
+    <>
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b pb-4">
+        <div>
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Checkout</h1>
+          <p className="text-sm text-gray-500 mt-1">
+            Complete your order in a few quick steps.
+          </p>
+          <div className="w-36 h-[4px] bg-[#E8611A] mt-3 rounded-full" />
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="rounded-full border border-[#E8611A] bg-white px-4 py-1 text-xs font-semibold text-[#E8611A]">
+            {providerName}
+          </span>
+          <span className="text-sm font-medium text-gray-600">
+            Step {step} of {total}
+          </span>
+        </div>
       </div>
-      <div className="mt-3 h-1 bg-gray-200 rounded-full">
-        <div
-          className="h-1 bg-black rounded-full"
-          style={{ width: `${pct}%` }}
-        />
+
+      <div className="mb-6">
+        <div className="h-1 w-full overflow-hidden rounded-full bg-gray-100">
+          <div
+            className="h-1 rounded-full bg-[#E8611A] transition-all"
+            style={{ width: `${(step / total) * 100}%` }}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 function Card({ title, children }) {

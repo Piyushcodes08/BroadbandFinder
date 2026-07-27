@@ -1,119 +1,94 @@
 import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
-import Sidebar from "../Admin/Sidebar.jsx";
+import { Send, MessageSquare } from "lucide-react";
+import AdminLayout, { AdminCard } from "./AdminLayout";
 
-let socket; // singleton socket instance
+let socket;
 
 export default function AgentChat({ conversationId }) {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
-  const [agentId, setAgentId] = useState(null);
   const messagesEndRef = useRef(null);
 
-  // Initialize socket and register as agent once
   useEffect(() => {
-    if (!socket) {
-      socket = io(import.meta.env.VITE_API_URL);
-    }
-
-    // Register agent
+    if (!socket) socket = io(import.meta.env.VITE_API_URL);
     const agentName = localStorage.getItem("agentName") || "Admin Agent";
     socket.emit("join_as_agent", { agentName });
-
-    socket.on("agent_ready", ({ agentId: id }) => {
-      setAgentId(id);
-    });
-
-    return () => {
-      socket.off("agent_ready");
-    };
+    return () => { socket.off("agent_ready"); };
   }, []);
 
-  // Join conversation room and listen for messages
   useEffect(() => {
     if (!conversationId || !socket) return;
-
     socket.emit("agent_join_conversation", { conversationId });
-
-    const handleMessage = (msg) => setMessages((prev) => [...prev, msg]);
-    socket.on("new_message", handleMessage);
-
-    return () => {
-      socket.off("new_message", handleMessage);
-    };
+    const handle = (msg) => setMessages((p) => [...p, msg]);
+    socket.on("new_message", handle);
+    return () => socket.off("new_message", handle);
   }, [conversationId]);
 
-  // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const sendMessage = () => {
     if (!text.trim() || !conversationId) return;
-
-    socket.emit("send_message", {
-      conversationId,
-      text: text.trim(),
-      senderRole: "agent",
-    });
+    socket.emit("send_message", { conversationId, text: text.trim(), senderRole: "agent" });
     setText("");
   };
 
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-
-      <div className="flex-1 p-4 flex flex-col">
-        <h2 className="text-xl font-bold mb-2">Chat with Customer</h2>
-
-        {!conversationId && (
-          <p className="text-gray-500 text-sm mb-2">
-            No conversation selected.
-          </p>
-        )}
-
-        <div className="border p-2 flex-1 overflow-y-auto mb-2">
-          {messages.map((m, i) => (
-            <div
-              key={m._id || i}
-              className={
-                m.senderRole === "agent"
-                  ? "text-right mb-1"
-                  : "text-left mb-1"
-              }
-            >
-              <p
-                className={`inline-block px-3 py-1 rounded-lg ${
-                  m.senderRole === "agent"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200"
-                }`}
-              >
-                {m.text}
+    <AdminLayout
+      title="Agent Chat"
+      subtitle={conversationId ? `Conversation: ${conversationId}` : "No conversation selected."}
+    >
+      <div className="max-w-3xl flex flex-col gap-3" style={{ height: "calc(100vh - 160px)" }}>
+        {/* Messages */}
+        <AdminCard className="flex-1 overflow-y-auto p-4 space-y-3">
+          {messages.length === 0 ? (
+            <div className="flex flex-col items-center justify-center h-full gap-2">
+              <MessageSquare size={36} style={{ color: "var(--admin-border)" }} />
+              <p className="text-sm" style={{ color: "var(--admin-text-secondary)" }}>
+                {conversationId ? "No messages yet." : "Select a conversation to start chatting."}
               </p>
             </div>
-          ))}
+          ) : (
+            messages.map((m, i) => (
+              <div key={m._id || i} className={`flex ${m.senderRole === "agent" ? "justify-end" : "justify-start"}`}>
+                <div
+                  className="max-w-[75%] rounded-2xl px-4 py-2.5 text-sm shadow-sm"
+                  style={m.senderRole === "agent"
+                    ? { backgroundColor: "var(--admin-accent)", color: "#fff", borderBottomRightRadius: "4px" }
+                    : { backgroundColor: "var(--admin-page-bg)", color: "var(--admin-text-primary)", border: "1px solid var(--admin-border)", borderBottomLeftRadius: "4px" }
+                  }
+                >
+                  {m.text}
+                </div>
+              </div>
+            ))
+          )}
           <div ref={messagesEndRef} />
-        </div>
+        </AdminCard>
 
-        <div className="flex">
+        {/* Input */}
+        <div className="flex gap-2">
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            className="flex-1 border px-2 py-1"
-            placeholder="Type a message..."
             disabled={!conversationId}
+            placeholder={conversationId ? "Type a message…" : "No conversation selected"}
+            className="flex-1 rounded-xl border px-4 py-3 text-sm outline-none transition disabled:opacity-50"
+            style={{ backgroundColor: "var(--admin-card-bg)", borderColor: "var(--admin-border)", color: "var(--admin-text-primary)" }}
           />
           <button
             onClick={sendMessage}
-            disabled={!conversationId}
-            className="bg-blue-500 text-white px-3 ml-2 rounded disabled:opacity-50"
+            disabled={!conversationId || !text.trim()}
+            className="flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition disabled:opacity-40"
+            style={{ backgroundColor: "var(--admin-accent)" }}
           >
-            Send
+            <Send size={16} />
           </button>
         </div>
       </div>
-    </div>
+    </AdminLayout>
   );
 }

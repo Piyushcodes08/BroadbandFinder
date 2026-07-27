@@ -710,9 +710,9 @@ export default function BookingFlow() {
   const showAddon = (key) => Boolean(providerCfg.addons?.[key]);
 
   return (
-    <div className="mx-auto max-w-6xl p-4 md:p-8" data-aos="fade-up">
+    <div className="mx-auto max-w-6xl p-4 pt-28 md:p-8 md:pt-32">
       {/* Header */}
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b pb-4" data-aos="fade-down">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b pb-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Checkout</h1>
           <p className="text-sm text-gray-500 mt-1">
@@ -740,7 +740,6 @@ export default function BookingFlow() {
           onSubmit={handleSubmit}
           onKeyDown={handleKeyDown}
           className="space-y-6"
-          data-aos="fade-right"
         >
           {/* STEP 1 — Plans & Add-ons (provider aware) */}
           {step === 1 && (
@@ -1335,7 +1334,7 @@ export default function BookingFlow() {
         </form>
 
         {/* RIGHT – sticky summary */}
-        <aside className="lg:sticky lg:top-8" data-aos="fade-left">
+        <aside className="lg:sticky lg:top-8">
           <div className="rounded-2xl border bg-white p-6 shadow-sm">
             <h3 className="mb-5 text-xl font-bold text-gray-900 tracking-tight border-b border-gray-100 pb-3">Order Summary</h3>
             <div className="space-y-1 text-sm">

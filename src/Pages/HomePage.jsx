@@ -321,6 +321,17 @@ export default function BusinessInternetPage() {
         <SpeedTestEmbed onClose={() => setShowSpeedTest(false)} />
       )}
 
+      {/* Responsive image overlays */}
+  <div
+    className="
+      absolute inset-0
+      bg-gradient-to-r
+      from-[#F8F6F1] via-[#F8F6F1]/95 to-[#F8F6F1]/45
+      sm:via-[#F8F6F1]/90 sm:to-transparent
+      lg:from-[#F8F6F1] lg:via-[#F8F6F1]/85 lg:to-transparent
+    "
+  />
+
       {/* Premium Hero Section */}
       <section className="relative isolate min-h-[100svh] overflow-hidden bg-[#f5f2eb]">
         {/* Background image */}
@@ -329,7 +340,16 @@ export default function BusinessInternetPage() {
           alt="Spectrum Business internet solutions"
           className="absolute inset-0 h-full w-full object-cover object-[68%_center] sm:object-center"
         />
-
+ {/* Responsive image overlays */}
+        <div
+          className="
+            absolute inset-0
+            bg-gradient-to-r
+            from-[#F8F6F1] via-[#F8F6F1]/95 to-[#F8F6F1]/45
+            sm:via-[#F8F6F1]/10 sm:to-transparent
+            lg:from-[#F8F6F1] lg:via-transparent lg:to-transparent
+          "
+        />
 
         {/* Hero content */}
         <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] items-center px-5  sm:px-10 lg:px-16 xl:px-20">
@@ -402,9 +422,9 @@ export default function BusinessInternetPage() {
         </div>
 
         {/* Bottom indicator */}
-        <div className="absolute bottom-6 right-6 z-20 hidden items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-600 lg:flex">
+        <div className="absolute bottom-6 right-6 z-20 hidden items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-black lg:flex">
           <span>Explore</span>
-          <span className="h-px w-12 bg-neutral-500" />
+          <span className="h-px w-12 bg-black" />
         </div>
       </section>
 

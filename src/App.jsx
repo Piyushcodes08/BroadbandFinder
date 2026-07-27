@@ -37,6 +37,7 @@ import ComcastBusinessCheckout from "./Checkout/ComcastBusinessCheckout.jsx";
 import RingCentralCheckout from "./Checkout/RingCentralCheckout.jsx";
 import SpectrumVoipCheckout from "./Checkout/SpectrumVoipCheckout.jsx";
 import SpectrumOrdersAdmin from "../Admin/SpectrumOrdersAdmin.jsx";
+import { ThemeProvider } from "../Admin/ThemeContext.jsx";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -62,12 +63,14 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
-  return (
-    <>
-      <ScrollToTop />
-      <Header />
+  const isAdminPage = location.pathname.startsWith("/admin");
 
-      <Offers variant="modal" defaultOpen />
+  return (
+    <ThemeProvider>
+      <ScrollToTop />
+      {!isAdminPage && <Header />}
+      {!isAdminPage && <Offers variant="modal" defaultOpen />}
+      {isAdminPage && null}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -193,7 +196,7 @@ export default function App() {
         />
       </Routes>
 
-      <Footer />
-    </>
+      {!isAdminPage && <Footer />}
+    </ThemeProvider>
   );
 }

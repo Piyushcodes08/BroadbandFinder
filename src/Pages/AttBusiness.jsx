@@ -6,12 +6,14 @@ import {
   FaRegCheckCircle,
   FaCheck,
   FaSearch,
+  FaPhoneAlt,
 } from "react-icons/fa";
 import { MdSpeed } from "react-icons/md";
 import { HiOutlineLightningBolt } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import attcovergae from "../assets/attcovergae.png";
 import heroBg from "../assets/24x7 bg.png";
+import AttBusinessHeroBg from "../assets/attbussness-herobg.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -410,6 +412,7 @@ export default function ATTBusinessReplica() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const [openAll, setOpenAll] = useState(false);
+  const [openPlan, setOpenPlan] = useState(null);
 
   const onZipChange = (e) => {
     const onlyDigits = e.target.value.replace(/\D/g, "").slice(0, 5);
@@ -437,253 +440,745 @@ export default function ATTBusinessReplica() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Top hero dual cards */}
-      <section className="bg-gray-50 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-[2fr_1fr] gap-6">
-          {/* LEFT CARD */}
-          <article className="relative rounded-3xl overflow-hidden shadow-sm bg-white min-h-[460px] md:min-h-[550px]" data-aos="fade-right">
-            <img
-              src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=2000&auto=format&fit=crop"
-              alt="Team collaborating"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-            {/* overlay (fixed typo: via-*) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-transparent" />
-            <div className="relative z-10 h-full p-6 md:p-10 flex">
-              <div className="max-w-2xl text-gray-900 flex flex-col justify-between">
-                <div>
-                  <p className="text-lg md:text-xl opacity-90">
-                    Fast. Reliable. Secure.
-                  </p>
-                  <h2 className="mt-2 text-3xl md:text-5xl font-extrabold leading-tight">
-                    Get AT&amp;T Business Fiber
-                    <br />
-                    starting at $40/mo.
-                  </h2>
-                  <p className="mt-3 text-gray-900 text-base md:text-2xl">
-                    When you bundle with a business wireless plan.
-                  </p>
+      {/* Premium Hero Section */}
+      <section className="relative isolate min-h-[100svh] overflow-hidden bg-[#f5f2eb]">
+        {/* Background image */}
+        <img
+          src={AttBusinessHeroBg}
+          alt="AT&T Business Fiber solutions"
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center] sm:object-center"
+        />
 
-                  <p className="mt-4 text-[16px] leading-5 text-gray-700">
-                    Price plus taxes and fees for AT&amp;T Business Fiber 300
-                    after $30/mo. discount with eligible wireless svc (min
-                    $70/mo). Ltd availability/areas.
-                  </p>
+        {/* Responsive image overlays */}
+        <div
+          className="
+            absolute inset-0
+            bg-gradient-to-r
+            from-[#F8F6F1] via-[#F8F6F1]/95 to-[#F8F6F1]/45
+            sm:via-[#F8F6F1]/90 sm:to-transparent
+            lg:from-[#F8F6F1] lg:via-transparent lg:to-transparent
+          "
+        />
 
-                  <a
-                    href={telHref}
-                    className="mt-4 inline-flex items-center gap-2 text-[#C44E12] font-semibold"
-                  >
-                    Call {PHONE} <FaChevronRight className="opacity-90" />
-                  </a>
-                </div>
+        {/* Hero content */}
+        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] items-center px-5 sm:px-10 lg:px-16 xl:px-20">
+          <div
+            className="w-full max-w-[720px] pt-10"
+            data-aos="fade-right"
+            data-aos-duration="900"
+          >
+            {/* Eyebrow */}
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-orange-600" />
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-orange-700 sm:text-sm">
+                AT&T Business®
+              </p>
+            </div>
+
+            {/* Main heading */}
+            <h1 className="max-w-[680px] text-[clamp(2.8rem,6vw,3.7rem)] font-semibold leading-[0.96] tracking-[-0.055em] text-[#171717]">
+              Business Fiber
+              <span className="mt-2 block tracking-[-0.04em] text-orange-700">
+                Starting at $40/mo.
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="mt-7 max-w-[620px] text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8 lg:text-xl">
+              Get fast, reliable AT&T Business Fiber. Save $30/mo when you bundle with an eligible wireless plan.
+            </p>
+
+            {/* Feature */}
+            <div className="mt-7 flex max-w-[590px] items-start gap-4 border-l-2 border-orange-600 pl-5">
+              <div>
+                <p className="font-semibold text-neutral-900">
+                  Get up to two months free & Switching Credit
+                </p>
+                <p className="mt-1 text-sm leading-6 text-neutral-600 sm:text-base">
+                  We’ll cover your early termination fee up to $750 when switching from another provider.
+                </p>
               </div>
             </div>
-          </article>
 
-          {/* RIGHT CARD */}
-          <article className="relative rounded-3xl overflow-hidden shadow-sm bg-white p-6 md:p-8 min-h-[460px] md:min-h-[550px]" data-aos="fade-left">
-            <div
-              className="absolute inset-0"
-              aria-hidden
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.92), rgba(245,248,252,0.92)), repeating-linear-gradient(135deg, rgba(0,0,0,0.04) 0 16px, transparent 16px 32px)",
-              }}
-            />
-            <div className="relative z-10">
-              <p className="text-lg md:text-xl text-gray-700">
-                AT&amp;T Business Fiber®
-              </p>
-              <h2 className="mt-1 text-2xl md:text-5xl font-extrabold text-gray-900">
-                Get up to two months free*
-              </h2>
-              <p className="mt-3 text-gray-700 md:text-xl">
-                Plus, we’ll cover your early termination fee up to $750 when
-                switching from another provider.
-              </p>
-              <p className="mt-4 text-[16px] leading-5 text-gray-600">
-                *1 month with 500M; 2 months with 1 GIG+. Fees extra. Up to $750
-                via reward card. Redemption &amp; proof of eligibility required.
-                Ltd availability/areas.
-              </p>
+            {/* Actions */}
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <a
+                href={telHref}
+                aria-label={`Call AT&T Business at ${PHONE}`}
+                className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full hover:bg-white px-7 text-base font-semibold hover:text-black text-white shadow-[0_16px_40px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 bg-orange-700 hover:shadow-[0_20px_45px_rgba(194,65,12,0.25)]"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-white/20">
+                  <FaPhoneAlt className="text-sm" />
+                </span>
+                <span>Call {PHONE}</span>
+              </a>
+              <div className="flex items-center gap-3 px-1">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.12)]" />
+                <span className="text-sm font-medium leading-6 text-neutral-600">
+                  Business specialists available
+                </span>
+              </div>
             </div>
 
-            <img
-              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop"
-              alt="Customer on tablet"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-white to-white/55" />
-          </article>
+          </div>
+        </div>
+
+        {/* Bottom indicator */}
+        <div className="absolute bottom-6 right-6 z-20 hidden items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-600 lg:flex">
+          <span>Explore</span>
+          <span className="h-px w-12 bg-neutral-500" />
         </div>
       </section>
 
       {/* ZIP checker */}
-      <section className="bg-gray-50" data-aos="fade-up">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex flex-col items-center">
-            <p className="text-gray-700 font-medium text-2xl md:text-3xl text-center">
-              Check availability by ZIP code
-            </p>
+     <section
+  className="relative isolate overflow-hidden bg-[#FAF8F5] py-16 sm:py-20 lg:py-24"
+  data-aos="fade-up"
+  aria-labelledby="availability-heading"
+>
+  {/* Background decoration */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(232,97,26,0.10),transparent_42%)]"
+  />
 
-            <form
-              onSubmit={handleSubmit}
-              className="mt-6 mb-6 w-full sm:max-w-xl md:max-w-2xl rounded-lg border border-gray-200 bg-white shadow-sm focus-within:ring-1 focus-within:ring-slate-600"
-              role="search"
-              aria-label="Check availability"
-            >
-              <label htmlFor="zipcode" className="sr-only">
-                Enter ZIP code
-              </label>
-              <div className="flex items-stretch">
+  <div
+    aria-hidden="true"
+    className="absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-orange-100/50 blur-3xl"
+  />
+
+  <div
+    aria-hidden="true"
+    className="absolute -right-24 top-8 h-72 w-72 rounded-full bg-amber-100/40 blur-3xl"
+  />
+
+  <div className="relative mx-auto max-w-4xl px-5 sm:px-8">
+    <div
+      className="
+        overflow-hidden rounded-[2rem] border border-neutral-200/80 bg-white
+        px-5 py-8 shadow-[0_24px_70px_rgba(30,24,20,0.09)]
+        sm:px-8 sm:py-10 lg:px-12 lg:py-12
+      "
+    >
+      {/* Heading */}
+      <div className="mx-auto max-w-2xl text-center">
+        <div className="mb-4 flex items-center justify-center gap-3">
+          <span className="h-px w-8 bg-[#E8611A]" />
+
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#A83E0C] sm:text-xs">
+            Check Availability
+          </span>
+
+          <span className="h-px w-8 bg-[#E8611A]" />
+        </div>
+
+        <h2
+          id="availability-heading"
+          className="text-3xl font-bold leading-tight tracking-[-0.04em] text-[#171717] sm:text-4xl lg:text-[2.8rem]"
+        >
+          See what’s available at your business
+        </h2>
+
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-neutral-600 sm:text-base">
+          Enter your five-digit ZIP code to check AT&amp;T Business service
+          availability in your area.
+        </p>
+      </div>
+
+      {/* Search form */}
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto mt-8 max-w-2xl"
+        role="search"
+        aria-label="Check service availability by ZIP code"
+      >
+        <label
+          htmlFor="zipcode"
+          className="mb-2 block text-sm font-semibold text-neutral-800"
+        >
+          Business ZIP code
+        </label>
+
+        <div
+          className={`
+            group flex min-h-[62px] overflow-hidden rounded-2xl
+            border bg-white shadow-[0_10px_30px_rgba(30,24,20,0.07)]
+            transition-all duration-300 focus-within:ring-4
+            focus-within:ring-[#E8611A]/15
+            ${
+              error
+                ? "border-red-300 focus-within:border-red-400"
+                : "border-neutral-200 focus-within:border-[#E8611A]"
+            }
+          `}
+        >
+          <span
+            className="
+              flex w-14 shrink-0 items-center justify-center
+              border-r border-neutral-100 bg-[#FFF8F3]
+              text-[#C44E12] sm:w-16
+            "
+            aria-hidden="true"
+          >
+            <FaSearch className="h-5 w-5" />
+          </span>
+
+          <input
+            id="zipcode"
+            type="text"
+            inputMode="numeric"
+            autoComplete="postal-code"
+            pattern="[0-9]{5}"
+            maxLength={5}
+            value={zipcode}
+            onChange={onZipChange}
+            placeholder="Enter ZIP code"
+            className="
+              min-w-0 flex-1 bg-white px-4 py-4
+              text-base font-medium text-neutral-900 outline-none
+              placeholder:font-normal placeholder:text-neutral-400
+              sm:px-5 sm:text-lg
+            "
+            aria-describedby={error ? "zipcode-error" : "zipcode-helper"}
+            aria-invalid={Boolean(error)}
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="
+              inline-flex min-w-[68px] shrink-0 items-center justify-center
+              gap-2 bg-[#C44E12] px-5 text-sm font-semibold text-white
+              transition-all duration-300
+              hover:bg-[#A83E0C]
+              disabled:cursor-not-allowed disabled:bg-[#E99A72]
+              focus-visible:outline-none focus-visible:ring-4
+              focus-visible:ring-inset focus-visible:ring-white/40
+              sm:min-w-[150px] sm:px-6 sm:text-base
+            "
+            aria-label="Check availability"
+          >
+            {loading ? (
+              <>
                 <span
-                  className="pl-4 pr-4 flex items-center text-gray-700 bg-white"
+                  className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white"
+                  aria-hidden="true"
+                />
+                <span className="hidden sm:inline">Checking...</span>
+              </>
+            ) : (
+              <>
+                <span className="hidden sm:inline">Check Now</span>
+                <FaSearch className="h-4 w-4 sm:hidden" aria-hidden="true" />
+                <span
+                  className="hidden text-lg transition-transform group-hover:translate-x-0.5 sm:inline"
                   aria-hidden="true"
                 >
-                  <FaSearch className="h-5 w-5" />
+                  →
                 </span>
-
-                <input
-                  id="zipcode"
-                  inputMode="numeric"
-                  pattern="\d{5}"
-                  maxLength={5}
-                  value={zipcode}
-                  onChange={onZipChange}
-                  placeholder="Enter ZIP code"
-                  className="w-full py-3 pr-3 pl-3 text-lg md:text-xl bg-white outline-none text-gray-900 placeholder:text-gray-400"
-                  aria-describedby={error ? "zipcode-error" : undefined}
-                  aria-invalid={!!error}
-                />
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="inline-flex items-center justify-center px-5 bg-[#E8611A] text-white font-semibold hover:bg-[#C44E12] disabled:bg-[#F8975D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8611A]"
-                  aria-label="Search by ZIP code"
-                >
-                  {loading ? (
-                    <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
-                  ) : (
-                    <FaSearch className="h-5 w-5" />
-                  )}
-                </button>
-              </div>
-              {error && (
-                <p
-                  id="zipcode-error"
-                  className="px-4 pb-3 text-sm text-[#E8611A]"
-                  role="alert"
-                >
-                  {error}
-                </p>
-              )}
-            </form>
-
-            {results && (
-              <div
-                className="flex items-center justify-center flex-col py-6 text-green-600"
-                aria-live="polite"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 mr-2 animate-pulse"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span className="font-semibold text-xl md:text-2xl text-center">
-                  AT&amp;T Business is available in {results.zipcode}
-                </span>
-                <button
-                  onClick={handleBook}
-                  className="mt-6 px-6 py-3 border border-slate-600 text-slate-600 hover:text-white font-semibold rounded-full hover:bg-[#C44E12] transition duration-300"
-                >
-                  Book Now
-                </button>
-              </div>
+              </>
             )}
+          </button>
+        </div>
+
+        {error ? (
+          <p
+            id="zipcode-error"
+            className="mt-2 flex items-center gap-2 text-sm font-medium text-red-600"
+            role="alert"
+          >
+            <span
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-red-50 text-xs"
+              aria-hidden="true"
+            >
+              !
+            </span>
+            {error}
+          </p>
+        ) : (
+          <p
+            id="zipcode-helper"
+            className="mt-2 text-xs text-neutral-500"
+          >
+            Please enter a valid five-digit U.S. ZIP code.
+          </p>
+        )}
+      </form>
+
+      {/* Availability result */}
+      {results && (
+        <div
+          className="
+            mx-auto mt-8 max-w-2xl rounded-2xl border border-emerald-200
+            bg-emerald-50/70 p-5
+            shadow-[0_12px_30px_rgba(5,150,105,0.08)]
+            sm:p-6
+          "
+          aria-live="polite"
+        >
+          <div className="flex flex-col items-center text-center sm:flex-row sm:text-left">
+            <span
+              className="
+                flex h-12 w-12 shrink-0 items-center justify-center
+                rounded-full bg-emerald-600 text-white
+                shadow-[0_8px_20px_rgba(5,150,105,0.24)]
+              "
+              aria-hidden="true"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </span>
+
+            <div className="mt-4 flex-1 sm:ml-4 sm:mt-0">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 sm:text-xs">
+                Service Available
+              </p>
+
+              <p className="mt-1 text-lg font-bold leading-snug text-neutral-900 sm:text-xl">
+                AT&amp;T Business is available in {results.zipcode}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleBook}
+              className="
+                mt-5 inline-flex min-h-12 w-full items-center justify-center
+                gap-2 rounded-xl bg-[#C44E12] px-6 text-sm font-semibold
+                text-white shadow-[0_10px_24px_rgba(196,78,18,0.22)]
+                transition-all duration-300
+                hover:-translate-y-0.5 hover:bg-[#A83E0C]
+                focus-visible:outline-none focus-visible:ring-4
+                focus-visible:ring-[#E8611A]/25
+                sm:ml-5 sm:mt-0 sm:w-auto
+              "
+            >
+              Book Now
+              <span aria-hidden="true">→</span>
+            </button>
           </div>
         </div>
-      </section>
+      )}
+
+      {/* Trust indicators */}
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-neutral-500">
+        {["Fast availability check", "No obligation", "Business support"].map(
+          (item) => (
+            <span key={item} className="inline-flex items-center gap-2">
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-[#E8611A]"
+                aria-hidden="true"
+              />
+              {item}
+            </span>
+          )
+        )}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Plans */}
-      <section className="py-14 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-5xl font-bold text-center">
-            Get fast speeds and low pricing
-          </h2>
-          <p className="text-center text-gray-600 mt-2">
-            Pick from 300Mbps to 5Gbps with all-inclusive business features
-            (Wi-Fi, static IP add-ons, and more).
-          </p>
+     <section
+  className="relative isolate overflow-hidden bg-[#FAF8F5] py-16 sm:py-20 lg:py-24"
+  aria-labelledby="pricing-heading"
+>
+  {/* Background accents */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(232,97,26,0.10),transparent_38%)]"
+  />
 
-          <div className="mt-6 flex items-center justify-center">
-            <WirelessToggle value={withWireless} onChange={setWithWireless} />
-          </div>
+  <div
+    aria-hidden="true"
+    className="absolute -left-28 top-1/3 h-72 w-72 rounded-full bg-orange-100/50 blur-3xl"
+  />
 
-          {/* Desktop grid */}
-          <div className="hidden sm:grid mt-6 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5" data-aos="fade-up">
-            {PLANS.map((p, i) => (
-              <PlanCard
-                key={i}
-                plan={p}
-                withWireless={withWireless}
-                open={openAll}
-                onToggle={() => setOpenAll((v) => !v)} // clicking any card toggles ALL
-              />
-            ))}
-          </div>
+  <div
+    aria-hidden="true"
+    className="absolute -right-28 bottom-0 h-80 w-80 rounded-full bg-amber-100/40 blur-3xl"
+  />
 
-          {/* Mobile carousel */}
-          <div className="sm:hidden mt-6" data-aos="fade-up">
-            <Swiper spaceBetween={16} slidesPerView={1.1} loop>
-              {PLANS.map((p, i) => (
-                <SwiperSlide key={i}>
-                  <PlanCard
-                    plan={p}
-                    withWireless={withWireless}
-                    open={openAll}
-                    onToggle={() => setOpenAll((v) => !v)}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+  <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
+    {/* Section heading */}
+    <div className="mx-auto max-w-3xl text-center">
+      <div className="mb-4 flex items-center justify-center gap-3">
+        <span className="h-px w-8 bg-[#E8611A]" />
 
-          <p className="mt-4 text-[11px] text-gray-500 text-center">
-            *Limited-time offer. Qualifying service and terms required.
-            Equipment, taxes &amp; fees extra. Actual speeds vary and are not
-            guaranteed.
-          </p>
+        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A83E0C] sm:text-xs">
+          Business Internet Plans
+        </span>
+
+        <span className="h-px w-8 bg-[#E8611A]" />
+      </div>
+
+      <h2
+        id="pricing-heading"
+        className="text-3xl font-bold leading-tight tracking-[-0.04em] text-[#171717] sm:text-4xl lg:text-[2.8rem]"
+      >
+        Fast speeds. Straightforward pricing.
+      </h2>
+
+      <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600 sm:text-base">
+        Choose speeds from 300 Mbps to 5 Gbps with essential business
+        features, flexible wireless options and room to grow.
+      </p>
+    </div>
+
+    {/* Wireless option */}
+    <div className="mt-8 flex flex-col items-center justify-center">
+      <div
+        className="
+          rounded-2xl border border-neutral-200/80 bg-white
+          px-4 py-3 shadow-[0_10px_30px_rgba(30,24,20,0.06)]
+          sm:px-5
+        "
+      >
+        <WirelessToggle
+          value={withWireless}
+          onChange={setWithWireless}
+        />
+      </div>
+
+      <p className="mt-3 text-center text-xs leading-5 text-neutral-500">
+        Customize your plan by adding a wireless service option.
+      </p>
+    </div>
+
+    {/* Desktop and tablet plans */}
+    <div
+      className="
+        mt-10 hidden gap-5 sm:grid sm:grid-cols-2
+        lg:grid-cols-3 xl:grid-cols-5 xl:gap-4
+      "
+      data-aos="fade-up"
+    >
+      {PLANS.map((plan, index) => (
+        <div
+          key={plan.id ?? index}
+          className={`
+            relative min-w-0
+            ${index === 0 ? "lg:col-start-1" : ""}
+          `}
+        >
+          {plan.popular && (
+            <div
+              className="
+                absolute -top-3 left-1/2 z-20
+                -translate-x-1/2 whitespace-nowrap rounded-full
+                bg-[#C44E12] px-4 py-1.5
+                text-[10px] font-bold uppercase tracking-[0.14em]
+                text-white shadow-[0_8px_20px_rgba(196,78,18,0.25)]
+              "
+            >
+              Most Popular
+            </div>
+          )}
+
+          <PlanCard
+            plan={plan}
+            withWireless={withWireless}
+            open={openPlan === index}
+            onToggle={() =>
+              setOpenPlan((current) =>
+                current === index ? null : index
+              )
+            }
+          />
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* Mobile carousel */}
+    <div className="mt-10 sm:hidden" data-aos="fade-up">
+      <Swiper
+        spaceBetween={14}
+        slidesPerView={1.06}
+        centeredSlides={false}
+        pagination={{ clickable: true }}
+        className="pricing-swiper !overflow-visible !pb-11"
+      >
+        {PLANS.map((plan, index) => (
+          <SwiperSlide key={plan.id ?? index} className="h-auto">
+            <div className="h-full pb-2">
+              {plan.popular && (
+                <div
+                  className="
+                    absolute -top-3 left-1/2 z-20
+                    -translate-x-1/2 whitespace-nowrap rounded-full
+                    bg-[#C44E12] px-4 py-1.5
+                    text-[10px] font-bold uppercase tracking-[0.14em]
+                    text-white
+                  "
+                >
+                  Most Popular
+                </div>
+              )}
+
+              <PlanCard
+                plan={plan}
+                withWireless={withWireless}
+                open={openPlan === index}
+                onToggle={() =>
+                  setOpenPlan((current) =>
+                    current === index ? null : index
+                  )
+                }
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+
+    {/* Legal offer note */}
+    <div
+      className="
+        mx-auto mt-8 max-w-4xl rounded-2xl
+        border border-neutral-200/80 bg-white/80
+        px-5 py-4 shadow-[0_8px_25px_rgba(30,24,20,0.04)]
+        backdrop-blur-sm sm:px-6
+      "
+    >
+      <div className="flex items-start gap-3">
+        <span
+          aria-hidden="true"
+          className="
+            mt-0.5 flex h-6 w-6 shrink-0 items-center
+            justify-center rounded-full bg-[#FFF0E6]
+            text-xs font-bold text-[#C44E12]
+          "
+        >
+          i
+        </span>
+
+        <p className="text-[11px] leading-5 text-neutral-500 sm:text-xs sm:leading-6">
+          Limited-time offer. Qualifying service and additional terms may
+          apply. Equipment, taxes and fees are extra. Actual speeds vary and
+          are not guaranteed.
+        </p>
+      </div>
+    </div>
+
+    {/* Bottom assurance */}
+    <div className="mt-7 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+      {[
+        "Flexible speed options",
+        "Business-ready features",
+        "Dedicated support",
+      ].map((item) => (
+        <span
+          key={item}
+          className="inline-flex items-center gap-2 text-xs font-medium text-neutral-600 sm:text-sm"
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50"
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          {item}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Why */}
-      <section className="bg-gray-50 py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-5xl font-bold text-center text-gray-800">
-            Why AT&amp;T Business Fiber?
-          </h2>
-          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {WHY.map((w, i) => (
-              <WhyCard key={i} w={w} />
-            ))}
+      <section
+  className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-24"
+  aria-labelledby="why-att-heading"
+>
+  {/* Background accents */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(232,97,26,0.08),transparent_40%)]"
+  />
+
+  <div
+    aria-hidden="true"
+    className="absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-orange-100/40 blur-3xl"
+  />
+
+  <div
+    aria-hidden="true"
+    className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-amber-100/40 blur-3xl"
+  />
+
+  <div className="relative mx-auto max-w-[1180px] px-5 sm:px-8 lg:px-12">
+    {/* Section heading */}
+    <div className="mx-auto max-w-3xl text-center">
+      <div className="mb-4 flex items-center justify-center gap-3">
+        <span className="h-px w-8 bg-[#E8611A]" />
+
+        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A83E0C] sm:text-xs">
+          Built for Business
+        </span>
+
+        <span className="h-px w-8 bg-[#E8611A]" />
+      </div>
+
+      <h2
+        id="why-att-heading"
+        className="text-3xl font-bold leading-tight tracking-[-0.04em] text-[#171717] sm:text-4xl lg:text-[2.8rem]"
+      >
+        Why choose AT&amp;T Business Fiber?
+      </h2>
+
+      <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600 sm:text-base">
+        Get reliable fiber connectivity, powerful performance and business-ready
+        support designed to keep your team moving.
+      </p>
+    </div>
+
+    {/* Benefit cards */}
+    <div
+      className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-6"
+      data-aos="fade-up"
+    >
+      {WHY.map((benefit, index) => (
+        <div
+          key={benefit.id ?? index}
+          className={`
+            group relative h-full
+            ${WHY.length % 3 === 1 && index === WHY.length - 1
+              ? "sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[570px] lg:col-span-1 lg:max-w-none"
+              : ""
+            }
+          `}
+        >
+          <div
+            className="
+              absolute inset-x-7 -bottom-3 h-16 rounded-[1.75rem]
+              bg-[#E8611A]/10 opacity-0 blur-xl
+              transition-opacity duration-300 group-hover:opacity-100
+            "
+            aria-hidden="true"
+          />
+
+          <div
+            className="
+              relative h-full overflow-hidden rounded-[1.75rem]
+              border border-neutral-200/80 bg-white
+              shadow-[0_16px_45px_rgba(30,24,20,0.06)]
+              transition-all duration-300
+              hover:-translate-y-1.5 hover:border-orange-200
+              hover:shadow-[0_26px_65px_rgba(30,24,20,0.11)]
+            "
+          >
+            {/* Top accent */}
+            <div
+              aria-hidden="true"
+              className="
+                absolute inset-x-0 top-0 h-1 origin-left scale-x-0
+                bg-gradient-to-r from-[#E8611A] to-[#F59A61]
+                transition-transform duration-500 group-hover:scale-x-100
+              "
+            />
+
+            <div
+              aria-hidden="true"
+              className="
+                absolute -right-16 -top-16 h-44 w-44 rounded-full
+                bg-orange-100/60 blur-3xl transition-transform duration-500
+                group-hover:scale-125
+              "
+            />
+
+            <div className="relative flex h-full flex-col p-6 sm:p-7 lg:p-8">
+              {/* Card number */}
+              <div className="flex items-start justify-between gap-4">
+                <span
+                  className="
+                    flex h-14 w-14 shrink-0 items-center justify-center
+                    rounded-2xl border border-orange-100 bg-[#FFF4EC]
+                    text-[#C44E12]
+                    shadow-[0_10px_24px_rgba(232,97,26,0.12)]
+                    transition-all duration-300
+                    group-hover:-rotate-3 group-hover:scale-105
+                    group-hover:bg-[#C44E12] group-hover:text-white
+                  "
+                  aria-hidden="true"
+                >
+                  {benefit.icon ? (
+                    benefit.icon
+                  ) : (
+                    <span className="text-lg font-bold">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  )}
+                </span>
+
+                <span className="text-xs font-bold tracking-[0.14em] text-neutral-300">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Existing card component/content */}
+              <div className="mt-6 flex-1">
+                <WhyCard w={benefit} />
+              </div>
+
+              <div
+                aria-hidden="true"
+                className="
+                  mt-7 flex items-center gap-2 text-xs font-semibold
+                  uppercase tracking-[0.12em] text-[#C44E12]
+                  opacity-0 transition-all duration-300
+                  group-hover:translate-x-1 group-hover:opacity-100
+                "
+              >
+                Business advantage
+                <span className="text-base">→</span>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* Bottom assurance strip */}
+    <div
+      className="
+        mx-auto mt-10 flex max-w-4xl flex-wrap items-center
+        justify-center gap-x-8 gap-y-3 rounded-2xl
+        border border-neutral-200/80 bg-[#FAF8F5]
+        px-5 py-4 sm:px-7
+      "
+    >
+      {[
+        "Reliable connectivity",
+        "Business-grade performance",
+        "Expert support",
+      ].map((item) => (
+        <span
+          key={item}
+          className="inline-flex items-center gap-2 text-xs font-medium text-neutral-600 sm:text-sm"
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50"
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+
+          {item}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Deals */}
       <section className="py-12 bg-[#FEF3EC]" data-aos="fade-up">
@@ -715,115 +1210,464 @@ export default function ATTBusinessReplica() {
       </section>
 
       {/* Add-ons */}
-      <section className="py-12" data-aos="fade-up">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center">
-            AT&amp;T Business Fiber add-ons
-          </h2>
+     <section
+  className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-24"
+  data-aos="fade-up"
+  aria-labelledby="fiber-addons-heading"
+>
+  {/* Background accents */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(232,97,26,0.08),transparent_42%)]"
+  />
 
-          <div className="mt-8 grid md:grid-cols-2 gap-6">
-            <article className="rounded-2xl border border-gray-200 overflow-hidden bg-white shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1600&auto=format&fit=crop"
-                alt="Voice"
-                className="h-56 w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="p-6">
-                <h3 className="font-extrabold text-lg">Voice</h3>
-                <p className="mt-2 text-gray-700 text-sm">
-                  Communicate effectively, reduce costs, and improve
-                  productivity by combining voice, video, and conferencing with
-                  easy-to-use tools.
-                </p>
-                <ul className="mt-3 space-y-1 text-sm font-semibold text-[#C44E12]">
-                  <li>
-                    <span className="hover:underline cursor-default">
-                      AT&amp;T Phone for Business
-                    </span>
-                  </li>
-                  <li>
-                    <span className="hover:underline cursor-default">
-                      AT&amp;T Office@Hand
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </article>
+  <div
+    aria-hidden="true"
+    className="absolute -left-28 top-1/3 h-72 w-72 rounded-full bg-orange-100/40 blur-3xl"
+  />
 
-            <article className="rounded-2xl border border-gray-200 overflow-hidden bg-white shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop"
-                alt="Security"
-                className="h-56 w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="p-6">
-                <h3 className="font-extrabold text-lg">Security</h3>
-                <p className="mt-2 text-gray-700 text-sm">
-                  Confidently connect. Intelligently protect. AT&amp;T
-                  Cybersecurity helps make your network more resilient.
-                </p>
-                <ul className="mt-3 space-y-1 text-sm font-semibold text-[#C44E12]">
-                  <li>
-                    <span className="hover:underline cursor-default">
-                      Secure Workforce
-                    </span>
-                  </li>
-                  <li>
-                    <span className="hover:underline cursor-default">
-                      SASE with Cisco Meraki
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+  <div
+    aria-hidden="true"
+    className="absolute -right-28 bottom-0 h-80 w-80 rounded-full bg-amber-100/40 blur-3xl"
+  />
 
-      {/* Coverage */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
+  <div className="relative mx-auto max-w-[1180px] px-5 sm:px-8 lg:px-12">
+    {/* Heading */}
+    <div className="mx-auto max-w-3xl text-center">
+      <div className="mb-4 flex items-center justify-center gap-3">
+        <span className="h-px w-8 bg-[#E8611A]" />
+
+        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A83E0C] sm:text-xs">
+          Expand Your Service
+        </span>
+
+        <span className="h-px w-8 bg-[#E8611A]" />
+      </div>
+
+      <h2
+        id="fiber-addons-heading"
+        className="text-3xl font-bold leading-tight tracking-[-0.04em] text-[#171717] sm:text-4xl lg:text-[2.8rem]"
+      >
+        AT&amp;T Business Fiber add-ons
+      </h2>
+
+      <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600 sm:text-base">
+        Enhance your business connectivity with flexible communication and
+        security solutions designed to support your team.
+      </p>
+    </div>
+
+    {/* Add-on cards */}
+    <div className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-12">
+      {/* Voice card */}
+      <article className="group relative overflow-hidden rounded-[1.75rem] border border-neutral-200/80 bg-white shadow-[0_18px_50px_rgba(30,24,20,0.07)] transition-all duration-500 hover:-translate-y-1.5 hover:border-orange-200 hover:shadow-[0_28px_70px_rgba(30,24,20,0.13)]">
+        {/* Image */}
+        <div className="relative h-56 overflow-hidden sm:h-64">
           <img
-            src={attcovergae}
-            alt="AT&T Business Fiber coverage map"
-            className="w-full h-[320px] md:h-[450px] object-contain"
+            src="https://images.unsplash.com/photo-1723737348714-ad7914b76c4c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Business voice and communication solutions"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
             decoding="async"
-            data-aos="fade-right"
           />
-          <div data-aos="fade-left">
-            <h3 className="text-3xl md:text-5xl font-extrabold leading-tight text-gray-900">
-              Our fiber coverage is
-              <br className="hidden sm:block" />
-              expanding
+
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
+          />
+
+          <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+            Communication
+          </span>
+
+          <div className="absolute bottom-5 left-5 right-5">
+            <h3 className="text-2xl font-bold tracking-[-0.025em] text-white">
+              Voice
             </h3>
-            <p className="mt-4 text-gray-700 max-w-xl">
-              We’re bringing fiber-fast business internet to more locations
-              every day. Sign up to be notified when it’s available at your
-              address.
-            </p>
-            <p className="mt-3 text-[12px] text-gray-500">
-              Limited availability in select areas.
-            </p>
           </div>
         </div>
-      </section>
+
+        {/* Content */}
+        <div className="relative flex min-h-[300px] flex-col p-6 sm:p-7 lg:p-8">
+          <p className="text-sm leading-7 text-neutral-600 sm:text-[15px]">
+            Communicate effectively, reduce costs and improve productivity by
+            combining voice, video and conferencing with easy-to-use business
+            tools.
+          </p>
+
+          <div className="mt-6 space-y-3">
+            {[
+              "AT&T Phone for Business",
+              "AT&T Office@Hand",
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-xl border border-neutral-100 bg-[#FAF8F5] px-4 py-3 transition-colors duration-300 group-hover:border-orange-100"
+              >
+                <span
+                  aria-hidden="true"
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#FFF0E6] text-xs font-bold text-[#C44E12]"
+                >
+                  ✓
+                </span>
+
+                <span className="text-sm font-semibold text-neutral-800">
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="#contact"
+            className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 pt-7 text-sm font-bold text-[#C44E12] transition-colors hover:text-[#A83E0C] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#E8611A]/20"
+          >
+            Explore voice solutions
+            <span
+              aria-hidden="true"
+              className="text-lg transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+        </div>
+      </article>
+
+      {/* Security card */}
+      <article className="group relative overflow-hidden rounded-[1.75rem] border border-neutral-200/80 bg-white shadow-[0_18px_50px_rgba(30,24,20,0.07)] transition-all duration-500 hover:-translate-y-1.5 hover:border-orange-200 hover:shadow-[0_28px_70px_rgba(30,24,20,0.13)]">
+        {/* Image */}
+        <div className="relative h-56 overflow-hidden sm:h-64">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1682145181120-73cfdfc8a36d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Business network and cybersecurity solutions"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"
+          />
+
+          <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+            Protection
+          </span>
+
+          <div className="absolute bottom-5 left-5 right-5">
+            <h3 className="text-2xl font-bold tracking-[-0.025em] text-white">
+              Security
+            </h3>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="relative flex min-h-[300px] flex-col p-6 sm:p-7 lg:p-8">
+          <p className="text-sm leading-7 text-neutral-600 sm:text-[15px]">
+            Connect confidently and protect intelligently with cybersecurity
+            solutions designed to help make your business network more
+            resilient.
+          </p>
+
+          <div className="mt-6 space-y-3">
+            {[
+              "Secure Workforce",
+              "SASE with Cisco Meraki",
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-xl border border-neutral-100 bg-[#FAF8F5] px-4 py-3 transition-colors duration-300 group-hover:border-orange-100"
+              >
+                <span
+                  aria-hidden="true"
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#FFF0E6] text-xs font-bold text-[#C44E12]"
+                >
+                  ✓
+                </span>
+
+                <span className="text-sm font-semibold text-neutral-800">
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="#contact"
+            className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 pt-7 text-sm font-bold text-[#C44E12] transition-colors hover:text-[#A83E0C] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#E8611A]/20"
+          >
+            Explore security solutions
+            <span
+              aria-hidden="true"
+              className="text-lg transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    {/* Bottom support strip */}
+    <div className="mx-auto mt-10 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-neutral-200/80 bg-[#FAF8F5] px-6 py-5 sm:flex-row sm:px-7">
+      <div>
+        <p className="text-center text-sm font-bold text-neutral-900 sm:text-left">
+          Need help selecting the right add-ons?
+        </p>
+
+        <p className="mt-1 text-center text-xs leading-5 text-neutral-500 sm:text-left">
+          Speak with a business specialist about your communication and
+          security requirements.
+        </p>
+      </div>
+
+      <a
+        href="#contact"
+        className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-[#C44E12] px-5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(196,78,18,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A83E0C] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#E8611A]/25"
+      >
+        Talk to a Specialist
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+      {/* Coverage */}
+     <section
+  className="relative isolate overflow-hidden bg-[#FAF8F5] py-16 sm:py-20 lg:py-24"
+  aria-labelledby="coverage-heading"
+>
+  {/* Background decoration */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(232,97,26,0.10),transparent_36%)]"
+  />
+
+  <div
+    aria-hidden="true"
+    className="absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-orange-100/60 blur-3xl"
+  />
+
+  <div
+    aria-hidden="true"
+    className="absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-amber-100/50 blur-3xl"
+  />
+
+  <div className="relative mx-auto max-w-[1180px] px-5 sm:px-8 lg:px-12">
+    <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+      {/* Coverage image */}
+      <div
+        className="relative"
+        data-aos="fade-right"
+        data-aos-duration="800"
+      >
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-10 bottom-2 h-20 rounded-full bg-[#E8611A]/15 blur-3xl"
+        />
+
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/90 bg-white/85 p-5 shadow-[0_24px_70px_rgba(45,32,24,0.10)] backdrop-blur-sm sm:p-7">
+          {/* Card header */}
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#A83E0C] sm:text-xs">
+                Fiber Network
+              </p>
+
+              <p className="mt-1 text-sm font-semibold text-neutral-800 sm:text-base">
+                Business coverage map
+              </p>
+            </div>
+
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-emerald-700 sm:text-xs">
+              <span
+                className="h-2 w-2 animate-pulse rounded-full bg-emerald-500"
+                aria-hidden="true"
+              />
+              Expanding
+            </span>
+          </div>
+
+          <div className="relative overflow-hidden rounded-2xl bg-[#FFF8F3]">
+            <img
+              src={attcovergae}
+              alt="AT&T Business Fiber coverage map"
+              className="h-[280px] w-full object-contain p-3 transition-transform duration-700 hover:scale-[1.03] sm:h-[360px] lg:h-[400px]"
+              loading="lazy"
+              decoding="async"
+            />
+
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-orange-50/20 via-transparent to-white/30"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div
+        data-aos="fade-left"
+        data-aos-duration="800"
+      >
+        <div className="flex items-center gap-3">
+          <span className="h-px w-9 bg-[#E8611A]" />
+
+          <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A83E0C] sm:text-xs">
+            Growing Every Day
+          </span>
+        </div>
+
+        <h2
+          id="coverage-heading"
+          className="mt-5 max-w-xl text-3xl font-bold leading-[1.1] tracking-[-0.04em] text-[#171717] sm:text-4xl lg:text-[3.1rem]"
+        >
+          Our fiber coverage is{" "}
+          <span className="text-[#C44E12]">expanding.</span>
+        </h2>
+
+        <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600 sm:text-base sm:leading-8">
+          We’re bringing fiber-fast business internet to more locations every
+          day. Check availability and receive an update when service reaches
+          your business address.
+        </p>
+
+        {/* Benefits */}
+        <div className="mt-7 space-y-3">
+          {[
+            "Fast, reliable business connectivity",
+            "Growing fiber network availability",
+            "Business support when you need it",
+          ].map((item) => (
+            <div
+              key={item}
+              className="flex items-center gap-3 text-sm font-medium text-neutral-700 sm:text-[15px]"
+            >
+              <span
+                aria-hidden="true"
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FFF0E6] text-xs font-bold text-[#C44E12]"
+              >
+                ✓
+              </span>
+
+              {item}
+            </div>
+          ))}
+        </div>
+
+        {/* Actions */}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#availability"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#C44E12] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(196,78,18,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A83E0C] hover:shadow-[0_16px_34px_rgba(196,78,18,0.30)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#E8611A]/25"
+          >
+            Check Availability
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a
+            href="#contact"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-800 transition-all duration-300 hover:border-[#C44E12] hover:text-[#C44E12] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#E8611A]/15"
+          >
+            Notify Me
+          </a>
+        </div>
+
+        <p className="mt-4 flex items-start gap-2 text-[11px] leading-5 text-neutral-500 sm:text-xs">
+          <span
+            aria-hidden="true"
+            className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#E8611A]"
+          />
+          Availability varies by address and is currently limited to select
+          service areas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* FAQs */}
-      <section className="py-12" data-aos="fade-up">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl md:text-3xl font-extrabold">
-            Frequently asked questions
-          </h2>
-          <div className="mt-4">
-            <FAQ />
-          </div>
-        </div>
-      </section>
+    <section
+  className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-24"
+  data-aos="fade-up"
+  aria-labelledby="faq-heading"
+>
+  {/* Soft background accents */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(232,97,26,0.08),transparent_42%)]"
+  />
+
+  <div
+    aria-hidden="true"
+    className="absolute -left-28 top-1/3 h-72 w-72 rounded-full bg-orange-100/40 blur-3xl"
+  />
+
+  <div
+    aria-hidden="true"
+    className="absolute -right-28 bottom-0 h-80 w-80 rounded-full bg-amber-100/40 blur-3xl"
+  />
+
+  <div className="relative mx-auto max-w-[1040px] px-5 sm:px-8 lg:px-12">
+    {/* Section heading */}
+    <div className="mx-auto max-w-3xl text-center">
+      <div className="mb-4 flex items-center justify-center gap-3">
+        <span className="h-px w-8 bg-[#E8611A]" />
+
+        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A83E0C] sm:text-xs">
+          Help &amp; Support
+        </span>
+
+        <span className="h-px w-8 bg-[#E8611A]" />
+      </div>
+
+      <h2
+        id="faq-heading"
+        className="text-3xl font-bold leading-tight tracking-[-0.04em] text-[#171717] sm:text-4xl lg:text-[2.8rem]"
+      >
+        Frequently asked questions
+      </h2>
+
+      <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600 sm:text-base">
+        Find helpful answers about plans, availability, installation and
+        AT&amp;T Business Fiber services.
+      </p>
+    </div>
+
+    {/* FAQ container */}
+    <div className="relative mt-10 lg:mt-12">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-12 -bottom-5 h-24 rounded-[2rem] bg-[#E8611A]/10 blur-2xl"
+      />
+
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-neutral-200/80 bg-white p-3 shadow-[0_22px_65px_rgba(30,24,20,0.08)] sm:p-5 lg:p-6">
+        <FAQ />
+      </div>
+    </div>
+
+    {/* Bottom support card */}
+    <div className="mt-8 flex flex-col items-center justify-between gap-5 rounded-2xl border border-neutral-200/80 bg-[#FAF8F5] px-6 py-5 sm:flex-row sm:px-7">
+      <div>
+        <p className="text-center text-sm font-bold text-neutral-900 sm:text-left">
+          Still have questions?
+        </p>
+
+        <p className="mt-1 text-center text-xs leading-5 text-neutral-500 sm:text-left">
+          Speak with a business specialist for personalized assistance.
+        </p>
+      </div>
+
+      <a
+        href="#contact"
+        className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-[#C44E12] px-5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(196,78,18,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A83E0C] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#E8611A]/25"
+      >
+        Contact a Specialist
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 ﻿import axios from "axios";
 import { useState } from "react";
-import Sidebar from "../../Admin/Sidebar";
+import { Upload, FileText, CheckCircle, XCircle } from "lucide-react";
+import AdminLayout, { AdminCard, AdminBtn } from "../../Admin/AdminLayout";
 
 const CsvUploader = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -15,43 +16,27 @@ const CsvUploader = () => {
   };
 
   const handleUpload = async () => {
-    if (isUploading) return;
-    if (selectedFiles.length === 0) {
-      setStatus("Please select one or more CSV files.");
+    if (isUploading || selectedFiles.length === 0) {
+      if (selectedFiles.length === 0) setStatus("Please select one or more CSV files.");
       return;
     }
-
     setIsUploading(true);
     setStatus("");
 
-    for (let i = 0; i < selectedFiles.length; i++) {
-      const file = selectedFiles[i];
+    for (const file of selectedFiles) {
       const formData = new FormData();
       formData.append("files", file);
-
       try {
         await axios.post(`${import.meta.env.VITE_API_URL}/api/upload/csv`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            setUploadProgress((prev) => ({
-              ...prev,
-              [file.name]: percentCompleted,
-            }));
+          onUploadProgress: (e) => {
+            const pct = Math.round((e.loaded * 100) / e.total);
+            setUploadProgress((p) => ({ ...p, [file.name]: pct }));
           },
         });
-
-        setUploadProgress((prev) => ({
-          ...prev,
-          [file.name]: 100, // mark as complete
-        }));
-      } catch (err) {
-        setUploadProgress((prev) => ({
-          ...prev,
-          [file.name]: "error",
-        }));
+        setUploadProgress((p) => ({ ...p, [file.name]: 100 }));
+      } catch {
+        setUploadProgress((p) => ({ ...p, [file.name]: "error" }));
       }
     }
 
@@ -60,102 +45,89 @@ const CsvUploader = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 flex-col md:flex-row">
-      <Sidebar />
+    <AdminLayout title="Upload CSV" subtitle="Upload zipcode data files in bulk.">
+      <div className="max-w-xl">
+        <AdminCard>
+          <div className="p-6 space-y-5">
 
-      <div className="flex-1 p-4 sm:p-6 md:p-8">
-        <div className="bg-white rounded-lg shadow-md p-6 max-w-xl mx-auto border border-gray-200">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-            Upload Multiple CSV Files
-          </h2>
-
-          {/* File Input */}
-          <input
-            type="file"
-            accept=".csv"
-            multiple
-            onChange={handleFileChange}
-            className="block w-full text-gray-700 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F47630] focus:border-[#F47630] p-2 transition"
-          />
-
-          {/* Selected Files List with Progress */}
-          {selectedFiles.length > 0 && (
-            <ul className="mt-4 grid grid-cols-1 sm:grid-cols-6 gap-4 text-sm text-gray-700">
-              {selectedFiles.map((file) => (
-                <li
-                  key={file.name}
-                  className="flex flex-col items-start bg-gray-50 border border-gray-200 p-3 rounded-md shadow-sm"
-                >
-                  <span className="truncate w-full font-medium mb-1 flex items-center gap-2">
-                    📄 {file.name}
-                  </span>
-
-                  {/* Progress bar */}
-                  {uploadProgress[file.name] !== undefined && (
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                      <div
-                        className={`h-3 rounded-full transition-all duration-300 ${
-                          uploadProgress[file.name] === "error"
-                            ? "bg-[#E8611A]"
-                            : "bg-green-600"
-                        }`}
-                        style={{
-                          width:
-                            uploadProgress[file.name] === "error"
-                              ? "100%"
-                              : `${uploadProgress[file.name]}%`,
-                        }}
-                        aria-label={
-                          uploadProgress[file.name] === "error"
-                            ? "Upload failed"
-                            : `Upload progress: ${uploadProgress[file.name]}%`
-                        }
-                        role="progressbar"
-                        aria-valuenow={
-                          uploadProgress[file.name] === "error"
-                            ? 0
-                            : uploadProgress[file.name]
-                        }
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      />
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {/* Upload Button */}
-          <button
-            onClick={handleUpload}
-            disabled={isUploading}
-            className={`mt-6 w-full px-5 py-3 rounded-lg text-white font-semibold transition ${
-              isUploading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#E8611A] hover:bg-[#C44E12]"
-            }`}
-            aria-busy={isUploading}
-          >
-            {isUploading ? "Uploading..." : "Upload"}
-          </button>
-
-          {/* Status Message */}
-          {status && (
-            <p
-              className={`mt-4 text-center text-sm font-medium ${
-                status.toLowerCase().includes("finished")
-                  ? "text-green-600"
-                  : "text-[#E8611A]"
-              }`}
-              role="alert"
+            {/* Drop zone */}
+            <label
+              className="flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed cursor-pointer transition py-10 px-4"
+              style={{ borderColor: "var(--admin-border)", backgroundColor: "var(--admin-page-bg)" }}
             >
-              {status}
-            </p>
-          )}
-        </div>
+              <Upload size={28} style={{ color: "var(--admin-accent)" }} />
+              <div className="text-center">
+                <p className="text-sm font-semibold" style={{ color: "var(--admin-text-primary)" }}>
+                  Click to select CSV files
+                </p>
+                <p className="text-xs mt-1" style={{ color: "var(--admin-text-secondary)" }}>
+                  .csv files only, multiple allowed
+                </p>
+              </div>
+              <input type="file" accept=".csv" multiple onChange={handleFileChange} className="hidden" />
+            </label>
+
+            {/* File list with progress */}
+            {selectedFiles.length > 0 && (
+              <ul className="space-y-2">
+                {selectedFiles.map((file) => {
+                  const prog = uploadProgress[file.name];
+                  const isError = prog === "error";
+                  const isDone = prog === 100;
+
+                  return (
+                    <li
+                      key={file.name}
+                      className="flex items-center gap-3 rounded-xl p-3"
+                      style={{ backgroundColor: "var(--admin-page-bg)", border: "1px solid var(--admin-border)" }}
+                    >
+                      <FileText size={16} style={{ color: "var(--admin-accent)", shrink: 0 }} />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate" style={{ color: "var(--admin-text-primary)" }}>{file.name}</p>
+                        {prog !== undefined && (
+                          <div className="mt-1.5 h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "var(--admin-border)" }}>
+                            <div
+                              className="h-full rounded-full transition-all duration-300"
+                              style={{
+                                width: isError ? "100%" : `${prog}%`,
+                                backgroundColor: isError ? "#ef4444" : isDone ? "#22c55e" : "var(--admin-accent)",
+                              }}
+                            />
+                          </div>
+                        )}
+                      </div>
+                      {isDone && <CheckCircle size={16} className="shrink-0 text-green-500" />}
+                      {isError && <XCircle size={16} className="shrink-0 text-red-500" />}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+
+            {/* Upload button */}
+            <AdminBtn
+              onClick={handleUpload}
+              disabled={isUploading || selectedFiles.length === 0}
+              className="w-full justify-center py-3"
+            >
+              <Upload size={15} />
+              {isUploading ? "Uploading…" : "Upload Files"}
+            </AdminBtn>
+
+            {/* Status */}
+            {status && (
+              <p
+                className="text-center text-sm font-medium"
+                style={{ color: status.includes("finished") ? "#22c55e" : "var(--admin-accent)" }}
+                role="alert"
+              >
+                {status}
+              </p>
+            )}
+          </div>
+        </AdminCard>
       </div>
-    </div>
+    </AdminLayout>
   );
 };
 

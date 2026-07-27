@@ -38,7 +38,7 @@ export default function OrderBooking({ bundles = DEFAULT_BUNDLES }) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-10 px-6" data-aos="fade-up">
+    <div className="max-w-3xl mx-auto py-10 pt-28 px-6 md:pt-32" data-aos="fade-up">
       {/* Progress */}
       <div className="flex items-center mb-10" data-aos="fade-down">
         {steps.map((label, index) => (

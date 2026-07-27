@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 import { useState } from "react";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
 
@@ -62,7 +62,7 @@ export default function PlanBookingForm({
   if (!isOpen || !provider) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center px-4">
+    <div className="fixed inset-0 bg-black bg-opacity-40 z-[60] flex items-center justify-center px-4">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-lg p-6 relative">
         <button
           onClick={onClose}

@@ -1,93 +1,74 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Sidebar from "./Sidebar";
+import { MapPin, Building2, RefreshCw, TrendingUp } from "lucide-react";
+import AdminLayout, { AdminCard } from "./AdminLayout";
 import TopZipcodeChart from "./TopZipcodeChart";
 
 const API_BASE = `${import.meta.env.VITE_API_URL}/api`;
 
-const AdminDashboard = () => {
+const statCards = [
+  { key: "totalZipcodes",  label: "Total Zipcodes",  icon: MapPin,       accent: "var(--admin-accent)" },
+  { key: "activeCities",   label: "Active Cities",   icon: Building2,    accent: "#3b82f6" },
+  { key: "pendingUpdates", label: "Pending Updates", icon: TrendingUp,   accent: "#10b981" },
+];
+
+export default function AdminDashboard() {
   const [loading, setLoading] = useState(false);
-  const [stats, setStats] = useState({
-    totalZipcodes: 0,
-    activeCities: 0,
-    pendingUpdates: 0,
-  });
+  const [stats, setStats] = useState({ totalZipcodes: 0, activeCities: 0, pendingUpdates: 0 });
 
   const fetchStats = async () => {
     setLoading(true);
     try {
       const res = await axios.get(`${API_BASE}/zipcodes/stats`);
       setStats(res.data);
-    } catch (error) {
-      console.error("Error fetching dashboard stats", error);
-    } finally {
-      setLoading(false);
-    }
+    } catch { /* silent */ }
+    finally { setLoading(false); }
   };
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
+  useEffect(() => { fetchStats(); }, []);
 
   return (
-    <div className="flex min-h-screen bg-gray-100 md:flex-row flex-col">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Content Area */}
-        <main className="flex-1 p-4 sm:p-6 md:p-8">
-          <div className="bg-white shadow-md rounded-xl p-4 sm:p-6 md:p-8 border border-gray-200 max-w-7xl mx-auto">
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
-              Welcome, Admin
-            </h3>
-            <p className="text-gray-600 leading-relaxed max-w-3xl">
-              This is your dashboard. Here’s a quick overview of the app’s current data.
-            </p>
-
-            {/* Stats Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-              {/* Total Zipcodes */}
-              <div className="bg-blue-50 p-5 rounded-lg shadow-sm border border-blue-100 flex flex-col items-center">
-                <p className="text-sm text-blue-500 font-semibold uppercase tracking-wide mb-2">
-                  Total Zipcodes
-                </p>
-                <p className="text-3xl font-extrabold text-gray-800">
-                  {loading ? "Loading..." : stats.totalZipcodes}
-                </p>
+    <AdminLayout
+      title="Dashboard"
+      subtitle="Welcome back, Admin 👋"
+      actions={
+        <button
+          onClick={fetchStats}
+          disabled={loading}
+          className="flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition disabled:opacity-50"
+          style={{ backgroundColor: "var(--admin-card-bg)", borderColor: "var(--admin-border)", color: "var(--admin-text-secondary)" }}
+        >
+          <RefreshCw size={15} className={loading ? "animate-spin" : ""} />
+          Refresh
+        </button>
+      }
+    >
+      {/* Stat cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        {statCards.map(({ key, label, icon: Icon, accent }) => (
+          <AdminCard key={key}>
+            <div className="p-5 flex items-center gap-4" style={{ borderTop: `3px solid ${accent}` }}>
+              <div className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}18`, color: accent }}>
+                <Icon size={22} />
               </div>
-
-              {/* Active Cities */}
-              <div className="bg-green-50 p-5 rounded-lg shadow-sm border border-green-100 flex flex-col items-center">
-                <p className="text-sm text-green-600 font-semibold uppercase tracking-wide mb-2">
-                  Active Cities
-                </p>
-                <p className="text-3xl font-extrabold text-gray-800">
-                  {loading ? "Loading..." : stats.activeCities}
-                </p>
-              </div>
-
-              {/* Pending Updates */}
-              <div className="bg-yellow-50 p-5 rounded-lg shadow-sm border border-yellow-100 flex flex-col items-center">
-                <p className="text-sm text-yellow-600 font-semibold uppercase tracking-wide mb-2">
-                  Pending Updates
-                </p>
-                <p className="text-3xl font-extrabold text-gray-800">
-                  {loading ? "Loading..." : stats.pendingUpdates}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--admin-text-secondary)" }}>{label}</p>
+                <p className="text-3xl font-extrabold mt-0.5" style={{ color: "var(--admin-text-primary)" }}>
+                  {loading ? "—" : stats[key]}
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Chart Section */}
-          <div className="max-w-7xl mx-auto mt-8 p-4 bg-white rounded-xl shadow-md border border-gray-200">
-            <TopZipcodeChart />
-          </div>
-        </main>
+          </AdminCard>
+        ))}
       </div>
-    </div>
-  );
-};
 
-export default AdminDashboard;
+      {/* Chart */}
+      <AdminCard>
+        <div className="p-6">
+          <h2 className="text-base font-semibold mb-4" style={{ color: "var(--admin-text-primary)" }}>Most Searched Zipcodes</h2>
+          <TopZipcodeChart />
+        </div>
+      </AdminCard>
+    </AdminLayout>
+  );
+}
