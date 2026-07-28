@@ -64,10 +64,9 @@ export default function ThemeCustomizer({ trigger }) {
         <div className="fixed inset-0 z-50 flex justify-end">
           <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
 
-          {/* Panel */}
-          <aside className="relative w-full max-w-sm h-full bg-white shadow-2xl flex flex-col overflow-hidden">
+          <aside className="relative w-80 h-full shadow-2xl flex flex-col overflow-hidden" style={{ backgroundColor: "#ffffff" }}>
             {/* Panel header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b" style={{ backgroundColor: theme.accentColor }}>
+            <div className="flex items-center justify-between px-5 py-4" style={{ backgroundColor: theme.accentColor, borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
               <div className="flex items-center gap-2 text-white">
                 <Palette size={18} />
                 <span className="font-bold text-sm">Dashboard Styling</span>
@@ -77,17 +76,18 @@ export default function ThemeCustomizer({ trigger }) {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-5 py-5 space-y-6">
+            <div className="flex-1 overflow-y-auto px-5 py-5 space-y-6" style={{ backgroundColor: "#ffffff" }}>
 
               {/* Presets */}
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Quick Presets</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6b7280" }}>Quick Presets</p>
                 <div className="grid grid-cols-2 gap-2">
                   {PRESETS.map((p) => (
                     <button
                       key={p.name}
                       onClick={() => applyPreset(p.colors)}
-                      className="flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2.5 text-xs font-medium text-slate-700 hover:border-slate-400 transition text-left"
+                      className="flex items-center gap-2 rounded-xl border px-3 py-2.5 text-xs font-medium transition text-left hover:opacity-80"
+                      style={{ borderColor: "#e5e7eb", color: "#374151", backgroundColor: "#f9fafb" }}
                     >
                       <span className="h-5 w-5 rounded-full shrink-0 border border-white shadow-sm" style={{ backgroundColor: p.dot }} />
                       {p.name}
@@ -96,28 +96,47 @@ export default function ThemeCustomizer({ trigger }) {
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="border-t border-slate-100" />
+              <div style={{ borderTop: "1px solid #e5e7eb" }} />
 
               {/* Custom color pickers */}
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Custom Colors</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6b7280" }}>Custom Colors</p>
                 <div className="space-y-3">
                   {colorFields.map(({ key, label }) => (
-                    <div key={key} className="flex items-center justify-between gap-3">
-                      <label className="text-sm text-slate-700 flex-1">{label}</label>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono text-slate-500 w-[72px]">
-                          {theme[key]}
-                        </span>
+                    <div key={key} className="flex items-center gap-2">
+                      <label className="text-sm flex-1 min-w-0 truncate" style={{ color: "#374151" }}>{label}</label>
+                      <span className="text-xs font-mono shrink-0" style={{ color: "#9ca3af", width: "58px", textAlign: "right" }}>
+                        {String(theme[key] || "").slice(0, 7)}
+                      </span>
+                      <label
+                        className="shrink-0 rounded-md cursor-pointer hover:scale-110 transition-transform"
+                        style={{
+                          width: "28px",
+                          height: "28px",
+                          border: "2px solid #e5e7eb",
+                          backgroundColor: theme[key],
+                          display: "block",
+                          overflow: "hidden",
+                          position: "relative",
+                        }}
+                        title={label}
+                      >
                         <input
                           type="color"
                           value={theme[key]}
                           onChange={(e) => updateTheme(key, e.target.value)}
-                          className="h-8 w-8 cursor-pointer rounded-lg border border-slate-200 p-0.5"
-                          title={label}
+                          style={{
+                            position: "absolute",
+                            opacity: 0,
+                            inset: 0,
+                            width: "100%",
+                            height: "100%",
+                            cursor: "pointer",
+                            border: "none",
+                            padding: 0,
+                          }}
                         />
-                      </div>
+                      </label>
                     </div>
                   ))}
                 </div>
@@ -125,10 +144,11 @@ export default function ThemeCustomizer({ trigger }) {
             </div>
 
             {/* Footer */}
-            <div className="px-5 py-4 border-t border-slate-100 flex gap-2">
+            <div className="px-5 py-4 flex gap-2" style={{ borderTop: "1px solid #e5e7eb", backgroundColor: "#f9fafb" }}>
               <button
                 onClick={resetTheme}
-                className="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 transition flex-1 justify-center"
+                className="flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition flex-1 justify-center"
+                style={{ borderColor: "#e5e7eb", color: "#6b7280", backgroundColor: "#ffffff" }}
               >
                 <RotateCcw size={15} /> Reset
               </button>

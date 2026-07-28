@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, ChevronDown, Mail, Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
@@ -230,158 +230,149 @@ const Header = () => {
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
+      </header>
 
-        {/* Mobile backdrop */}
-        <div
-          className={`fixed inset-0 top-0 bg-[#101828]/60 backdrop-blur-[3px] transition-opacity duration-300 lg:hidden ${
-            menuOpen
-              ? "pointer-events-auto opacity-100"
-              : "pointer-events-none opacity-0"
-          }`}
-          onClick={() => setMenuOpen(false)}
-          aria-hidden="true"
-        />
+      {/* Mobile backdrop */}
+      <div
+        className={`fixed inset-0 top-0 bg-[#101828]/60 backdrop-blur-[3px] transition-opacity duration-300 lg:hidden ${
+          menuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0 "
+        }`}
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+      />
 
-        {/* Mobile drawer */}
+      {/* Mobile drawer container to prevent horizontal scroll */}
+      <div className={`fixed inset-0 z-[100] pointer-events-none overflow-hidden lg:hidden ${menuOpen ? 'visible' : 'invisible delay-500'}`}>
         <aside
           id="mobile-navigation"
-          className={`fixed right-0 top-0 flex h-[100dvh] w-[90%] max-w-[410px] flex-col bg-[#fcfcfb] shadow-[-24px_0_70px_rgba(15,23,42,0.22)] transition-transform duration-500 ease-out lg:hidden ${
+          className={`absolute right-0 top-0 bottom-0 flex h-full w-[90%] max-w-[410px] flex-col bg-[#fcfcfb] shadow-[-24px_0_70px_rgba(15,23,42,0.22)] transition-transform duration-500 ease-out pointer-events-auto ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"
         >
-          <div className="flex h-[78px] shrink-0 items-center justify-between border-b border-slate-200/80 px-5 py-0">
-            <Link
-              to="/"
-              onClick={() => setMenuOpen(false)}
-              aria-label="24x7 NetConnect Home"
-            >
-              <img
-                src={logo}
-                alt="24x7 NetConnect"
-                className="block max-h-[50px] w-44 object-contain"
-              />
-            </Link>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(false)}
-              className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700"
-              aria-label="Close navigation menu"
-            >
-              <X size={20} />
-            </button>
-          </div>
+        <div className="flex h-[78px] shrink-0 items-center justify-between border-b border-slate-200/80 px-5 py-0">
+          <Link
+            to="/"
+            onClick={() => setMenuOpen(false)}
+            aria-label="24x7 NetConnect Home"
+          >
+            <img
+              src={logo}
+              alt="24x7 NetConnect"
+              className="block max-h-[50px] w-44 object-contain"
+            />
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700"
+            aria-label="Close navigation menu"
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-          <div className="flex-1 overflow-y-auto px-4 py-6">
-            <p className="mb-3 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
-              Business internet
-            </p>
+        <div className="flex-1 overflow-y-auto px-4 py-6">
+          <p className="mb-3 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            Business internet
+          </p>
 
-            <nav className="space-y-1" aria-label="Mobile navigation">
-              {businessLinks.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className={mobileLinkClass(isActive(item.to))}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <span>{item.label} Business</span>
-                  <ArrowUpRight
-                    size={16}
-                    className="text-slate-300 transition group-hover:text-[#d95717]"
-                  />
-                </Link>
-              ))}
+          <nav className="space-y-1" aria-label="Mobile navigation">
+            {businessLinks.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={mobileLinkClass(isActive(item.to))}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span>{item.label} Business</span>
+                <ArrowUpRight
+                  size={16}
+                  className="text-slate-300 transition group-hover:text-[#d95717]"
+                />
+              </Link>
+            ))}
 
-              <div className="py-1">
-                <button
-                  type="button"
-                  onClick={() => setCloudOpen((open) => !open)}
-                  className={`${mobileLinkClass(
-                    cloudOpen || isCloudActive,
-                  )} w-full`}
-                  aria-expanded={cloudOpen}
-                  aria-controls="mobile-cloud-services"
-                >
-                  <span>Cloud Services</span>
-                  <ChevronDown
-                    size={17}
-                    className={`transition-transform duration-300 ${
-                      cloudOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                <div
-                  id="mobile-cloud-services"
-                  className={`grid transition-all duration-300 ${
-                    cloudOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
+            <div className="py-1">
+              <button
+                type="button"
+                onClick={() => setCloudOpen((open) => !open)}
+                className={`${mobileLinkClass(
+                  cloudOpen || isCloudActive,
+                )} w-full`}
+                aria-expanded={cloudOpen}
+                aria-controls="mobile-cloud-services"
+              >
+                <span>Cloud Services</span>
+                <ChevronDown
+                  size={17}
+                  className={`transition-transform duration-300 ${
+                    cloudOpen ? "rotate-180" : ""
                   }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="ml-4 mt-2 space-y-1 border-l border-[#e8611a]/25 pl-3">
-                      {cloudLinks.map((item) => (
-                        <Link
-                          key={item.to}
-                          to={item.to}
-                          onClick={() => setMenuOpen(false)}
-                          className="block rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#fff2e8] hover:text-[#d95717]"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
+                />
+              </button>
+
+              <div
+                id="mobile-cloud-services"
+                className={`grid transition-all duration-300 ${
+                  cloudOpen
+                    ? "grid-rows-[1fr] opacity-100"
+                    : "grid-rows-[0fr] opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="ml-4 mt-2 space-y-1 border-l border-[#e8611a]/25 pl-3">
+                    {cloudLinks.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        onClick={() => setMenuOpen(false)}
+                        className="block rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#fff2e8] hover:text-[#d95717]"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
+            </div>
+          </nav>
+        </div>
 
-              {isLoggedIn && (
-                <Link
-                  to="/admin"
-                  className={mobileLinkClass(isActive("/admin"))}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <span>Admin Dashboard</span>
-                  <ArrowUpRight size={16} />
-                </Link>
-              )}
-            </nav>
-          </div>
+        <div className="border-t border-slate-200 bg-white p-5">
+          <Link
+            to="/contact-us"
+            onClick={() => setMenuOpen(false)}
+            className="flex h-[52px] items-center justify-center rounded-2xl bg-[#e8611a] px-5 py-3.5 text-sm font-bold text-white shadow-[0_12px_28px_rgba(232,97,26,0.25)]"
+          >
+            Talk to an Expert
+            <ArrowUpRight size={17} className="ml-2" />
+          </Link>
 
-          <div className="border-t border-slate-200 bg-white p-5">
-            <Link
-              to="/contact-us"
-              onClick={() => setMenuOpen(false)}
-              className="flex h-[52px] items-center justify-center rounded-2xl bg-[#e8611a] px-5 py-3.5 text-sm font-bold text-white shadow-[0_12px_28px_rgba(232,97,26,0.25)]"
+          <a
+            href="mailto:sales@24x7netconnect.us"
+            className="mt-3 flex items-center justify-center gap-2 py-2 text-xs font-medium text-slate-500"
+          >
+            <Mail size={14} />
+            sales@24x7netconnect.us
+          </a>
+
+          {isLoggedIn && (
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700"
             >
-              Talk to an Expert
-              <ArrowUpRight size={17} className="ml-2" />
-            </Link>
-
-            <a
-              href="mailto:sales@24x7netconnect.us"
-              className="mt-3 flex items-center justify-center gap-2 py-2 text-xs font-medium text-slate-500"
-            >
-              <Mail size={14} />
-              sales@24x7netconnect.us
-            </a>
-
-            {isLoggedIn && (
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700"
-              >
-                Logout
-              </button>
-            )}
-          </div>
-        </aside>
-      </header>
+              Logout
+            </button>
+          )}
+        </div>
+      </aside>
+      </div>
     </div>
   );
 };

@@ -16,20 +16,18 @@ export const DEFAULT_THEME = {
   darkMode:      false,
 };
 
-/** Inject theme as CSS custom properties on :root so every admin page
- *  can use var(--admin-*) without needing useTheme() everywhere */
-function applyCSS(t) {
-  const root = document.documentElement;
-  root.style.setProperty("--admin-sidebar-bg",     t.sidebarBg);
-  root.style.setProperty("--admin-sidebar-text",   t.sidebarText);
-  root.style.setProperty("--admin-sidebar-active", t.sidebarActive);
-  root.style.setProperty("--admin-header-bg",      t.headerBg);
-  root.style.setProperty("--admin-page-bg",        t.pageBg);
-  root.style.setProperty("--admin-card-bg",        t.cardBg);
-  root.style.setProperty("--admin-accent",         t.accentColor);
-  root.style.setProperty("--admin-text-primary",   t.textPrimary);
-  root.style.setProperty("--admin-text-secondary", t.textSecondary);
-  root.style.setProperty("--admin-border",         t.borderColor);
+export function applyCSS(t) {
+  const r = document.documentElement;
+  r.style.setProperty("--admin-sidebar-bg",     t.sidebarBg     ?? DEFAULT_THEME.sidebarBg);
+  r.style.setProperty("--admin-sidebar-text",   t.sidebarText   ?? DEFAULT_THEME.sidebarText);
+  r.style.setProperty("--admin-sidebar-active", t.sidebarActive ?? DEFAULT_THEME.sidebarActive);
+  r.style.setProperty("--admin-header-bg",      t.headerBg      ?? DEFAULT_THEME.headerBg);
+  r.style.setProperty("--admin-page-bg",        t.pageBg        ?? DEFAULT_THEME.pageBg);
+  r.style.setProperty("--admin-card-bg",        t.cardBg        ?? DEFAULT_THEME.cardBg);
+  r.style.setProperty("--admin-accent",         t.accentColor   ?? DEFAULT_THEME.accentColor);
+  r.style.setProperty("--admin-text-primary",   t.textPrimary   ?? DEFAULT_THEME.textPrimary);
+  r.style.setProperty("--admin-text-secondary", t.textSecondary ?? DEFAULT_THEME.textSecondary);
+  r.style.setProperty("--admin-border",         t.borderColor   ?? DEFAULT_THEME.borderColor);
 }
 
 const ThemeContext = createContext(null);
@@ -38,32 +36,41 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? { ...DEFAULT_THEME, ...JSON.parse(saved) } : DEFAULT_THEME;
+      const t = saved ? { ...DEFAULT_THEME, ...JSON.parse(saved) } : DEFAULT_THEME;
+      // Apply immediately — before first render paint
+      applyCSS(t);
+      return t;
     } catch {
+      applyCSS(DEFAULT_THEME);
       return DEFAULT_THEME;
     }
   });
 
-  // Apply CSS vars whenever theme changes
-  useEffect(() => { applyCSS(theme); }, [theme]);
+  // Re-apply whenever theme object changes
+  useEffect(() => {
+    applyCSS(theme);
+  }, [theme]);
 
   const updateTheme = (key, value) => {
     setTheme((prev) => {
       const next = { ...prev, [key]: value };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      applyCSS(next); // apply immediately, don't wait for useEffect
       return next;
     });
   };
 
   const resetTheme = () => {
-    setTheme(DEFAULT_THEME);
     localStorage.removeItem(STORAGE_KEY);
+    applyCSS(DEFAULT_THEME);
+    setTheme({ ...DEFAULT_THEME });
   };
 
   const applyPreset = (preset) => {
     const next = { ...DEFAULT_THEME, ...preset };
-    setTheme(next);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    applyCSS(next); // apply immediately
+    setTheme(next);
   };
 
   return (

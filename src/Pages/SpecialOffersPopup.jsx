@@ -149,6 +149,8 @@ export default function SpecialOffersPopup({
   const [open, setOpen] = useState(defaultOpen);
   const [step, setStep] = useState("offers");
   const openedRef = useRef(false);
+  const modalRef = useRef(null);
+  const lastActiveRef = useRef(null);
 
   const canAutoOpen = useMemo(() => {
     if (isBookingPage) return false;
@@ -167,6 +169,60 @@ export default function SpecialOffersPopup({
       setStep("offers");
     }
   }, [isBookingPage]);
+
+  // Manage focus, escape-to-close, tab trapping and body scroll lock
+  useEffect(() => {
+    if (!variant || variant !== "modal") return;
+    if (open) {
+      try {
+        lastActiveRef.current = document.activeElement;
+        modalRef.current?.focus?.();
+        document.body.style.overflow = "hidden";
+      } catch {}
+    } else {
+      try {
+        document.body.style.overflow = "";
+        lastActiveRef.current?.focus?.();
+      } catch {}
+    }
+
+    const handleKey = (e) => {
+      if (!open) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close("escape");
+        return;
+      }
+      if (e.key === "Tab") {
+        const container = modalRef.current;
+        if (!container) return;
+        const focusable = container.querySelectorAll(
+          'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable.length) {
+          e.preventDefault();
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      try {
+        document.body.style.overflow = "";
+      } catch {}
+    };
+  }, [open, variant]);
 
   const openPopup = (source) => {
     if (variant !== "modal") return;
@@ -259,7 +315,8 @@ export default function SpecialOffersPopup({
       {variant === "modal" && reopenPill && !isBookingPage && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed top-60 right-0 z-50 origin-bottom-right -rotate-90 rounded-t-xl bg-gradient-to-r from-pink-600 via-[#E8611A] to-yellow-500 px-5 py-2.5 text-white text-sm font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer"
+          type="button"
+          className="fixed top-60 right-0 z-50 origin-bottom-right -rotate-90 rounded-t-xl bg-gradient-to-r from-pink-600 via-[#E8611A] to-yellow-500 px-4 py-2.5 text-white text-sm font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer sm:top-56 md:top-44 lg:top-40"
           aria-label="View Special Offers"
         >
           <span>🎁</span>
@@ -340,7 +397,7 @@ export default function SpecialOffersPopup({
       {/* Modal variant */}
       {variant === "modal" && open && !isBookingPage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden px-3"
           role="dialog"
           aria-modal="true"
           aria-labelledby="offers-title"
@@ -349,7 +406,7 @@ export default function SpecialOffersPopup({
             className="absolute inset-0 bg-black/40 backdrop-blur-[1px] "
             onClick={() => close("backdrop")}
           />
-          <div className="relative z-10 m-3 w-full max-w-[90%] sm:max-w-3xl rounded-2xl border border-black/10 bg-white shadow-xl overflow-hidden">
+          <div ref={modalRef} tabIndex={-1} className="relative z-10 m-3 w-full max-w-[98%] sm:max-w-3xl rounded-2xl border border-black/10 bg-white shadow-xl overflow-hidden">
             <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-black/10">
               <div>
                 <p className="text-xs tracking-widest uppercase">
@@ -371,7 +428,7 @@ export default function SpecialOffersPopup({
             <div className="px-5 pb-5 pt-4">
               {step === "offers" && (
                 <>
-                  <div className="grid gap-3 sm:grid-cols-2 overflow-y-auto max-h-[400px]">
+                  <div className="grid gap-3 sm:grid-cols-2 overflow-y-auto max-h-[60vh] md:max-h-[52vh]">
                     {offers.map((o) => (
                       <article
                         key={o.id}
@@ -418,6 +475,7 @@ export default function SpecialOffersPopup({
 
                   <div className="mt-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
                     <button
+                      type="button"
                       onClick={handleBook}
                       className="inline-flex items-center justify-center rounded-xl border border-black bg-gray-800 px-4 py-2 text-white text-sm font-semibold hover:opacity-90"
                     >
@@ -425,12 +483,14 @@ export default function SpecialOffersPopup({
                     </button>
                     <div className="flex items-center gap-3">
                       <button
+                        type="button"
                         onClick={() => close("not_now")}
                         className="text-sm text-black/70 underline-offset-4 hover:underline"
                       >
                         Not now
                       </button>
                       <button
+                        type="button"
                         onClick={() => {
                           try {
                             localStorage.setItem(LS_KEY_LAST, nowISO());
